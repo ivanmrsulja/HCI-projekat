@@ -20,18 +20,25 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
-                <Label FontSize="24">LOGIN</Label>
+                <Label FontFamily="Impact" FontSize="30">🟊PRIJAVA🟊</Label>
             </StackPanel>
-            <Label FontSize="20" Grid.Row="1" Grid.Column="0" >Username:</Label>
-            <TextBox FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" ></TextBox>
-            <Label FontSize="20" Grid.Row="2" Grid.Column="0" >Password:</Label>
-            <PasswordBox FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20"></PasswordBox>
+            <Label Margin="10" FontSize="20" Grid.Row="1" Grid.Column="0" >Korisničko ime:</Label>
+            <TextBox Margin="10" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
+            <Label Margin="10" FontSize="20" Grid.Row="2" Grid.Column="0" >Lozinka:</Label>
+            <PasswordBox Margin="10" FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></PasswordBox>
             <Separator Visibility="Hidden" Grid.Row="3" Grid.Column="1" MinHeight="20"></Separator>
-            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-                <Button FontSize="20"  HorizontalAlignment="Stretch" Click="UlogujSe">Uloguj se</Button>
-                <Separator Visibility="Hidden" MinWidth="185"></Separator>
-                <Button FontSize="20"  HorizontalAlignment="Stretch" Click="RegistrujSe">Registruj se</Button>
-            </StackPanel>
+            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" MinWidth="70" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Margin="5,0,0,0" Grid.Row="0" Grid.Column="0" FontSize="20"  HorizontalAlignment="Left" Click="UlogujSe" Width="87">Uloguj se</Button>
+                <Button Grid.Row="0" Grid.Column="2" FontSize="20"  HorizontalAlignment="Right" Click="RegistrujSe" Width="105">Registruj se</Button>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>
