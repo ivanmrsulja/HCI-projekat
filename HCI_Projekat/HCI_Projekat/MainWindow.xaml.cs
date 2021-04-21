@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,59 @@ namespace HCI_Projekat
         public MainWindow()
         {
             InitializeComponent();
+            using (var db = new Context())
+            {
+                foreach (var entity in db.Korisnici)
+                    db.Korisnici.Remove(entity);
+                foreach (var entity in db.Manifestacije)
+                    db.Manifestacije.Remove(entity);
+                foreach (var entity in db.Komentari)
+                    db.Komentari.Remove(entity);
+
+                Komentar ko1 = new Komentar("aaaaa", null, null);
+                db.Komentari.Add(ko1);
+
+                Manifestacija man1 = new Manifestacija("venacanje", 3000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.Now, null, null);
+                Manifestacija man2 = new Manifestacija("venacanje", 3000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.Now, null, null);
+                man1.AddKomentar(ko1);
+                db.Manifestacije.Add(man1);
+                db.Manifestacije.Add(man2);
+
+                Klijent k1 = new Klijent("kkk", "kkk", "Nikola", "Jovanovic", "email", "telefon", "adresa");
+                k1.AddManifestacija(man1);
+                k1.AddManifestacija(man2);
+                k1.AddKomentar(ko1);
+                db.Korisnici.Add(k1);
+
+                Organizator o1 = new Organizator("ooo", "ooo", "Jovan", "Jovanovic", "email", "telefon", "adresa");
+                o1.AddManifestacija(man1);
+                db.Korisnici.Add(o1);
+
+                Admin a1 = new Admin("aaa", "aaa", "Joko", "Jovanovic", "email", "telefon", "adresa");
+                db.Korisnici.Add(a1);
+
+                
+                db.SaveChanges();
+            }
         }
 
         public void UlogujSe(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Logovanje");
+            string passw = pass.Password;
+            string username = user.Text;
+            using (var db = new Context())
+            {
+                Korisnik[] currentUser = (from k in db.Korisnici where k.Username == username && k.Password == passw select k).ToArray();
+                if(currentUser.Length == 0)
+                {
+                    MessageBox.Show("Neispravno korisnicko ime ili lozinka.", "Obavestenje");
+                }
+                else
+                {
+                    Console.WriteLine(currentUser[0].Uloga);
+                }
+            }
         }
 
         public void RegistrujSe(object sender, RoutedEventArgs e)

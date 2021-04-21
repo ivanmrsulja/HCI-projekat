@@ -23,9 +23,9 @@
                 <Label FontFamily="Impact" FontSize="30">🟊PRIJAVA🟊</Label>
             </StackPanel>
             <Label Margin="10" FontSize="20" Grid.Row="1" Grid.Column="0" >Korisničko ime:</Label>
-            <TextBox Margin="10" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
+            <TextBox Margin="10" Name="user" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="2" Grid.Column="0" >Lozinka:</Label>
-            <PasswordBox Margin="10" FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></PasswordBox>
+            <PasswordBox Margin="10" Name="pass" FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></PasswordBox>
             <Separator Visibility="Hidden" Grid.Row="3" Grid.Column="1" MinHeight="20"></Separator>
             <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
