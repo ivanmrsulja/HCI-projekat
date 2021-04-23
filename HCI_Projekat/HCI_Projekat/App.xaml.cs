@@ -14,5 +14,6 @@ namespace HCI_Projekat
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

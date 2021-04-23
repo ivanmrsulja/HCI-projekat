@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:HCI_Projekat"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <Style x:Key="ControlStyle" TargetType="Control">
+            <Setter Property="FontFamily" Value="David"/>
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource ControlStyle}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}"/>
     </Application.Resources>
 </Application>

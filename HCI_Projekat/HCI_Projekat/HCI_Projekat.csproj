@@ -68,6 +68,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Administrator\HomeAdmin.xaml.cs">
+      <DependentUpon>HomeAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KlijentView\KlijentHOME.xaml.cs">
+      <DependentUpon>KlijentHOME.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
+      <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\EmailValidationRule.cs" />
+    <Compile Include="Validation\TelefonValidationRule.cs" />
+    <Compile Include="Validation\UsernameValidationRule.cs" />
+    <Page Include="Administrator\HomeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KlijentView\KlijentHOME.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,6 +103,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrganizatorView\OrganizatorHOME.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Context.cs" />

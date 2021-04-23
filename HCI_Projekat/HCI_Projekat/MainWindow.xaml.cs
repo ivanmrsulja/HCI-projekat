@@ -1,4 +1,7 @@
-﻿using HCI_Projekat.Model;
+﻿using HCI_Projekat.Administrator;
+using HCI_Projekat.KlijentView;
+using HCI_Projekat.Model;
+using HCI_Projekat.OrganizatorView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,13 +78,29 @@ namespace HCI_Projekat
                 else
                 {
                     Console.WriteLine(currentUser[0].Uloga);
+                    switch (currentUser[0].Uloga)
+                    {
+                        case UlogaKorisnika.ADMIN:
+                            var wa = new HomeAdmin(this);
+                            wa.ShowDialog();
+                            break;
+                        case UlogaKorisnika.KLIJENT:
+                            var wk = new KlijentHOME(this);
+                            wk.ShowDialog();
+                            break;
+                        case UlogaKorisnika.ORGANIZATOR:
+                            var wo = new OrganizatorHOME(this);
+                            wo.ShowDialog();
+                            break;
+                    }
                 }
             }
         }
 
         public void RegistrujSe(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Registracija");
+            var w = new Registration();
+            w.ShowDialog();
         }
     }
 
