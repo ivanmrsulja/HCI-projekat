@@ -19,7 +19,7 @@ namespace HCI_Projekat.Validation
                 using (var db = new Context())
                 {
                     string[] usernames = (from users in db.Korisnici where users.Username == username select users.Username).ToArray();
-                    if (usernames.Length == 0)
+                    if (usernames.Length == 0 || username.Trim() == "")
                     {
                         return new ValidationResult(true, null);
                     }

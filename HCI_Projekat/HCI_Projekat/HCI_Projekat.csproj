@@ -81,6 +81,8 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validation\EmailValidationRule.cs" />
+    <Compile Include="Validation\IsBlankValidationRule.cs" />
+    <Compile Include="Validation\PasswordValidator.cs" />
     <Compile Include="Validation\TelefonValidationRule.cs" />
     <Compile Include="Validation\UsernameValidationRule.cs" />
     <Page Include="Administrator\HomeAdmin.xaml">

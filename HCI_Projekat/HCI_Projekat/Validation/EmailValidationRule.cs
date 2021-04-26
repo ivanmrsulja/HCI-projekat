@@ -19,7 +19,7 @@ namespace HCI_Projekat.Validation
                 var email = value as string;
                 Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 Match match = regex.Match(email);
-                if (match.Success)
+                if (match.Success || email.Trim() == "")
                     return new ValidationResult(true, null);
                 else
                     return new ValidationResult(false, "Email nije u ispravnom formatu.");

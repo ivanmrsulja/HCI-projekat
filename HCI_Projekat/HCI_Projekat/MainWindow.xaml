@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
-                <Label FontFamily="Impact" FontSize="30">🟊PRIJAVA🟊</Label>
+                <Label FontFamily="Impact" FontSize="30">PRIJAVA</Label>
             </StackPanel>
             <Label Margin="10" FontSize="20" Grid.Row="1" Grid.Column="0" >Korisničko ime:</Label>
             <TextBox Margin="10" Name="user" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>

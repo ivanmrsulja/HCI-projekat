@@ -27,18 +27,19 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Center">
-                <Label FontFamily="Impact" FontSize="30">🟊REGISTRACIJA🟊</Label>
+                <Label FontFamily="Impact" FontSize="30">REGISTRACIJA</Label>
             </StackPanel>
             <Label Margin="10" FontSize="20" Grid.Row="1" Grid.Column="0" >Ime:</Label>
-            <TextBox Margin="10" Name="ime" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
+            <TextBox Margin="10" Name="ime" FontSize="20" Grid.Row="1" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged"></TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="2" Grid.Column="0" >Prezime:</Label>
-            <TextBox Margin="10" Name="prezime" FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
+            <TextBox Margin="10" Name="prezime" FontSize="20" Grid.Row="2" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged"></TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="3" Grid.Column="0" >Korisničko ime:</Label>
-            <TextBox Margin="10" Name="user" FontSize="20" Grid.Row="3" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220">
+            <TextBox Margin="10" Name="user" FontSize="20" Grid.Row="3" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged">
                 <TextBox.Text>
-                    <Binding Path="Username" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
                         <Binding.ValidationRules>
                             <val:UsernameValidationRule ValidationStep="RawProposedValue"/>
+                            <val:IsBlankValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -61,15 +62,20 @@
 
             </TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="4" Grid.Column="0" >Lozinka:</Label>
-            <PasswordBox Margin="10" Name="pass" FontSize="20" Grid.Row="4" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></PasswordBox>
+            <PasswordBox Margin="10" Name="pass" FontSize="20" Grid.Row="4" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" PasswordChanged="FormStateChanged" ></PasswordBox>
             <Label Margin="10" FontSize="20" Grid.Row="5" Grid.Column="0" >Potvrdi lozinku:</Label>
-            <PasswordBox Margin="10" Name="passConf" FontSize="20" Grid.Row="5" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></PasswordBox>
+            <PasswordBox Margin="10" Name="passConf" FontSize="20" Grid.Row="5" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" PasswordChanged="FormStateChanged"></PasswordBox>
+            <val:PasswordValidator 
+                  Box1="{Binding ElementName=pass}" 
+                  Box2="{Binding ElementName=passConf}" />
+            
             <Label Margin="10" FontSize="20" Grid.Row="6" Grid.Column="0" >Email:</Label>
-            <TextBox Margin="10" Name="email" FontSize="20" Grid.Row="6" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220">
+            <TextBox Margin="10" Name="email" FontSize="20" Grid.Row="6" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged">
                 <TextBox.Text>
-                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
                         <Binding.ValidationRules>
                             <val:EmailValidationRule ValidationStep="RawProposedValue"/>
+                            <val:IsBlankValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -92,13 +98,14 @@
 
             </TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="7" Grid.Column="0" >Adresa:</Label>
-            <TextBox Margin="10" Name="adresa" FontSize="20" Grid.Row="7" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220"></TextBox>
+            <TextBox Margin="10" Name="adresa" FontSize="20" Grid.Row="7" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged"></TextBox>
             <Label Margin="10" FontSize="20" Grid.Row="8" Grid.Column="0" >Telefon:</Label>
-            <TextBox Margin="10" Name="telefon" FontSize="20" Grid.Row="8" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220">
+            <TextBox Margin="10" Name="telefon" FontSize="20" Grid.Row="8" Grid.Column="1" MinWidth="200" MinHeight="20" MaxWidth="220" TextChanged="FormStateChanged">
                 <TextBox.Text>
-                    <Binding Path="Telefon" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="Telefon" UpdateSourceTrigger="PropertyChanged" Mode="OneWayToSource">
                         <Binding.ValidationRules>
                             <val:TelefonValidationRule ValidationStep="RawProposedValue"/>
+                            <val:IsBlankValidationRule ValidationStep="RawProposedValue"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -131,23 +138,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button Margin="5,0,0,0" Grid.Row="0" Grid.Column="0" FontSize="20"  HorizontalAlignment="Left" Width="87" Click="Odustani">Odustani</Button>
-                <Button Grid.Row="0" Grid.Column="2" FontSize="20"  HorizontalAlignment="Right" Width="105" Click="Registracija">Registruj se
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="IsEnabled" Value="False"/>
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=telefon}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=email}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=user}" Value="False"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"/>
-                                </MultiDataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Button Name="registrujSe" IsEnabled="False" Grid.Row="0" Grid.Column="2" FontSize="20"  HorizontalAlignment="Right" Width="105" Click="Registracija">Registruj se</Button>
             </Grid>
         </Grid>
     </DockPanel>
