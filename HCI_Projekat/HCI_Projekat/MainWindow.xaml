@@ -33,8 +33,8 @@
                 <Button Width="150" HorizontalAlignment="Center" Click="UlogujSe" VerticalAlignment="Bottom" Margin="-20" Content="Uloguj se"/>
                 <Button  Background="Transparent" Content="Registruj se" HorizontalAlignment="Center" Click="RegistrujSe" VerticalAlignment="Bottom" Margin="-50" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent"/>
             </Grid>
-                <Image Source="Source/home.png" Width="100" Height="100" VerticalAlignment="Center" Margin="0,0,0,350"/>
-        </Grid>
+            <Image Source="Source/home.png" Width="100" Height="100" VerticalAlignment="Center" Margin="0,0,0,350"/>
+            </Grid>
 
     </DockPanel>
 </Window>
