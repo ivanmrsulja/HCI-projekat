@@ -22,12 +22,19 @@ namespace HCI_Projekat
     /// </summary>
     public partial class Registration : Window, INotifyPropertyChanged
     {
+        //private MainWindow oldForm=null;
         private string _email;
         private string _telefon;
         private string _username;
         private string _ime, _prezime, _adresa, _pass, _passConf;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //public Registration(MainWindow form)
+        //{
+        //    oldForm = form;
+        //}
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)

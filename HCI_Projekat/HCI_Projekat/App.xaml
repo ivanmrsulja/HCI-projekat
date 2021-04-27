@@ -4,13 +4,13 @@
              xmlns:local="clr-namespace:HCI_Projekat"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="ControlStyle" TargetType="Control">
-            <Setter Property="FontFamily" Value="David"/>
-        </Style>
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="FontFamily" Value="Verdana"/>
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource ControlStyle}"/>
-        <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

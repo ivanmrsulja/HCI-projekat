@@ -45,20 +45,20 @@ namespace HCI_Projekat
                 db.Manifestacije.Add(man1);
                 db.Manifestacije.Add(man2);
 
-                Klijent k1 = new Klijent("kkk", "kkk", "Nikola", "Jovanovic", "email", "telefon", "adresa");
+                Klijent k1 = new Klijent("klijent", "klijent", "Nikola", "Petrovic", "email", "telefon", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
                 k1.AddKomentar(ko1);
                 db.Korisnici.Add(k1);
 
-                Organizator o1 = new Organizator("ooo", "ooo", "Jovan", "Jovanovic", "email", "telefon", "adresa");
+                Organizator o1 = new Organizator("organizator", "organizator", "Jovan", "Jovovic", "email", "telefon", "adresa");
                 o1.AddManifestacija(man1);
                 db.Korisnici.Add(o1);
 
-                Admin a1 = new Admin("aaa", "aaa", "Joko", "Jovanovic", "email", "telefon", "adresa");
+                Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email", "telefon", "adresa");
                 db.Korisnici.Add(a1);
 
-                
+
                 db.SaveChanges();
             }
         }
@@ -71,7 +71,7 @@ namespace HCI_Projekat
             using (var db = new Context())
             {
                 Korisnik[] currentUser = (from k in db.Korisnici where k.Username == username && k.Password == passw select k).ToArray();
-                if(currentUser.Length == 0)
+                if (currentUser.Length == 0)
                 {
                     MessageBox.Show("Neispravno korisnicko ime ili lozinka.", "Obavestenje");
                 }
@@ -99,8 +99,10 @@ namespace HCI_Projekat
 
         public void RegistrujSe(object sender, RoutedEventArgs e)
         {
+            
             var w = new Registration();
             w.ShowDialog();
+            
         }
     }
 
