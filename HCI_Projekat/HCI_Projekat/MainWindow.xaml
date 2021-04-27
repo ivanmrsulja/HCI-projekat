@@ -6,35 +6,34 @@
         xmlns:local="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Login" Height="500" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Login" Height="500" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <DockPanel>
         <Grid>
             <Grid >
+                <Rectangle  Height="280" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2281D1"/>
+                            <GradientStop Color="#FF34268A" Offset="1"/>
+                            <GradientStop Color="#FF33288B" Offset="0.546"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
 
-                <Rectangle  Height="280" VerticalAlignment="Top">
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2281D1"/>
-                        <GradientStop Color="#FF34268A" Offset="1"/>
-                        <GradientStop Color="#FF33288B" Offset="0.546"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-
-            <Rectangle Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,80" RadiusY="10" RadiusX="10" Fill="White">
-                <Rectangle.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
-                </Rectangle.Effect>
-            </Rectangle>
-            <Grid VerticalAlignment="Bottom" Margin="35,80" Height="240">
+                <Rectangle Width="280" Height="240" VerticalAlignment="Bottom" Margin="32,0,32,80.4" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="3">
+                    <Rectangle.Effect>
+                        <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Grid VerticalAlignment="Bottom" Margin="35,0,35,80.4" Height="240" Grid.ColumnSpan="3">
                     <Label Content="Uloguj Se" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
-                <StackPanel VerticalAlignment="Center" Margin="15">
+                    <StackPanel VerticalAlignment="Center" Margin="15">
                         <TextBox  materialDesign:HintAssist.Hint="KORISNICKO IME"  Margin="0,10"  Name="user"  FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                         <PasswordBox  materialDesign:HintAssist.Hint="LOZINKA"  Margin="0,10"  Name="pass"  FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                </StackPanel>
-            </Grid>
-                <Button Width="150" HorizontalAlignment="Center" Click="UlogujSe" VerticalAlignment="Bottom" Margin="0,65" Content="Uloguj se"/>
-                <Button  Background="Transparent" Content="Registruj se" HorizontalAlignment="Center" Click="RegistrujSe" VerticalAlignment="Bottom" Margin="30" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent"/>
+                    </StackPanel>
+                </Grid>
+                <Button Width="150" HorizontalAlignment="Center" Click="UlogujSe" VerticalAlignment="Bottom" Margin="97,0,97,65.4" Content="Uloguj se" Grid.ColumnSpan="3"/>
+                <Button  Background="Transparent" Content="Registruj se" HorizontalAlignment="Center" Click="RegistrujSe" VerticalAlignment="Bottom" Margin="112,0,112,30.4" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="120" Grid.ColumnSpan="3"/>
             </Grid>
             <Image Source="Source/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"/>
         </Grid>

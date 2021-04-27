@@ -9,11 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Registracija korisnika" Height="650" Width="500" WindowStartupLocation="CenterOwner">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="13*"/>
-        </Grid.ColumnDefinitions>
-
+        
         <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -130,7 +126,7 @@
         </Grid>
         <Button IsEnabled="False" Name="registrujSe" Width="150" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,79.6,65" Content="REGISTRUJ SE" Click="Registracija" Grid.ColumnSpan="2"/>
         <Button Width="150" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="80,0,0,65" Content="ODUSTANI" Click="Odustani"/>
-        <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="205,0,37,15" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100"/>
+        <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="190,0,203.6,10" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100"/>
 
     </Grid>
 </Window>
