@@ -27,7 +27,7 @@ namespace HCI_Projekat
         public MainWindow()
         {
             InitializeComponent();
-            using (var db = new Context())
+            using (var db = new DatabaseContext())
             {
                 foreach (var entity in db.Korisnici)
                     db.Korisnici.Remove(entity);
@@ -38,16 +38,28 @@ namespace HCI_Projekat
 
                 Komentar ko1 = new Komentar("aaaaa", null, null);
                 db.Komentari.Add(ko1);
-
-                Manifestacija man1 = new Manifestacija("venacanje", 3000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.Now, null, null);
-                Manifestacija man2 = new Manifestacija("venacanje", 3000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.Now, null, null);
+                string text = "20/04/2021";
+                Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man6 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 man1.AddKomentar(ko1);
                 db.Manifestacije.Add(man1);
                 db.Manifestacije.Add(man2);
+                db.Manifestacije.Add(man3);
+                db.Manifestacije.Add(man4);
+                db.Manifestacije.Add(man5);
+                db.Manifestacije.Add(man6);
 
-                Klijent k1 = new Klijent("klijent", "klijent", "Nikola", "Petrovic", "email", "telefon", "adresa");
+                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "email", "telefon", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
+                k1.AddManifestacija(man3);
+                k1.AddManifestacija(man4);
+                k1.AddManifestacija(man5);
+                k1.AddManifestacija(man6);
                 k1.AddKomentar(ko1);
                 db.Korisnici.Add(k1);
 
@@ -68,7 +80,7 @@ namespace HCI_Projekat
             Console.WriteLine("Logovanje");
             string passw = pass.Password;
             string username = user.Text;
-            using (var db = new Context())
+            using (var db = new DatabaseContext())
             {
                 Korisnik[] currentUser = (from k in db.Korisnici where k.Username == username && k.Password == passw select k).ToArray();
                 if (currentUser.Length == 0)
@@ -85,7 +97,7 @@ namespace HCI_Projekat
                             wa.ShowDialog();
                             break;
                         case UlogaKorisnika.KLIJENT:
-                            var wk = new KlijentHOME(this);
+                            var wk = new KlijentHOME(this, currentUser[0]);
                             wk.ShowDialog();
                             break;
                         case UlogaKorisnika.ORGANIZATOR:

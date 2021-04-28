@@ -128,7 +128,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Context.cs" />
+    <Compile Include="Model\DatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

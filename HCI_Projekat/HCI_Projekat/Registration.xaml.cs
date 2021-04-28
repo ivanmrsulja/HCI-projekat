@@ -189,7 +189,7 @@ namespace HCI_Projekat
                 MessageBox.Show("Lozinka u polju 'Potvrdi lozinku' mora biti ista kao ona u polju 'Lozinka'.", "Lozinke se ne podudaraju");
                 return;
             }
-            using(var db = new Context())
+            using(var db = new DatabaseContext())
             {
                 Klijent novi = new Klijent(user.Text, pass.Password, ime.Text, prezime.Text, email.Text, telefon.Text, adresa.Text);
                 db.Korisnici.Add(novi);
@@ -213,7 +213,7 @@ namespace HCI_Projekat
                 registrujSe.IsEnabled = false;
             else
             {
-                using (var db = new Context())
+                using (var db = new DatabaseContext())
                 {
                     string[] usernames = (from users in db.Korisnici where users.Username == user.Text select users.Username).ToArray();
                     if (usernames.Length != 0)

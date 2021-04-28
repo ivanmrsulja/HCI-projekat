@@ -11,6 +11,7 @@ namespace HCI_Projekat.Model
     public enum UlogaKorisnika { KLIJENT, ADMIN, ORGANIZATOR}
     public enum TipSaradnika { RESTORAN, FOTOGRAF, KETERING, DEKORACIJE, MUZIKA }
     public enum StatusManifestacije { NOVA, U_IZRADI, ZAVRSENA}
+    public enum TemaManifestacije { VENCANJE, RODJENDAN, KOKTEL_PARTY, REJV, OTVARANJE, SVE}
 
     public abstract class Korisnik
     {
@@ -143,7 +144,7 @@ namespace HCI_Projekat.Model
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Tema { get; set; }
+        public TemaManifestacije Tema { get; set; }
         [Required]
         public double Budzet { get; set; }
         [Required]
@@ -177,7 +178,7 @@ namespace HCI_Projekat.Model
             Gosti = new List<Gost>();
             Komentari = new List<Komentar>();
         }
-        public Manifestacija(string tema, double budzet, bool fiks, int brGost, string restKetering, string deko, string muzika, string dodatno, DateTime datum, Organizator organizator, Klijent klijent)
+        public Manifestacija(TemaManifestacije tema, double budzet, bool fiks, int brGost, string restKetering, string deko, string muzika, string dodatno, DateTime datum, Organizator organizator, Klijent klijent)
         {
             Saradnici = new List<Saradnik>();
             Gosti = new List<Gost>();
@@ -379,7 +380,7 @@ namespace HCI_Projekat.Model
         }
     }
 
-    public class Context : DbContext
+    public class DatabaseContext : DbContext
     {
         public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<Manifestacija> Manifestacije { get; set; }

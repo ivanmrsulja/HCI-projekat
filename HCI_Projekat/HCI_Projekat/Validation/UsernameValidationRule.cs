@@ -16,7 +16,7 @@ namespace HCI_Projekat.Validation
             try
             {
                 var username = value as string;
-                using (var db = new Context())
+                using (var db = new DatabaseContext())
                 {
                     string[] usernames = (from users in db.Korisnici where users.Username == username select users.Username).ToArray();
                     if (usernames.Length == 0 || username.Trim() == "")

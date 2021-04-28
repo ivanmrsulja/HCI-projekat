@@ -6,8 +6,45 @@
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="KlijentHOME" Height="450" Width="800">
+        Title="KlijentHOME" Height="750" Width="1350">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Button FontSize="25" MinHeight="50" Grid.Row="0" Grid.Column="0">Dodaj manifestaciju</Button>
+        <Button FontSize="25" MinHeight="50" Grid.Row="0" Grid.Column="1">Profil</Button>
+        <Button FontSize="25" MinHeight="50" Grid.Row="0" Grid.Column="2">Pomoc</Button>
+        <Button FontSize="25" MinHeight="50" Grid.Row="0" Grid.Column="3" Click="Odjava">Odjava</Button>
+        <Label FontSize="25" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0">Obavestenja</Label>
+        <Rectangle Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" Margin="0,120,10,10" RadiusY="10" RadiusX="10" Fill="White">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="90,0,93,0" MinWidth="451">
+            <Label FontSize="25" VerticalAlignment="Center">Pretrazi po datumu:</Label>
+            <DatePicker Name="datum" FontSize="20" MinWidth="150" MinHeight="40" SelectedDateChanged="PretraziDatum"></DatePicker>
+            <Label FontSize="25" VerticalAlignment="Center">Izaberi temu:</Label>
+            <ComboBox Name="tema" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj" ></ComboBox>
+        </StackPanel>
+
+        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Broj gostiju" Width="Auto" Binding="{Binding BrojGostiju}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status manifestacije" Width="Auto" Binding="{Binding Status}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
