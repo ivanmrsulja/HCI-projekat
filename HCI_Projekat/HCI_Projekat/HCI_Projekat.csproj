@@ -98,6 +98,12 @@
     <Compile Include="Validation\PasswordValidator.cs" />
     <Compile Include="Validation\TelefonValidationRule.cs" />
     <Compile Include="Validation\UsernameValidationRule.cs" />
+    <Compile Include="VlalidationForms\OkForm.xaml.cs">
+      <DependentUpon>OkForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VlalidationForms\YesNo.xaml.cs">
+      <DependentUpon>YesNo.xaml</DependentUpon>
+    </Compile>
     <Page Include="Administrator\HomeAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +129,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VlalidationForms\OkForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VlalidationForms\YesNo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

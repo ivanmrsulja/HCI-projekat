@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -169,6 +170,24 @@ namespace HCI_Projekat
                     OnPropertyChanged("PassConf");
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var wk = new YesNo("da li ste sigurni \nda zelite pomoc");
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
+            {
+                //sta se radi na klik da                
+            }
+            else
+            {
+                //sta se radi na klik ne              
+            }
+
+            var wka = new OkForm("kliknuli ste na \npomoc");
+            wka.ShowDialog();
         }
 
         public Registration()

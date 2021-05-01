@@ -125,7 +125,7 @@
             </Grid>
             <Button IsEnabled="False" Name="registrujSe" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="REGISTRUJ SE" Click="Registracija" Grid.ColumnSpan="2"/>
             <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,65" Content="ODUSTANI" Click="Odustani"/>
-            <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100"/>
+            <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Button_Click"/>
         </Grid>
     </DockPanel>
 </Window>
