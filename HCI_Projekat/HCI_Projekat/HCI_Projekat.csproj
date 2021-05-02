@@ -41,6 +41,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apex, Version=1.5.0.0, Culture=neutral, PublicKeyToken=98d06957926c086d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apex.1.5.0\lib\net40\Apex.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -84,6 +87,9 @@
     <Compile Include="Administrator\HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KlijentView\DodajManifestaciju.xaml.cs">
+      <DependentUpon>DodajManifestaciju.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KlijentView\KlijentHOME.xaml.cs">
       <DependentUpon>KlijentHOME.xaml</DependentUpon>
     </Compile>
@@ -105,6 +111,10 @@
       <DependentUpon>YesNo.xaml</DependentUpon>
     </Compile>
     <Page Include="Administrator\HomeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KlijentView\DodajManifestaciju.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

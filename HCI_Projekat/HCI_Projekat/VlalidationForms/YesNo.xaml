@@ -29,7 +29,7 @@
 
         </Grid>
         <Button Name="Yes" Width="80" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,80,20" Content="DA"  Click="Yes_Click"/>
-        <Button Name="No" Width="80" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="80,0,0,20" Content="NE" Click="No_Click"/>
+        <Button Name="No"  Width="80" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="80,0,0,20" Content="NE" Click="No_Click"/>
     </Grid>
 </Window>
     

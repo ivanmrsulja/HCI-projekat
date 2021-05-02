@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,14 +21,29 @@ namespace HCI_Projekat.VlalidationForms
     public partial class YesNo : Window
     {
         public MessageBoxResult Result { get; set; }
-
-        public YesNo(String question)
+        int sec { get; set; }
+        public YesNo(String question,int s)
         {
             InitializeComponent();
             QuestionBox.Text = question;
+            sec = s;
+            Loaded += Window_Loaded;
+            Topmost = true;
         }
 
-        private void Yes_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            //for (int i = sec; i > 0; i--)
+            //{
+            //    Yes.Content = "(" + i.ToString() + ")" + "sec";
+            //    Thread.Sleep(1000);
+            //}
+            //Yes.Content = "DA";
+            
+        }
+
+    private void Yes_Click(object sender, RoutedEventArgs e)
         {
             Result = MessageBoxResult.Yes;
             this.Close();

@@ -23,7 +23,7 @@ namespace HCI_Projekat
     /// </summary>
     public partial class Registration : Window, INotifyPropertyChanged
     {
-        //private MainWindow oldForm=null;
+
         private string _email;
         private string _telefon;
         private string _username;
@@ -31,10 +31,11 @@ namespace HCI_Projekat
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public Registration(MainWindow form)
-        //{
-        //    oldForm = form;
-        //}
+        public Registration()
+        {
+            InitializeComponent();
+            DataContext = this;
+        }
 
         protected virtual void OnPropertyChanged(string name)
         {
@@ -174,10 +175,10 @@ namespace HCI_Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("da li ste sigurni \nda zelite pomoc");
-            wk.ShowDialog();
+            var dijalog1 = new YesNo("da li ste sigurni \nda zelite pomoc",10);
+            dijalog1.ShowDialog();
 
-            if (wk.Result == MessageBoxResult.Yes)
+            if (dijalog1.Result == MessageBoxResult.Yes)
             {
                 //sta se radi na klik da                
             }
@@ -186,26 +187,26 @@ namespace HCI_Projekat
                 //sta se radi na klik ne              
             }
 
-            var wka = new OkForm("kliknuli ste na \npomoc");
-            wka.ShowDialog();
+            var dijalog2 = new OkForm("kliknuli ste na \ngitpomoc");
+            dijalog2.ShowDialog();
         }
 
-        public Registration()
-        {
-            InitializeComponent();
-            DataContext = this;
-        }
+       
 
         public void Registracija(object sender, RoutedEventArgs e)
         {
             if (user.Text.Trim() == "" || pass.Password.Trim() == "" || passConf.Password.Trim() == "" || ime.Text.Trim() == "" || prezime.Text.Trim() == "" || email.Text.Trim() == "" || telefon.Text.Trim() == "" || adresa.Text.Trim() == "")
             {
-                MessageBox.Show("Molimo popunite sva polja i pokusajte ponovo.", "Nisu popunjena sva polja");
+                //MessageBox.Show("Molimo popunite sva polja i pokusajte ponovo.", "Nisu popunjena sva polja");
+                var dijalog3 = new OkForm("Molimo popunite sva polja\ni pokusajte ponovo");
+                dijalog3.ShowDialog();
                 return;
             }
             if(pass.Password != passConf.Password)
             {
-                MessageBox.Show("Lozinka u polju 'Potvrdi lozinku' mora biti ista kao ona u polju 'Lozinka'.", "Lozinke se ne podudaraju");
+                //MessageBox.Show("Lozinka u polju 'Potvrdi lozinku' mora biti ista kao ona u polju 'Lozinka'.", "Lozinke se ne podudaraju");
+                var dijalog4 = new OkForm("Lozinka u polju 'Potvrdi lozinku'\nmora biti ista kao ona u polju 'Lozinka'");
+                dijalog4.ShowDialog();
                 return;
             }
             using(var db = new DatabaseContext())
@@ -214,7 +215,9 @@ namespace HCI_Projekat
                 db.Korisnici.Add(novi);
                 db.SaveChanges();
             }
-            MessageBox.Show("Uspesno ste kreirali nalog, mozete se ulogovati.", "Uspesno kreiran nalog");
+            //MessageBox.Show("Uspesno ste kreirali nalog, mozete se ulogovati.", "Uspesno kreiran nalog");
+            var dijalog5 = new OkForm("Uspesno ste kreirali nalog\nmozete se ulogovati");
+            dijalog5.ShowDialog();
             this.Hide();
         }
         public void Odustani(object sender, RoutedEventArgs e)

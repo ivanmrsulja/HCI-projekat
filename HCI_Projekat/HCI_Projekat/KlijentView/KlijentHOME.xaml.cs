@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -89,16 +90,25 @@ namespace HCI_Projekat.KlijentView
 
         public void Odjava(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Da li ste sigurni da zelite da se odjavite?", "Odjava", MessageBoxButton.YesNo);
-            switch (result)
+            var wk = new YesNo("da li ste sigurni \nda zelite da se odjavite",0);
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
             {
-                case MessageBoxResult.Yes:
-                    this.Hide();
-                    ParentScreen.Show();
-                    break;
-                case MessageBoxResult.No:
-                    break;
+                this.Hide();
+                ParentScreen.Show();
             }
+            else
+            {
+                //sta se radi na klik ne              
+            }
+
+        }
+
+        public void DodajManifestaciju(object sender, RoutedEventArgs e)
+        {
+            var w = new DodajManifestaciju(Klijent as Klijent);
+            w.ShowDialog();
         }
 
         public void PretraziDatum(object sender, RoutedEventArgs e)

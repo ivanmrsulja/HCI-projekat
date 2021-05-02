@@ -111,10 +111,10 @@ namespace HCI_Projekat
 
         public void RegistrujSe(object sender, RoutedEventArgs e)
         {
-            
+            this.Hide();
             var w = new Registration();
             w.ShowDialog();
-            
+            this.Show();
         }
     }
 
