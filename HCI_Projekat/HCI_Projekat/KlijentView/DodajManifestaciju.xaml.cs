@@ -61,15 +61,6 @@ namespace HCI_Projekat.KlijentView
                 potvrdi.IsEnabled = false;
             else
             {
-                //using (var db = new DatabaseContext())
-                //{
-                //    string[] manifestacije = (from man in db.Manifestacije where man.Username == user.Text select users.Username).ToArray();
-                //    if (usernames.Length != 0)
-                //    {
-                //        registrujSe.IsEnabled = false;
-                //        return;
-                //    }
-                //}
                 potvrdi.IsEnabled = true;
             }
 

@@ -21,7 +21,7 @@
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="0" Click="DodajManifestaciju" RenderTransformOrigin="0.5,0.504">Dodaj manifestaciju</Button>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="1">Profil</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="1" Click="Button_Click">Profil</Button>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="2">Pomoc</Button>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="3" Click="Odjava">Odjava</Button>
         <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="20,90,20,20">

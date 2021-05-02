@@ -93,6 +93,9 @@
     <Compile Include="KlijentView\KlijentHOME.xaml.cs">
       <DependentUpon>KlijentHOME.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KlijentView\Profil.xaml.cs">
+      <DependentUpon>Profil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
       <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="KlijentView\KlijentHOME.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KlijentView\Profil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -177,5 +177,18 @@ namespace HCI_Projekat.KlijentView
                 dgrMain.ItemsSource = Manifestacije;
             }
         }
+
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var wk = new Profil(Klijent as Klijent);
+
+            if ((bool)wk.ShowDialog() == true)
+            {
+                var value = wk.GetValue();
+                Klijent = value as Klijent;
+            }
+        }
     }
 }

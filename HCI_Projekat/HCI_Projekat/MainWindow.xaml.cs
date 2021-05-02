@@ -53,7 +53,7 @@ namespace HCI_Projekat
                 db.Manifestacije.Add(man5);
                 db.Manifestacije.Add(man6);
 
-                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "email", "telefon", "adresa");
+                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "email@gmail.com", "0000000000000", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
                 k1.AddManifestacija(man3);
