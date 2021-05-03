@@ -2,6 +2,7 @@
 using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,26 +21,104 @@ namespace HCI_Projekat.KlijentView
     /// <summary>
     /// Interaction logic for Profil.xaml
     /// </summary>
-    public partial class Profil : Window
+    public partial class Profil : Window, INotifyPropertyChanged
     {
 
         public Klijent klijent { get; set; }
         public Klijent korisnik { get; set; }
         public object Sender { get; set; }
 
+        private string _email;
+        private string _telefon;
+        private string _username;
+        private string _pass;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                if (value != _email)
+                {
+                    _email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+
+        public string Telefon
+        {
+            get
+            {
+                return _telefon;
+            }
+            set
+            {
+                if (value != _telefon)
+                {
+                    _telefon = value;
+                    OnPropertyChanged("Telefon");
+                }
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                if (value != _username)
+                {
+                    _username = value;
+                    OnPropertyChanged("Username");
+                }
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return _pass;
+            }
+            set
+            {
+                if (value != _pass)
+                {
+                    _pass = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
 
         public Profil(Klijent k)
         {
             InitializeComponent();
-
+            DataContext = this;
             klijent = k;
             korisnik = null;
             ime.Text = k.Ime;
             prezime.Text = k.Prezime;
-            user.Text = k.Username;
-            email.Text = k.Email;
+            Username = k.Username;
+            Email = k.Email;
             adresa.Text = k.Adresa;
-            telefon.Text = k.Telefon;
+            Telefon = k.Telefon;
 
         }       
 
@@ -75,6 +154,16 @@ namespace HCI_Projekat.KlijentView
                     result.Email = email.Text;
                     result.Adresa = adresa.Text;
                     result.Telefon = telefon.Text;
+                    if(passNew.Password != "" && !passNew.Password.Contains(" "))
+                    {
+                        result.Password = passNew.Password;
+                    }
+                    else if(passNew.Password.Contains(" "))
+                    {
+                        var passDijalog = new OkForm("Nova lozinka sadrzi\nnedozvoljene karaktere.");
+                        passDijalog.ShowDialog();
+                        return;
+                    }
                     db.SaveChanges();
                 }
             }

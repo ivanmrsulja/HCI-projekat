@@ -37,7 +37,7 @@
                     <TextBox Name="prezime"  materialDesign:HintAssist.Hint="PREZIME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
                     <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNICKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
-                            <Binding Path="Username" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="Default">
                                 <Binding.ValidationRules>
                                     <val:UsernameValidationRule ValidationStep="RawProposedValue"/>
                                     <val:IsBlankValidationRule ValidationStep="RawProposedValue"/>
@@ -63,6 +63,7 @@
                         </Validation.ErrorTemplate>
                     </TextBox>
                     <PasswordBox Name="pass"  materialDesign:HintAssist.Hint="LOZINKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged"/>
+                    <PasswordBox Name="passNew"  materialDesign:HintAssist.Hint="NOVA LOZINKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                     <TextBox Name="email" materialDesign:HintAssist.Hint="EMAIL" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
                             <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">

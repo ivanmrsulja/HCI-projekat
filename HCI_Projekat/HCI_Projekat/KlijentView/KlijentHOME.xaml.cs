@@ -98,16 +98,11 @@ namespace HCI_Projekat.KlijentView
                 this.Hide();
                 ParentScreen.Show();
             }
-            else
-            {
-                //sta se radi na klik ne              
-            }
-
         }
 
         public void DodajManifestaciju(object sender, RoutedEventArgs e)
         {
-            var w = new DodajManifestaciju(Klijent as Klijent);
+            var w = new DodajManifestaciju(Klijent as Klijent, dgrMain, Manifestacije);
             w.ShowDialog();
         }
 
@@ -178,7 +173,10 @@ namespace HCI_Projekat.KlijentView
             }
         }
 
-       
+        private void Pomoc(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
