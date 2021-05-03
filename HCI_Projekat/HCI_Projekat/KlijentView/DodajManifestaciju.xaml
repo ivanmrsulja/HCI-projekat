@@ -30,18 +30,22 @@
             <Label Content="DODAJ MANIFESTACIJU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
 
-                <TextBox Name="tema" materialDesign:HintAssist.Hint="TEMA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                <ComboBox Name="tema" materialDesign:HintAssist.Hint="TEMA" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="FormStateChanged" ></ComboBox>
 
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
                     <TextBox Name="budzet"  materialDesign:HintAssist.Hint="BUDZET" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="218" TextChanged="FormStateChanged"/>
                     <CheckBox Name="fiksan" Content="FIKSAN" Margin="253,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="0" RenderTransformOrigin="0.53,0.484" HorizontalAlignment="Left" Width="93" Opacity="0.5" />
                 </apex:ApexGrid>
 
-                <TextBox Name="brojGostiju" materialDesign:HintAssist.Hint="BROJ GOSTIJU" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" />
+
+                <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
+                    <TextBox Name="brojGostiju" materialDesign:HintAssist.Hint="BROJ GOSTIJU" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" HorizontalAlignment="Left" Width="218" />
+                    <Button Name="ucitajGoste" Content="UCITAJ GOSTE" HorizontalAlignment="Left" Cursor="Hand" Width="137" Margin="223,8,0,10.4" Click="Button_Click_1" />
+                </apex:ApexGrid>
 
 
                 <TextBox Name="mesto"  materialDesign:HintAssist.Hint="MESTO ODRZAVANJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                
+
                 <DatePicker Name="datum"  materialDesign:HintAssist.Hint="DATUM" FontSize="18"  FontFamily="Champagne &amp; Limousines"/>
                 <TextBox Name="muzika" materialDesign:HintAssist.Hint="MUZIKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 

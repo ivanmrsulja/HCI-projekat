@@ -35,6 +35,14 @@ namespace HCI_Projekat
                     db.Manifestacije.Remove(entity);
                 foreach (var entity in db.Komentari)
                     db.Komentari.Remove(entity);
+                foreach (var entity in db.Gosti)
+                    db.Gosti.Remove(entity);
+                foreach (var entity in db.Ponude)
+                    db.Ponude.Remove(entity);
+                foreach (var entity in db.Saradnici)
+                    db.Saradnici.Remove(entity);
+                foreach (var entity in db.Notifikacije)
+                    db.Notifikacije.Remove(entity);
 
                 Komentar ko1 = new Komentar("aaaaa", null, null);
                 db.Komentari.Add(ko1);
