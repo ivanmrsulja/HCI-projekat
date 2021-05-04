@@ -39,7 +39,7 @@
             <ComboBox Name="tema" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj" ></ComboBox>
         </StackPanel>
 
-        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" MouseDoubleClick="Row_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>

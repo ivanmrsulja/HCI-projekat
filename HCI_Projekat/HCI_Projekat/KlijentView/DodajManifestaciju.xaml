@@ -46,7 +46,7 @@
 
                 <TextBox Name="mesto"  materialDesign:HintAssist.Hint="MESTO ODRZAVANJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
-                <DatePicker Name="datum"  materialDesign:HintAssist.Hint="DATUM" FontSize="18"  FontFamily="Champagne &amp; Limousines"/>
+                <DatePicker Name="datum"  materialDesign:HintAssist.Hint="DATUM" FontSize="18"  FontFamily="Champagne &amp; Limousines" SelectedDateChanged="FormStateChanged"/>
                 <TextBox Name="muzika" materialDesign:HintAssist.Hint="MUZIKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
                 <TextBox Name="dekoracije" materialDesign:HintAssist.Hint="DEKORACIJE" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>

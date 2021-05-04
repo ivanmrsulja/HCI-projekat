@@ -131,7 +131,7 @@ namespace HCI_Projekat.KlijentView
                 klijent.AddManifestacija(novi);
                 db.Manifestacije.Add(novi);
                 db.SaveChanges();
-                List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id select m).ToList();
+                List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
             }
             BindedGrid.ItemsSource = null;
@@ -147,7 +147,7 @@ namespace HCI_Projekat.KlijentView
                 return TemaManifestacije.VENCANJE;
             else if (manUpper == "RODJENDAN")
                 return TemaManifestacije.RODJENDAN;
-            else if (manUpper == "KOKTEL PARTI" || manUpper == "KOKTEL PARTY")
+            else if (manUpper == "KOKTEL_PARTY")
                 return TemaManifestacije.KOKTEL_PARTY;
             else if (manUpper == "REJV")
                 return TemaManifestacije.REJV;

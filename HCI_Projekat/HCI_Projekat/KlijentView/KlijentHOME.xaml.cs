@@ -69,7 +69,7 @@ namespace HCI_Projekat.KlijentView
             Teme = new List<TemaManifestacije> { TemaManifestacije.RODJENDAN, TemaManifestacije.KOKTEL_PARTY, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENCANJE, TemaManifestacije.SVE };
             using (var db = new DatabaseContext())
             {
-                List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id select m).ToList();
+                List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
                 View = CollectionViewSource.GetDefaultView(Manifestacije);
             }
@@ -85,12 +85,23 @@ namespace HCI_Projekat.KlijentView
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ParentScreen.Show();
+            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0);
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
+            {
+                this.Hide();
+                ParentScreen.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         public void Odjava(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("da li ste sigurni \nda zelite da se odjavite",0);
+            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?",0);
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -115,18 +126,18 @@ namespace HCI_Projekat.KlijentView
                 List<Manifestacija> manifestations = null;
                 if (tema.SelectedItem == null)
                 {
-                    manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d select m).ToList();
+                    manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Obrisana != true select m).ToList();
                 }
                 else
                 {
                     TemaManifestacije t = (TemaManifestacije)tema.SelectedItem;
                     if (t == TemaManifestacije.SVE)
                     {
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Obrisana != true select m).ToList();
                     }
                     else
                     {
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Tema == t select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Tema == t && m.Obrisana != true select m).ToList();
                     }
                 }
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
@@ -146,24 +157,24 @@ namespace HCI_Projekat.KlijentView
                 {
                     if (datum.Text == "")
                     {
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                     }
                     else
                     {
                         DateTime d = DateTime.Parse(datum.Text);
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Obrisana != true select m).ToList();
                     }
                 }
                 else
                 {
                     if (datum.Text == "")
                     {
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Tema == t select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Tema == t && m.Obrisana != true select m).ToList();
                     }
                     else
                     {
                         DateTime d = DateTime.Parse(datum.Text);
-                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Tema == t select m).ToList();
+                        manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.DatumOdrzavanja == d && m.Tema == t && m.Obrisana != true select m).ToList();
                     }
                 }
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
@@ -187,6 +198,25 @@ namespace HCI_Projekat.KlijentView
                 var value = wk.GetValue();
                 Klijent = value as Klijent;
             }
+        }
+
+        private void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Ensure row was clicked and not empty space
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                                e.OriginalSource as DependencyObject) as DataGridRow;
+
+            if (row == null) return;
+
+            Console.WriteLine(row.GetIndex());
+            List<Manifestacija> manifestations = null;
+            using (var db = new DatabaseContext())
+            {
+                manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
+            }
+            Console.WriteLine(manifestations.Count);
+            var w = new PregledManifestacije(manifestations.ElementAt<Manifestacija>(row.GetIndex()), dgrMain, Klijent);
+            w.ShowDialog();
         }
     }
 }

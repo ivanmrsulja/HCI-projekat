@@ -2,6 +2,7 @@
 using HCI_Projekat.KlijentView;
 using HCI_Projekat.Model;
 using HCI_Projekat.OrganizatorView;
+using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace HCI_Projekat
                 db.Komentari.Add(ko1);
                 string text = "20/04/2021";
                 Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                man1.Status = StatusManifestacije.U_IZRADI;
                 Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
@@ -78,6 +80,33 @@ namespace HCI_Projekat
                 Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email", "telefon", "adresa");
                 db.Korisnici.Add(a1);
 
+                Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "link do mape");
+                Saradnik s2 = new Saradnik("Fotograf Jovo", "Ruzin Gaj 12", TipSaradnika.FOTOGRAF, "Slikam za instagram", "ne treba link do mape");
+                db.Saradnici.Add(s1);
+                db.Saradnici.Add(s2);
+
+                Ponuda pon1 = new Ponuda("Velika sala", 500, s1);
+                Ponuda pon2 = new Ponuda("Mala sala", 200, s1);
+                Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
+                db.Ponude.Add(pon1);
+                db.Ponude.Add(pon2);
+                db.Ponude.Add(pon3);
+
+                s1.AddPonuda(pon1);
+                s1.AddPonuda(pon2);
+                s2.AddPonuda(pon3);
+
+                man1.AddPonuda(pon1);
+                man1.AddPonuda(pon3);
+                man1.MestoOdrzavanjaDone = true;
+                man1.DodatnoDone = true;
+                man1.BudzetDone = true;
+                man1.DatumDone = true;
+                man1.DekoracijaDone = true;
+                man1.MuzikaDone = true;
+                man1.RasporedDone = true;
+                man1.TemaDone = true;
+                man1.GostiDone = true;
 
                 db.SaveChanges();
             }
@@ -93,7 +122,8 @@ namespace HCI_Projekat
                 Korisnik[] currentUser = (from k in db.Korisnici where k.Username == username && k.Password == passw select k).ToArray();
                 if (currentUser.Length == 0)
                 {
-                    MessageBox.Show("Neispravno korisnicko ime ili lozinka.", "Obavestenje");
+                    var wk = new OkForm("Neispravno korisnicko\nime ili lozinka.");
+                    wk.ShowDialog();
                 }
                 else
                 {

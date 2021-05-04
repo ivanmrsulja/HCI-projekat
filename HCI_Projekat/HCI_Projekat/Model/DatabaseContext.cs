@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
@@ -152,7 +153,7 @@ namespace HCI_Projekat.Model
         [Required]
         public int BrojGostiju { get; set; }
         [Required]
-        public string RestorakKetering { get; set; }
+        public string MestoOdrzavanja { get; set; }
         [Required]
         public string Dekoracija { get; set; }
         [Required]
@@ -167,33 +168,56 @@ namespace HCI_Projekat.Model
         public bool Obrisana { get; set; }
         [Required]
         public Klijent Klijent { get; set; }
+
+
+        [Required]
+        public bool MestoOdrzavanjaDone { get; set; }
+        [Required]
+        public bool BudzetDone { get; set; }
+        [Required]
+        public bool GostiDone { get; set; }
+        [Required]
+        public bool TemaDone { get; set; }
+        [Required]
+        public bool DekoracijaDone { get; set; }
+        [Required]
+        public bool MuzikaDone { get; set; }
+        [Required]
+        public bool DodatnoDone { get; set; }
+        [Required]
+        public bool DatumDone { get; set; }
+        [Required]
+        public bool RasporedDone { get; set; }
+
+
         public Organizator Organizator { get; set; }
-        public List<Saradnik> Saradnici { get; set; }
+        public List<Ponuda> Ponude { get; set; }
         public List<Gost> Gosti { get; set; }
         public List<Komentar> Komentari { get; set; }
 
         public Manifestacija() 
         {
-            Saradnici = new List<Saradnik>();
+            Ponude = new List<Ponuda>();
             Gosti = new List<Gost>();
             Komentari = new List<Komentar>();
         }
         public Manifestacija(TemaManifestacije tema, double budzet, bool fiks, int brGost, string restKetering, string deko, string muzika, string dodatno, DateTime datum, Organizator organizator, Klijent klijent)
         {
-            Saradnici = new List<Saradnik>();
+            Ponude = new List<Ponuda>();
             Gosti = new List<Gost>();
             Komentari = new List<Komentar>();
             Tema = tema;
             Budzet = budzet;
             FiksanBudzet = fiks;
             BrojGostiju = brGost;
-            RestorakKetering = restKetering;
+            MestoOdrzavanja = restKetering;
             Dekoracija = deko;
             Muzika = muzika;
             DodatniZahtevi = dodatno;
             DatumOdrzavanja = datum;
             Organizator = organizator;
             Klijent = klijent;
+            Obrisana = false;
             if(organizator == null)
             {
                 Status = StatusManifestacije.NOVA;
@@ -228,15 +252,15 @@ namespace HCI_Projekat.Model
             k.Manifestacija = null;
         }
 
-        public void AddSaradnik(Saradnik s)
+        public void AddPonuda(Ponuda s)
         {
-            Saradnici.Add(s);
+            Ponude.Add(s);
             s.Manifestacije.Add(this);
         }
 
-        public void RemoveSaradnik(Saradnik s)
+        public void RemovePonuda(Ponuda s)
         {
-            Saradnici.Remove(s);
+            Ponude.Remove(s);
             s.Manifestacije.Remove(this);
         }
     }
@@ -255,12 +279,11 @@ namespace HCI_Projekat.Model
         public string Specijalizacija { get; set; }
         public string MapaObjekta { get; set; }
         public List<Ponuda> Ponude { get; set; }
-        public List<Manifestacija> Manifestacije { get; set; }
+        
 
         public Saradnik() 
         {
             Ponude = new List<Ponuda>();
-            Manifestacije = new List<Manifestacija>();
         }
         public Saradnik(string naziv, string adresa, TipSaradnika ts, string spec, string mapa)
         {
@@ -270,7 +293,6 @@ namespace HCI_Projekat.Model
             Specijalizacija = spec;
             MapaObjekta = mapa;
             Ponude = new List<Ponuda>();
-            Manifestacije = new List<Manifestacija>();
         }
 
         public void AddPonuda(Ponuda p)
@@ -284,18 +306,6 @@ namespace HCI_Projekat.Model
             Ponude.Remove(p);
             p.Saradnik = null;
         }
-
-        public void AddManifestacija(Manifestacija m)
-        {
-            Manifestacije.Add(m);
-            m.Saradnici.Add(this);
-        }
-
-        public void RemoveManifestacija(Manifestacija m)
-        {
-            Manifestacije.Remove(m);
-            m.Saradnici.Remove(this);
-        }
     }
 
     public class Ponuda
@@ -307,13 +317,20 @@ namespace HCI_Projekat.Model
         [Required]
         public double Cena { get; set; }
         public Saradnik Saradnik { get; set; }
+        public string NazivSaradnika { get; set; }
+        public List<Manifestacija> Manifestacije { get; set; }
 
-        public Ponuda() { }
+        public Ponuda()
+        {
+            Manifestacije = new List<Manifestacija>();
+        }
         public Ponuda(string opis, double cena, Saradnik s)
         {
+            Manifestacije = new List<Manifestacija>();
             Opis = opis;
             Cena = cena;
             Saradnik = s;
+            NazivSaradnika = s.Naziv;
         }
     }
 
