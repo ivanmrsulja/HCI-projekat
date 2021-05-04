@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HCI_Projekat.VlalidationForms
 {
@@ -21,29 +22,47 @@ namespace HCI_Projekat.VlalidationForms
     public partial class YesNo : Window
     {
         public MessageBoxResult Result { get; set; }
-        int sec { get; set; }
+        private int Sec { get; set; }
         public YesNo(String question,int s)
         {
             InitializeComponent();
             QuestionBox.Text = question;
-            sec = s;
-            Loaded += Window_Loaded;
+            Sec = s;
             Topmost = true;
+            if(Sec > 0)
+            {
+                Yes.IsEnabled = false;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //for (int i = sec; i > 0; i--)
-            //{
-            //    Yes.Content = "(" + i.ToString() + ")" + "sec";
-            //    Thread.Sleep(1000);
-            //}
-            //Yes.Content = "DA";
-            
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromSeconds(1);
+            dt.Tick += dtTicker;
+            dt.Start();
         }
 
-    private void Yes_Click(object sender, RoutedEventArgs e)
+        private void dtTicker(object sender, EventArgs e)
+        {
+            if (Sec > 0)
+            {
+                Yes.IsEnabled = false;
+                string[] tokens = QuestionBox.Text.Split('[');
+                string firstPart = tokens[0];
+                QuestionBox.Text = firstPart + "[" + Sec + "]";
+                Sec -= 1;
+            }
+            else
+            {
+                string[] tokens = QuestionBox.Text.Split('[');
+                string firstPart = tokens[0];
+                QuestionBox.Text = firstPart;
+                Yes.IsEnabled = true;
+            }
+        }
+
+        private void Yes_Click(object sender, RoutedEventArgs e)
         {
             Result = MessageBoxResult.Yes;
             this.Close();
