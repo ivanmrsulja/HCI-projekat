@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HCI_Projekat.Model;
+using HCI_Projekat.VlalidationForms;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,16 +23,137 @@ namespace HCI_Projekat.Administrator
     public partial class HomeAdmin : Window
     {
         public Window ParentScreen { get; set; }
+
+        public ObservableCollection<Manifestacija> Manifestacije { get; set; }
+        public ObservableCollection<Korisnik> Korisnici { get; set; }
+        public ObservableCollection<Saradnik> Saradnici { get; set; }
+        public ObservableCollection<Komentar> Komentari { get; set; }
+        
         public HomeAdmin(Window p)
         {
             InitializeComponent();
             ParentScreen = p;
             ParentScreen.Hide();
+            DataContext = this;
+
+            using (var db = new DatabaseContext())
+            {
+                List<Manifestacija> manifestacije = (from man in db.Manifestacije where man.Obrisana == false select man).ToList();
+                Console.WriteLine(manifestacije.Count);
+                List<Korisnik> korisnici = (from kor in db.Korisnici select kor).ToList();
+                List<Saradnik> saradnici = (from sar in db.Saradnici where sar.Obrisan == false select sar).ToList();
+                List<Komentar> komentari = (from kom in db.Komentari where kom.Obrisan == false select kom).ToList();
+                Manifestacije = new ObservableCollection<Manifestacija>(manifestacije);
+                Korisnici = new ObservableCollection<Korisnik>(korisnici);
+                Saradnici = new ObservableCollection<Saradnik>(saradnici);
+                Komentari = new ObservableCollection<Komentar>(komentari);
+            }
         }
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ParentScreen.Show();
+            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0);
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
+            {
+                this.Hide();
+                ParentScreen.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        public void Manifestacije_Click(object sender, RoutedEventArgs e)
+        {
+            KomLabel.Visibility = Visibility.Hidden;
+            ManLabel.Visibility = Visibility.Visible;
+            KorLabel.Visibility = Visibility.Hidden;
+            SarLabel.Visibility = Visibility.Hidden;
+
+            KomGrid.Visibility = Visibility.Hidden;
+            ManGrid.Visibility = Visibility.Visible;
+            KorGrid.Visibility = Visibility.Hidden;
+            SarGrid.Visibility = Visibility.Hidden;
+
+            DodajOrgBtn.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Hidden;
+            DodajOrgLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+
+        }
+
+        public void Korisnici_Click(object sender, RoutedEventArgs e)
+        {
+            KomLabel.Visibility = Visibility.Hidden;
+            ManLabel.Visibility = Visibility.Hidden;
+            KorLabel.Visibility = Visibility.Visible;
+            SarLabel.Visibility = Visibility.Hidden;
+
+            KomGrid.Visibility = Visibility.Hidden;
+            ManGrid.Visibility = Visibility.Hidden;
+            KorGrid.Visibility = Visibility.Visible;
+            SarGrid.Visibility = Visibility.Hidden;
+
+            DodajOrgBtn.Visibility = Visibility.Visible;
+            DodajSarBtn.Visibility = Visibility.Hidden;
+            DodajOrgLabel.Visibility = Visibility.Visible;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+        }
+
+        public void Saradnici_Click(object sender, RoutedEventArgs e)
+        {
+            KomLabel.Visibility = Visibility.Hidden;
+            ManLabel.Visibility = Visibility.Hidden;
+            KorLabel.Visibility = Visibility.Hidden;
+            SarLabel.Visibility = Visibility.Visible;
+
+            KomGrid.Visibility = Visibility.Hidden;
+            ManGrid.Visibility = Visibility.Hidden;
+            KorGrid.Visibility = Visibility.Hidden;
+            SarGrid.Visibility = Visibility.Visible;
+
+            DodajOrgBtn.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Visible;
+            DodajOrgLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Visible;
+        }
+
+        public void Komentari_Click(object sender, RoutedEventArgs e)
+        {
+            KomLabel.Visibility = Visibility.Visible;
+            ManLabel.Visibility = Visibility.Hidden;
+            KorLabel.Visibility = Visibility.Hidden;
+            SarLabel.Visibility = Visibility.Hidden;
+
+            KomGrid.Visibility = Visibility.Visible;
+            ManGrid.Visibility = Visibility.Hidden;
+            KorGrid.Visibility = Visibility.Hidden;
+            SarGrid.Visibility = Visibility.Hidden;
+
+            DodajOrgBtn.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Hidden;
+            DodajOrgLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+        }
+
+        public void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void Odjava_Click(object sender, RoutedEventArgs e)
+        {
+            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0);
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
+            {
+                this.Hide();
+                ParentScreen.Show();
+            }
         }
     }
 }

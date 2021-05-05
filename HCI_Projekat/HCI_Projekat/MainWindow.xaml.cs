@@ -45,8 +45,10 @@ namespace HCI_Projekat
                 foreach (var entity in db.Notifikacije)
                     db.Notifikacije.Remove(entity);
 
-                Komentar ko1 = new Komentar("aaaaa", null, null);
+                Komentar ko1 = new Komentar("Sve je super, svaka cast!!! :)", null, null);
+                Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam [DATA EXPUNGED]! Ocu pare nazad!", null, null);
                 db.Komentari.Add(ko1);
+                db.Komentari.Add(ko2);
                 string text = "20/04/2021";
                 Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 man1.Status = StatusManifestacije.U_IZRADI;
@@ -56,6 +58,7 @@ namespace HCI_Projekat
                 Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 Manifestacija man6 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 man1.AddKomentar(ko1);
+                man2.AddKomentar(ko2);
                 db.Manifestacije.Add(man1);
                 db.Manifestacije.Add(man2);
                 db.Manifestacije.Add(man3);
@@ -71,6 +74,7 @@ namespace HCI_Projekat
                 k1.AddManifestacija(man5);
                 k1.AddManifestacija(man6);
                 k1.AddKomentar(ko1);
+                k1.AddKomentar(ko2);
                 db.Korisnici.Add(k1);
 
                 Organizator o1 = new Organizator("organizator", "organizator", "Jovan", "Jovovic", "email", "telefon", "adresa");

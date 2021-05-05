@@ -6,8 +6,82 @@
         xmlns:local="clr-namespace:HCI_Projekat.Administrator"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="HomeAdmin" Height="450" Width="800">
+        Title="HomeAdmin" Height="600" Width="950">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="0" Height="40" Click="Manifestacije_Click" FontSize="20">Manifestacije</Button>
+        <Button Grid.Row="0" Grid.Column="1" Height="40" Click="Korisnici_Click" FontSize="20">Korisnici</Button>
+        <Button Grid.Row="0" Grid.Column="2" Height="40" Click="Saradnici_Click" FontSize="20">Saradnici</Button>
+        <Button Grid.Row="0" Grid.Column="3" Height="40" Click="Komentari_Click" FontSize="20">Komentari</Button>
+        <Button Grid.Row="0" Grid.Column="4" Height="40" Click="Pomoc_Click" FontSize="20">Pomoc</Button>
+        <Button Grid.Row="0" Grid.Column="5" Height="40" Click="Odjava_Click" FontSize="20">Odjava</Button>
+
+        <Label Name="ManLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35">Prikaz manifestacija</Label>
+        <Label Name="KorLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz korisnika</Label>
+        <Label Name="SarLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz saradnika</Label>
+        <Label Name="KomLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz komentara</Label>
+
+        <DataGrid Name="ManGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" ItemsSource="{Binding Path = Manifestacije}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Broj Gostiju" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Organizator" Width="Auto" Binding="{Binding Organizator.Username}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Korisnicko ime" Width="Auto" Binding="{Binding Username}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prezime" Width="Auto" Binding="{Binding Prezime}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Width="Auto" Binding="{Binding Email}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Telefon" Width="Auto" Binding="{Binding Telefon}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Uloga" Width="Auto" Binding="{Binding Uloga}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Width="Auto" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="Auto" Binding="{Binding Tip}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Specijalizacija" Width="Auto" Binding="{Binding Specijalizacija}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="KomGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Komentari}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tekst" Width="Auto" Binding="{Binding Tekst}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Organizator" Width="Auto" Binding="{Binding Manifestacija.Organizator.Username}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Name="DodajOrgLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog organizatora: </Label>
+        <Button Name="DodajOrgBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="Manifestacije_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
+
+        <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
+        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="Manifestacije_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
+
     </Grid>
 </Window>

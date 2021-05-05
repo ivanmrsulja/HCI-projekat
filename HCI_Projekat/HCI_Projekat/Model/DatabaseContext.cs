@@ -277,6 +277,8 @@ namespace HCI_Projekat.Model
         public TipSaradnika Tip { get; set; }
         [Required]
         public string Specijalizacija { get; set; }
+        [Required]
+        public bool Obrisan { get; set; }
         public string MapaObjekta { get; set; }
         public List<Ponuda> Ponude { get; set; }
         
@@ -292,6 +294,7 @@ namespace HCI_Projekat.Model
             Tip = ts;
             Specijalizacija = spec;
             MapaObjekta = mapa;
+            Obrisan = false;
             Ponude = new List<Ponuda>();
         }
 
@@ -385,6 +388,8 @@ namespace HCI_Projekat.Model
         public int Id { get; set; }
         [Required]
         public string Tekst { get; set; }
+        [Required]
+        public bool Obrisan { get; set; }
         public Manifestacija Manifestacija { get; set; }
         public Klijent Klijent { get; set; }
 
@@ -394,6 +399,7 @@ namespace HCI_Projekat.Model
             Tekst = text;
             Manifestacija = m;
             Klijent = k;
+            Obrisan = false;
         }
     }
 
