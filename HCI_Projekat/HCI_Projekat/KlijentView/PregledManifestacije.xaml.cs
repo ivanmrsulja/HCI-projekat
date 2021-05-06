@@ -78,7 +78,7 @@ namespace HCI_Projekat.KlijentView
 
         public void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         public void Sacuvaj_Click(object sender, RoutedEventArgs e)
@@ -151,12 +151,12 @@ namespace HCI_Projekat.KlijentView
                     toDelete.Obrisana = true;
                     db.SaveChanges();
                 }
-                this.Hide();
                 using (var db = new DatabaseContext())
                 {
                     List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                     ParentData.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
                 }
+                this.Close();
             }
         }
 
@@ -173,12 +173,12 @@ namespace HCI_Projekat.KlijentView
                     toComplete.Status = StatusManifestacije.ZAVRSENA;
                     db.SaveChanges();
                 }
-                this.Hide();
                 using (var db = new DatabaseContext())
                 {
                     List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                     ParentData.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
                 }
+                this.Close();
             }
         }
 

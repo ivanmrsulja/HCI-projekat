@@ -39,13 +39,20 @@
             <ComboBox Name="tema" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj" ></ComboBox>
         </StackPanel>
 
-        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" MouseDoubleClick="Row_MouseDoubleClick">
+        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Broj gostiju" Width="Auto" Binding="{Binding BrojGostiju}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Status manifestacije" Width="Auto" Binding="{Binding Status}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Akcija">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Pregledaj_Click">Pregledaj</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

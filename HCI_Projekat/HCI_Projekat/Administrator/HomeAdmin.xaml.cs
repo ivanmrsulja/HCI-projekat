@@ -40,7 +40,7 @@ namespace HCI_Projekat.Administrator
             {
                 List<Manifestacija> manifestacije = (from man in db.Manifestacije where man.Obrisana == false select man).ToList();
                 Console.WriteLine(manifestacije.Count);
-                List<Korisnik> korisnici = (from kor in db.Korisnici select kor).ToList();
+                List<Korisnik> korisnici = (from kor in db.Korisnici where kor.Obrisan == false select kor).ToList();
                 List<Saradnik> saradnici = (from sar in db.Saradnici where sar.Obrisan == false select sar).ToList();
                 List<Komentar> komentari = (from kom in db.Komentari where kom.Obrisan == false select kom).ToList();
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestacije);
@@ -57,7 +57,6 @@ namespace HCI_Projekat.Administrator
 
             if (wk.Result == MessageBoxResult.Yes)
             {
-                this.Hide();
                 ParentScreen.Show();
             }
             else
@@ -144,16 +143,37 @@ namespace HCI_Projekat.Administrator
 
         }
 
+        public void DodajOrganizatora_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new DodavanjeOrganizatora(null, KorGrid);
+            w.ShowDialog();
+        }
+
+        public void DodajSaradnika_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         public void Odjava_Click(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0);
-            wk.ShowDialog();
+            this.Close();
+        }
 
-            if (wk.Result == MessageBoxResult.Yes)
+        private void RowKorisnik_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Ensure row was clicked and not empty space
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                                e.OriginalSource as DependencyObject) as DataGridRow;
+
+            if (row == null) return;
+
+            if (KorGrid.SelectedItem.GetType() == typeof(Organizator))
             {
-                this.Hide();
-                ParentScreen.Show();
+                Console.WriteLine((Korisnik)KorGrid.SelectedItem);
+                var w = new DodavanjeOrganizatora((Organizator)KorGrid.SelectedItem, KorGrid);
+                w.ShowDialog();
             }
         }
+
     }
 }

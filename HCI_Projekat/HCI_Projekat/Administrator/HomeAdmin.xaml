@@ -48,7 +48,7 @@
                 <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+        <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="RowKorisnik_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Korisnicko ime" Width="Auto" Binding="{Binding Username}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}" IsReadOnly="True"></DataGridTextColumn>
@@ -78,7 +78,7 @@
         </DataGrid>
 
         <Label Name="DodajOrgLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog organizatora: </Label>
-        <Button Name="DodajOrgBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="Manifestacije_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
+        <Button Name="DodajOrgBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajOrganizatora_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
 
         <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
         <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="Manifestacije_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>

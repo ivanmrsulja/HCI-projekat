@@ -90,7 +90,6 @@ namespace HCI_Projekat.KlijentView
 
             if (wk.Result == MessageBoxResult.Yes)
             {
-                this.Hide();
                 ParentScreen.Show();
             }
             else
@@ -101,14 +100,7 @@ namespace HCI_Projekat.KlijentView
 
         public void Odjava(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?",0);
-            wk.ShowDialog();
-
-            if (wk.Result == MessageBoxResult.Yes)
-            {
-                this.Hide();
-                ParentScreen.Show();
-            }
+            this.Close();
         }
 
         public void DodajManifestaciju(object sender, RoutedEventArgs e)
@@ -200,22 +192,9 @@ namespace HCI_Projekat.KlijentView
             }
         }
 
-        private void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Pregledaj_Click(object sender, EventArgs e)
         {
-            // Ensure row was clicked and not empty space
-            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
-                                                e.OriginalSource as DependencyObject) as DataGridRow;
-
-            if (row == null) return;
-
-            Console.WriteLine(row.GetIndex());
-            List<Manifestacija> manifestations = null;
-            using (var db = new DatabaseContext())
-            {
-                manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
-            }
-            Console.WriteLine(manifestations.Count);
-            var w = new PregledManifestacije(manifestations.ElementAt<Manifestacija>(row.GetIndex()), dgrMain, Klijent);
+            var w = new PregledManifestacije((Manifestacija)dgrMain.SelectedItem, dgrMain, Klijent);
             w.ShowDialog();
         }
     }

@@ -77,11 +77,11 @@ namespace HCI_Projekat
                 k1.AddKomentar(ko2);
                 db.Korisnici.Add(k1);
 
-                Organizator o1 = new Organizator("organizator", "organizator", "Jovan", "Jovovic", "email", "telefon", "adresa");
+                Organizator o1 = new Organizator("organizator", "organizator", "Jovan", "Jovovic", "email@email.com", "0685478521", "adresa");
                 o1.AddManifestacija(man1);
                 db.Korisnici.Add(o1);
 
-                Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email", "telefon", "adresa");
+                Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email@email.com", "0685478521", "adresa");
                 db.Korisnici.Add(a1);
 
                 Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "link do mape");

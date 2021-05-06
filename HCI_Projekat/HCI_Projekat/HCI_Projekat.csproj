@@ -84,6 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Administrator\DodavanjeOrganizatora.xaml.cs">
+      <DependentUpon>DodavanjeOrganizatora.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Administrator\HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
     <Compile Include="VlalidationForms\YesNo.xaml.cs">
       <DependentUpon>YesNo.xaml</DependentUpon>
     </Compile>
+    <Page Include="Administrator\DodavanjeOrganizatora.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Administrator\HomeAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
