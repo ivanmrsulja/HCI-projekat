@@ -21,10 +21,11 @@ namespace HCI_Projekat.VlalidationForms
     {
         public MessageBoxResult Result { get; set; }
 
-        public OkForm(string question)
+        public OkForm(string question, string title)
         {
             InitializeComponent();
             QuestionBox.Text = question;
+            Title = title;
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)

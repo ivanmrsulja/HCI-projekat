@@ -136,7 +136,7 @@ namespace HCI_Projekat.KlijentView
             }
             BindedGrid.ItemsSource = null;
             BindedGrid.ItemsSource = Manifestacije;
-            var dijalog5 = new OkForm("Uspesno ste kreirali\nmanifestaciju");
+            var dijalog5 = new OkForm("Uspesno ste kreirali\nmanifestaciju", "Manifestacija kreirana");
             dijalog5.ShowDialog();
             this.Hide();
         }

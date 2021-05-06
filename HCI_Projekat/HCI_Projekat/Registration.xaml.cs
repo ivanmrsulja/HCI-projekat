@@ -175,7 +175,7 @@ namespace HCI_Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var dijalog1 = new YesNo("da li ste sigurni \nda zelite pomoc",10);
+            var dijalog1 = new YesNo("da li ste sigurni \nda zelite pomoc",10, "Glupo pitanje");
             dijalog1.ShowDialog();
 
             if (dijalog1.Result == MessageBoxResult.Yes)
@@ -187,7 +187,7 @@ namespace HCI_Projekat
                 //sta se radi na klik ne              
             }
 
-            var dijalog2 = new OkForm("kliknuli ste na \ngitpomoc");
+            var dijalog2 = new OkForm("kliknuli ste na \ngitpomoc", "Zasto dusane?");
             dijalog2.ShowDialog();
         }
 
@@ -198,14 +198,14 @@ namespace HCI_Projekat
             if (user.Text.Trim() == "" || pass.Password.Trim() == "" || passConf.Password.Trim() == "" || ime.Text.Trim() == "" || prezime.Text.Trim() == "" || email.Text.Trim() == "" || telefon.Text.Trim() == "" || adresa.Text.Trim() == "")
             {
                 //MessageBox.Show("Molimo popunite sva polja i pokusajte ponovo.", "Nisu popunjena sva polja");
-                var dijalog3 = new OkForm("Molimo popunite sva polja\ni pokusajte ponovo");
+                var dijalog3 = new OkForm("Molimo popunite sva polja\ni pokusajte ponovo", "Doslo je do greske");
                 dijalog3.ShowDialog();
                 return;
             }
             if(pass.Password != passConf.Password)
             {
                 //MessageBox.Show("Lozinka u polju 'Potvrdi lozinku' mora biti ista kao ona u polju 'Lozinka'.", "Lozinke se ne podudaraju");
-                var dijalog4 = new OkForm("Lozinka u polju 'Potvrdi lozinku'\nmora biti ista kao ona u polju 'Lozinka'");
+                var dijalog4 = new OkForm("Lozinka u polju 'Potvrdi lozinku'\nmora biti ista kao ona u polju 'Lozinka'", "Doslo je do greske");
                 dijalog4.ShowDialog();
                 return;
             }
@@ -216,7 +216,7 @@ namespace HCI_Projekat
                 db.SaveChanges();
             }
             //MessageBox.Show("Uspesno ste kreirali nalog, mozete se ulogovati.", "Uspesno kreiran nalog");
-            var dijalog5 = new OkForm("Uspesno ste kreirali nalog\nmozete se ulogovati");
+            var dijalog5 = new OkForm("Uspesno ste kreirali nalog\nmozete se ulogovati", "Uspesno kreiran nalog");
             dijalog5.ShowDialog();
             this.Hide();
         }

@@ -52,7 +52,7 @@ namespace HCI_Projekat.Administrator
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0);
+            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0, "Odjava");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)

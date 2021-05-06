@@ -83,7 +83,7 @@ namespace HCI_Projekat.KlijentView
 
         public void Sacuvaj_Click(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da sacuvate promene?", 0);
+            var wk = new YesNo("Da li ste sigurni \nda zelite da sacuvate promene?", 0, "Sacuvaj promene");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -140,7 +140,7 @@ namespace HCI_Projekat.KlijentView
 
         public void Otkazi_Click(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da otkazete \nmanifestaciju?", 5);
+            var wk = new YesNo("Da li ste sigurni \nda zelite da otkazete \nmanifestaciju?", 5, "Otkazi manifestaciju");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -162,7 +162,7 @@ namespace HCI_Projekat.KlijentView
 
         public void Odobri_Click(object sender, RoutedEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da odobrite \nmanifestaciju?", 0);
+            var wk = new YesNo("Da li ste sigurni \nda zelite da odobrite \nmanifestaciju?", 0, "Odobri manifestaciju");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)

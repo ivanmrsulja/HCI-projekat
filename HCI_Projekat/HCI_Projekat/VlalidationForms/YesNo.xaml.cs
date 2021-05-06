@@ -23,10 +23,11 @@ namespace HCI_Projekat.VlalidationForms
     {
         public MessageBoxResult Result { get; set; }
         private int Sec { get; set; }
-        public YesNo(String question,int s)
+        public YesNo(String question,int s, string t)
         {
             InitializeComponent();
             QuestionBox.Text = question;
+            Title = t;
             Sec = s;
             Topmost = true;
             if(Sec > 0)

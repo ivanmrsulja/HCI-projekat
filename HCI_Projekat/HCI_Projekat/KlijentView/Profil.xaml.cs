@@ -160,7 +160,7 @@ namespace HCI_Projekat.KlijentView
                     }
                     else if(passNew.Password.Contains(" "))
                     {
-                        var passDijalog = new OkForm("Nova lozinka sadrzi\nnedozvoljene karaktere.");
+                        var passDijalog = new OkForm("Nova lozinka sadrzi\nnedozvoljene karaktere.", "Los format lozinke");
                         passDijalog.ShowDialog();
                         return;
                     }
@@ -169,7 +169,7 @@ namespace HCI_Projekat.KlijentView
             }
             Klijent k1 = new Klijent(user.Text, pass.Password.ToString(), ime.Text, prezime.Text, email.Text, telefon.Text,adresa.Text);
             korisnik = k1;
-            var dijalog5 = new OkForm("Uspesno ste azurirali\nkorisnika");
+            var dijalog5 = new OkForm("Uspesno ste azurirali\nprofil.", "Uspesno sacuvano");
             dijalog5.ShowDialog();
             Window.GetWindow(this).DialogResult = true;
             Window.GetWindow(this).Close();
