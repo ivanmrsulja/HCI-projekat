@@ -214,13 +214,11 @@ namespace HCI_Projekat.Administrator
                 if (String.IsNullOrWhiteSpace(pass.Password) || user.Text.Trim() == "" || ime.Text.Trim() == "" || prezime.Text.Trim() == "" || email.Text.Trim() == "" || telefon.Text.Trim() == "" || adresa.Text.Trim() == "" || !matchTel.Success || !matchEmail.Success || pass.Password != Organizator.Password)
                 {
                     dodajBtn.IsEnabled = false;
-                    Console.WriteLine(String.IsNullOrWhiteSpace(pass.Password) || user.Text.Trim() == "" || ime.Text.Trim() == "" || prezime.Text.Trim() == "" || email.Text.Trim() == "" || telefon.Text.Trim() == "" || adresa.Text.Trim() == "" || !matchTel.Success || !matchEmail.Success || pass.Password != Organizator.Password);
                 }   
                 else
                 {
                     using (var db = new DatabaseContext())
                     {
-                        Console.WriteLine("AAAAAA");
                         string[] usernames = (from users in db.Korisnici where users.Username == user.Text select users.Username).ToArray();
                         if (usernames.Length != 1)
                         {

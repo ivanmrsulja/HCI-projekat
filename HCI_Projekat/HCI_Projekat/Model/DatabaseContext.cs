@@ -54,9 +54,9 @@ namespace HCI_Projekat.Model
 
     public class Klijent : Korisnik
     {
-        public List<Notifikacija> Notifikacije { get; set; }
-        public List<Komentar> Komentari { get; set; }
-        public List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Notifikacija> Notifikacije { get; set; }
+        public virtual List<Komentar> Komentari { get; set; }
+        public virtual List<Manifestacija> Manifestacije { get; set; }
 
         public Klijent() : base()
         {
@@ -75,12 +75,14 @@ namespace HCI_Projekat.Model
         {
             Komentari.Add(k);
             k.Klijent = this;
+            k.User = this.Ime + " " + this.Prezime;
         }
 
         public void RemoveKomentar(Komentar k)
         {
             Komentari.Remove(k);
             k.Klijent = null;
+            k.User = "";
         }
 
         public void AddManifestacija(Manifestacija m)
@@ -167,7 +169,7 @@ namespace HCI_Projekat.Model
         [Required]
         public bool Obrisana { get; set; }
         [Required]
-        public Klijent Klijent { get; set; }
+        public virtual Klijent Klijent { get; set; }
 
 
         [Required]
@@ -190,10 +192,10 @@ namespace HCI_Projekat.Model
         public bool RasporedDone { get; set; }
 
 
-        public Organizator Organizator { get; set; }
-        public List<Ponuda> Ponude { get; set; }
-        public List<Gost> Gosti { get; set; }
-        public List<Komentar> Komentari { get; set; }
+        public virtual Organizator Organizator { get; set; }
+        public virtual List<Ponuda> Ponude { get; set; }
+        public virtual List<Gost> Gosti { get; set; }
+        public virtual List<Komentar> Komentari { get; set; }
 
         public Manifestacija() 
         {
@@ -280,7 +282,7 @@ namespace HCI_Projekat.Model
         [Required]
         public bool Obrisan { get; set; }
         public string MapaObjekta { get; set; }
-        public List<Ponuda> Ponude { get; set; }
+        public virtual List<Ponuda> Ponude { get; set; }
         
 
         public Saradnik() 
@@ -319,9 +321,9 @@ namespace HCI_Projekat.Model
         public string Opis { get; set; }
         [Required]
         public double Cena { get; set; }
-        public Saradnik Saradnik { get; set; }
+        public virtual Saradnik Saradnik { get; set; }
         public string NazivSaradnika { get; set; }
-        public List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Manifestacija> Manifestacije { get; set; }
 
         public Ponuda()
         {
@@ -346,7 +348,7 @@ namespace HCI_Projekat.Model
         public double X { get; set; }
         public double Y { get; set; }
         public double BrojMesta { get; set; }
-        public Manifestacija Manifestacija { get; set; }
+        public virtual Manifestacija Manifestacija { get; set; }
 
         public Gost() { }
         public Gost(string imePrezime, double x, double y, double mesta, Manifestacija m)
@@ -370,7 +372,7 @@ namespace HCI_Projekat.Model
         public string Tekst { get; set; }
         [Required]
         public bool Dismissed { get; set; }
-        public Klijent Klijent { get; set; }
+        public virtual Klijent Klijent { get; set; }
 
         public Notifikacija() { }
         public Notifikacija(string posiljaoc, string text, Klijent k)
@@ -390,16 +392,20 @@ namespace HCI_Projekat.Model
         public string Tekst { get; set; }
         [Required]
         public bool Obrisan { get; set; }
-        public Manifestacija Manifestacija { get; set; }
-        public Klijent Klijent { get; set; }
+        public virtual Manifestacija Manifestacija { get; set; }
+        public virtual Korisnik Klijent { get; set; }
+        public string User { get; set; }
+        public DateTime DatumPostavljanja { get; set; }
 
         public Komentar() { }
-        public Komentar(string text, Manifestacija m, Klijent k)
+        public Komentar(string text, Manifestacija m, Klijent k, DateTime datum)
         {
             Tekst = text;
             Manifestacija = m;
             Klijent = k;
             Obrisan = false;
+            DatumPostavljanja = datum;
+            User = "";
         }
     }
 

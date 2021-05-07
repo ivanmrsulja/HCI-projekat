@@ -111,7 +111,6 @@ namespace HCI_Projekat.KlijentView
 
         public void PretraziDatum(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(tema.SelectedItem == null);
             DateTime d = DateTime.Parse(datum.Text);
             using (var db = new DatabaseContext())
             {
@@ -194,7 +193,8 @@ namespace HCI_Projekat.KlijentView
 
         private void Pregledaj_Click(object sender, EventArgs e)
         {
-            var w = new PregledManifestacije((Manifestacija)dgrMain.SelectedItem, dgrMain, Klijent);
+            Manifestacija selected = (Manifestacija)dgrMain.SelectedItem;
+            var w = new PregledManifestacije(selected, dgrMain, Klijent);
             w.ShowDialog();
         }
     }

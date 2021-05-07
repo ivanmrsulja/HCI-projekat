@@ -114,7 +114,7 @@ namespace HCI_Projekat.KlijentView
             var d = Convert.ToDateTime(datum.Text).ToString("MM/dd/yyyy");
             using (var db = new DatabaseContext())
             {               
-                Manifestacija novi = new Manifestacija(t,Double.Parse(budzet.Text),c,Int32.Parse(brojGostiju.Text),mesto.Text,dekoracije.Text,muzika.Text,dodatniZahtevi.Text,Convert.ToDateTime(d), null, null);
+                Manifestacija novi = new Manifestacija(t,Double.Parse(budzet.Text),c,Int32.Parse(brojGostiju.Text),mesto.Text,dekoracije.Text,muzika.Text,dodatniZahtevi.Text,Convert.ToDateTime(datum.Text), null, null);
                 foreach (var item in listGostiju)
                 {
                     novi.AddGost(item);
@@ -138,7 +138,7 @@ namespace HCI_Projekat.KlijentView
             BindedGrid.ItemsSource = Manifestacije;
             var dijalog5 = new OkForm("Uspesno ste kreirali\nmanifestaciju", "Manifestacija kreirana");
             dijalog5.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private TemaManifestacije stringToManifestacija(string manUpper)

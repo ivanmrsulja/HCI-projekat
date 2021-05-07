@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="PregledManifestacije" Height="900" Width="800" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45*"></RowDefinition>
-            <RowDefinition Height="25*"></RowDefinition>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="30*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"></ColumnDefinition>
@@ -104,6 +106,36 @@
                 <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
+        <ListView x:Name="komentariList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Center" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="90*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Width="40" Height="40" CornerRadius="25" BorderBrush="White" BorderThickness="0.6">
+                            <Border.Background>
+                                <ImageBrush ImageSource="../Source/icon_comment.png"/>
+                            </Border.Background>
+                        </Border>
+                        <Border Width="10" Height="10" VerticalAlignment="Bottom" Margin="5" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
+
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding User}" Margin="10 0"/>
+                                <TextBlock Text="{Binding DatumPostavljanja}" Margin="10 0"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox x:Name="noviKomentar" Margin="10,0,10,0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="OSTAVI KOMENTAR"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16"></TextBox>
+        <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Width="Auto" Click="Komentarisi_Click" FontSize="16">+</Button>
     </Grid>
 </Window>

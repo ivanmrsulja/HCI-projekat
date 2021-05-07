@@ -34,6 +34,7 @@ namespace HCI_Projekat.KlijentView
         }
 
         public ObservableCollection<Ponuda> Ponude { get; set; }
+        public ObservableCollection<Komentar> Komentari { get; set; }
         public Manifestacija _manifestacija;
         public Manifestacija Manifestacija
     {
@@ -51,19 +52,21 @@ namespace HCI_Projekat.KlijentView
             }
         }
         public DataGrid ParentData { get; set; }
-        public Korisnik Klijent { get; set; }
+        public int KlijentId { get; set; }
 
         public PregledManifestacije(Manifestacija m, DataGrid data, Korisnik k)
         {
             InitializeComponent();
             DataContext = this;
             Manifestacija = m;
-            Klijent = k;
+            KlijentId = k.Id;
             ParentData = data;
             using (var db = new DatabaseContext())
             {
                 List<Ponuda> ponude = (from man in db.Manifestacije where man.Id == m.Id select man.Ponude).ToArray()[0];
+                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == m.Id select kom).ToList();
                 Ponude = new ObservableCollection<Ponuda>(ponude);
+                Komentari = new ObservableCollection<Komentar>(komentari);
             }
             if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI)
             {
@@ -153,7 +156,7 @@ namespace HCI_Projekat.KlijentView
                 }
                 using (var db = new DatabaseContext())
                 {
-                    List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
+                    List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == KlijentId && m.Obrisana != true select m).ToList();
                     ParentData.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
                 }
                 this.Close();
@@ -175,11 +178,31 @@ namespace HCI_Projekat.KlijentView
                 }
                 using (var db = new DatabaseContext())
                 {
-                    List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
+                    List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == KlijentId && m.Obrisana != true select m).ToList();
                     ParentData.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
                 }
                 this.Close();
             }
+        }
+
+        public void Komentarisi_Click(object sender, EventArgs e)
+        {
+            int idk = KlijentId;
+            int idm = Manifestacija.Id;
+            Console.WriteLine(idk);
+            using (var db = new DatabaseContext())
+            {
+                Komentar novi = new Komentar(noviKomentar.Text, null, null, DateTime.Now);
+                db.Komentari.Add(novi);
+                Klijent klijent = db.Korisnici.SingleOrDefault(b => b.Id == idk) as Klijent;
+                Manifestacija manif = db.Manifestacije.SingleOrDefault(b => b.Id == idm);
+                manif.AddKomentar(novi);
+                klijent.AddKomentar(novi);
+                db.SaveChanges();
+                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == Manifestacija.Id select kom).ToList();
+                Komentari = new ObservableCollection<Komentar>(komentari);
+            }
+            komentariList.ItemsSource = Komentari;
         }
 
     }

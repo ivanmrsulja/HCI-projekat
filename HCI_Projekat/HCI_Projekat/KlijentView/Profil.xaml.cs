@@ -25,7 +25,6 @@ namespace HCI_Projekat.KlijentView
     {
 
         public Klijent klijent { get; set; }
-        public Klijent korisnik { get; set; }
         public object Sender { get; set; }
 
         private string _email;
@@ -112,7 +111,6 @@ namespace HCI_Projekat.KlijentView
             InitializeComponent();
             DataContext = this;
             klijent = k;
-            korisnik = null;
             ime.Text = k.Ime;
             prezime.Text = k.Prezime;
             Username = k.Username;
@@ -164,11 +162,15 @@ namespace HCI_Projekat.KlijentView
                         passDijalog.ShowDialog();
                         return;
                     }
+                    var komentari = (from kom in db.Komentari where kom.Klijent.Id == result.Id select kom);
+                    foreach (var kom in komentari)
+                    {
+                        kom.User = result.Ime + " " + result.Prezime;
+                    }
                     db.SaveChanges();
+                    klijent = result as Klijent;
                 }
             }
-            Klijent k1 = new Klijent(user.Text, pass.Password.ToString(), ime.Text, prezime.Text, email.Text, telefon.Text,adresa.Text);
-            korisnik = k1;
             var dijalog5 = new OkForm("Uspesno ste azurirali\nprofil.", "Uspesno sacuvano");
             dijalog5.ShowDialog();
             Window.GetWindow(this).DialogResult = true;
@@ -177,7 +179,7 @@ namespace HCI_Projekat.KlijentView
 
         internal object GetValue()
         {
-            return korisnik;
+            return klijent;
         }
     }
 }

@@ -164,7 +164,6 @@ namespace HCI_Projekat.Administrator
             // Ensure row was clicked and not empty space
             var row = ItemsControl.ContainerFromElement((DataGrid)sender,
                                                 e.OriginalSource as DependencyObject) as DataGridRow;
-
             if (row == null) return;
 
             if (KorGrid.SelectedItem.GetType() == typeof(Organizator))
