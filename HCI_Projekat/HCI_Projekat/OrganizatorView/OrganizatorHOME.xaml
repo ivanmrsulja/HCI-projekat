@@ -6,8 +6,44 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="450" Width="800">
+        Title="OrganizatorHOME" Height="700" Width="1100">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" FontSize="20" Height="50" VerticalAlignment="Top">Istorija</Button>
+        <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top">Aktuelno</Button>
+        <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top">Nedodeljeno</Button>
+        <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top">Dodaj saradnika</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top">Pomoc</Button>
+        <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava">Odjava</Button>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label FontSize="25">Pretraga po datumu:</Label>
+            <DatePicker FontSize="20" Width="150"></DatePicker>
+            <Label FontSize="25">Izaberi temu:</Label>
+            <ComboBox Grid.Row="1" Grid.Column="4" FontSize="20" Width="150" ItemsSource="{Binding Teme}"></ComboBox>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Top" ItemsSource="{Binding Path = StareManifestacije}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Center" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lokacija" Width="" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

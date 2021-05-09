@@ -39,7 +39,6 @@ namespace HCI_Projekat.Administrator
             using (var db = new DatabaseContext())
             {
                 List<Manifestacija> manifestacije = (from man in db.Manifestacije where man.Obrisana == false select man).ToList();
-                Console.WriteLine(manifestacije.Count);
                 List<Korisnik> korisnici = (from kor in db.Korisnici where kor.Obrisan == false select kor).ToList();
                 List<Saradnik> saradnici = (from sar in db.Saradnici where sar.Obrisan == false select sar).ToList();
                 List<Komentar> komentari = (from kom in db.Komentari where kom.Obrisan == false select kom).ToList();

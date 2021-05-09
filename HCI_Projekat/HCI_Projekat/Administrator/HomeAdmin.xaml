@@ -35,7 +35,7 @@
         <Label Name="SarLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz saradnika</Label>
         <Label Name="KomLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz komentara</Label>
 
-        <DataGrid Name="ManGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" ItemsSource="{Binding Path = Manifestacije}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+        <DataGrid Name="ManGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" ItemsSource="{Binding Path = Manifestacije}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
@@ -48,7 +48,7 @@
                 <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="RowKorisnik_MouseDoubleClick">
+        <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="RowKorisnik_MouseDoubleClick" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Korisnicko ime" Width="Auto" Binding="{Binding Username}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime" Width="Auto" Binding="{Binding Ime}" IsReadOnly="True"></DataGridTextColumn>
@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="Uloga" Width="Auto" Binding="{Binding Uloga}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+        <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="Auto" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
@@ -68,7 +68,7 @@
                 <DataGridTextColumn Header="Specijalizacija" Width="Auto" Binding="{Binding Specijalizacija}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="KomGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Komentari}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20">
+        <DataGrid Name="KomGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Komentari}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tekst" Width="Auto" Binding="{Binding Tekst}" IsReadOnly="True"></DataGridTextColumn>

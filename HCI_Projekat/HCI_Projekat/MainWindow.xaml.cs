@@ -77,7 +77,7 @@ namespace HCI_Projekat
                 k1.AddKomentar(ko2);
                 db.Korisnici.Add(k1);
 
-                Organizator o1 = new Organizator("organizator", "organizator", "Jovan", "Jovovic", "email@email.com", "0685478521", "adresa");
+                Organizator o1 = new Organizator("o", "o", "Ana", "Jovovic", "email@email.com", "0685478521", "adresa");
                 o1.AddManifestacija(man1);
                 db.Korisnici.Add(o1);
 
@@ -143,7 +143,7 @@ namespace HCI_Projekat
                             wk.ShowDialog();
                             break;
                         case UlogaKorisnika.ORGANIZATOR:
-                            var wo = new OrganizatorHOME(this);
+                            var wo = new OrganizatorHOME(this, currentUser[0]);
                             wo.ShowDialog();
                             break;
                     }
