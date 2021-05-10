@@ -53,6 +53,7 @@ namespace HCI_Projekat
                 Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 man1.Status = StatusManifestacije.U_IZRADI;
                 Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                man2.Status = StatusManifestacije.ZAVRSENA;
                 Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
                 Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
@@ -79,6 +80,7 @@ namespace HCI_Projekat
 
                 Organizator o1 = new Organizator("o", "o", "Ana", "Jovovic", "email@email.com", "0685478521", "adresa");
                 o1.AddManifestacija(man1);
+                o1.AddManifestacija(man2);
                 db.Korisnici.Add(o1);
 
                 Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email@email.com", "0685478521", "adresa");
@@ -111,6 +113,17 @@ namespace HCI_Projekat
                 man1.RasporedDone = true;
                 man1.TemaDone = true;
                 man1.GostiDone = true;
+
+                man2.AddPonuda(pon2);
+                man2.MestoOdrzavanjaDone = true;
+                man2.DodatnoDone = true;
+                man2.BudzetDone = true;
+                man2.DatumDone = true;
+                man2.DekoracijaDone = true;
+                man2.MuzikaDone = true;
+                man2.RasporedDone = true;
+                man2.TemaDone = true;
+                man2.GostiDone = true;
 
                 db.SaveChanges();
             }

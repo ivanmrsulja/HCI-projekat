@@ -70,7 +70,7 @@ namespace HCI_Projekat.OrganizatorView
             {
                 List<Manifestacija> istorija = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
                 List<Manifestacija> aktuelno = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList();
-                List<Manifestacija> nedodeljeno = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList();
+                List<Manifestacija> nedodeljeno = (from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList();
 
                 StareManifestacije = new ObservableCollection<Manifestacija>(istorija);
                 AktuelneManifestacije = new ObservableCollection<Manifestacija>(aktuelno);
@@ -97,9 +97,131 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
+        public void Istorija_Click(object sender, EventArgs e)
+        {
+            istorija.Visibility = Visibility.Visible;
+            aktuelno.Visibility = Visibility.Hidden;
+            nedodeljeno.Visibility = Visibility.Hidden;
+
+            searchBar.Visibility = Visibility.Visible;
+            aktuelnoLabel.Visibility = Visibility.Hidden;
+            nedodeljenoLabel.Visibility = Visibility.Hidden;
+        }
+
+        public void Aktuelno_Click(object sender, EventArgs e)
+        {
+            istorija.Visibility = Visibility.Hidden;
+            aktuelno.Visibility = Visibility.Visible;
+            nedodeljeno.Visibility = Visibility.Hidden;
+
+            searchBar.Visibility = Visibility.Hidden;
+            aktuelnoLabel.Visibility = Visibility.Visible;
+            nedodeljenoLabel.Visibility = Visibility.Hidden;
+        }
+
+        public void Preuzmi_Click(object sender, EventArgs e)
+        {
+            Manifestacija selected = (Manifestacija)nedodeljeno.SelectedItem;
+
+            var wk = new YesNo("Da li ste sigurni \nda zelite da preuzmete\norganizaciju manifestacije\nkorisnika " + selected.Klijent.Ime + " " + selected.Klijent.Prezime + "?", 0, "Preuzmi manifestaciju");
+            wk.ShowDialog();
+
+            if (wk.Result == MessageBoxResult.Yes)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    var manifestacija = (from m in db.Manifestacije.Include("Klijent") where m.Id == selected.Id select m).FirstOrDefault();
+                    var organizator = (from o in db.Korisnici where o.Id == CurrentUser.Id select o).FirstOrDefault() as Organizator;
+
+                    Console.WriteLine(manifestacija.Id);
+
+                    organizator.AddManifestacija(manifestacija);
+                    manifestacija.Status = StatusManifestacije.U_IZRADI;
+
+                    db.SaveChanges();
+                    aktuelno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList());
+                    nedodeljeno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList());
+
+                    var ok = new OkForm("Uspesno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspesno preuzeto");
+                    ok.ShowDialog();
+                }
+            }
+        }
+
+        public void Nedodeljeno_Click(object sender, EventArgs e)
+        {
+            istorija.Visibility = Visibility.Hidden;
+            aktuelno.Visibility = Visibility.Hidden;
+            nedodeljeno.Visibility = Visibility.Visible;
+
+            searchBar.Visibility = Visibility.Hidden;
+            aktuelnoLabel.Visibility = Visibility.Hidden;
+            nedodeljenoLabel.Visibility = Visibility.Visible;
+        }
+
         public void Odjava(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void PretraziDatum(object sender, RoutedEventArgs e)
+        {
+            DateTime d = DateTime.Parse(datum.Text);
+            using (var db = new DatabaseContext())
+            {
+                List<Manifestacija> manifestations = null;
+                if (tema.SelectedItem == null)
+                {
+                    manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                }
+                else
+                {
+                    TemaManifestacije t = (TemaManifestacije)tema.SelectedItem;
+                    if (t == TemaManifestacije.SVE)
+                    {
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                    }
+                    else
+                    {
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Tema == t && m.Obrisana != true select m).ToList();
+                    }
+                }
+                istorija.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
+            }
+        }
+
+        public void Filtriraj(object sender, RoutedEventArgs e)
+        {
+            TemaManifestacije t = (TemaManifestacije)tema.SelectedItem;
+            using (var db = new DatabaseContext())
+            {
+                List<Manifestacija> manifestations = null;
+                if (t == TemaManifestacije.SVE)
+                {
+                    if (datum.Text == "")
+                    {
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                    }
+                    else
+                    {
+                        DateTime d = DateTime.Parse(datum.Text);
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                    }
+                }
+                else
+                {
+                    if (datum.Text == "")
+                    {
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Tema == t && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                    }
+                    else
+                    {
+                        DateTime d = DateTime.Parse(datum.Text);
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Tema == t && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                    }
+                }
+                istorija.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
+            }
         }
     }
 }

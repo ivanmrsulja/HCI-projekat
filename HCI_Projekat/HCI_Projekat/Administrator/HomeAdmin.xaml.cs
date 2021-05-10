@@ -153,6 +153,21 @@ namespace HCI_Projekat.Administrator
 
         }
 
+        public void ObrisiKomentar_Click(object sender, RoutedEventArgs e)
+        {
+            Komentar selected = (Komentar)KomGrid.SelectedItem;
+
+            using (var db = new DatabaseContext())
+            {
+                var komentar = (from k in db.Komentari where k.Id == selected.Id select k).FirstOrDefault();
+                komentar.Obrisan = true;
+
+                db.SaveChanges();
+
+                KomGrid.ItemsSource = new ObservableCollection<Komentar>((from kom in db.Komentari.Include("Manifestacija.Organizator").Include("Klijent") where kom.Obrisan == false select kom).ToList());
+            }
+        }
+
         public void Odjava_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

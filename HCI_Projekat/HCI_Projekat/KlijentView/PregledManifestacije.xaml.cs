@@ -64,7 +64,7 @@ namespace HCI_Projekat.KlijentView
             using (var db = new DatabaseContext())
             {
                 List<Ponuda> ponude = (from man in db.Manifestacije where man.Id == m.Id select man.Ponude).ToArray()[0];
-                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == m.Id select kom).ToList();
+                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == m.Id && kom.Obrisan == false select kom).ToList();
                 Ponude = new ObservableCollection<Ponuda>(ponude);
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
@@ -199,7 +199,7 @@ namespace HCI_Projekat.KlijentView
                 manif.AddKomentar(novi);
                 klijent.AddKomentar(novi);
                 db.SaveChanges();
-                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == Manifestacija.Id select kom).ToList();
+                List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == Manifestacija.Id && kom.Obrisan == false select kom).ToList();
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
             komentariList.ItemsSource = Komentari;
