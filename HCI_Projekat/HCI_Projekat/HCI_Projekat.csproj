@@ -105,6 +105,9 @@
     <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
       <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\PregledStareManifestacije.xaml.cs">
+      <DependentUpon>PregledStareManifestacije.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OrganizatorView\OrganizatorHOME.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\PregledStareManifestacije.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

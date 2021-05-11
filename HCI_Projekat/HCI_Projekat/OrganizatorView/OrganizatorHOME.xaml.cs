@@ -223,5 +223,12 @@ namespace HCI_Projekat.OrganizatorView
                 istorija.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
             }
         }
+
+        public void DetaljnijeIstorija_Click(object sender, EventArgs e)
+        {
+            Manifestacija selected = (Manifestacija)istorija.SelectedItem;
+            var w = new PregledStareManifestacije(selected);
+            w.ShowDialog();
+        }
     }
 }

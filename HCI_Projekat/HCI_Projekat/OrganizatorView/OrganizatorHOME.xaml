@@ -49,7 +49,7 @@
                 <DataGridTemplateColumn Header="Detaljnije">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button>Pogledaj</Button>
+                            <Button Click="DetaljnijeIstorija_Click">Pogledaj</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
