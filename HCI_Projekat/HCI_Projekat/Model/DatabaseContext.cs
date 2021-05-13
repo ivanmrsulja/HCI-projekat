@@ -113,6 +113,7 @@ namespace HCI_Projekat.Model
     public class Organizator : Korisnik
     {
         public List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Komentar> Komentari { get; set; }
 
         public Organizator() : base()
         {
@@ -133,6 +134,20 @@ namespace HCI_Projekat.Model
         {
             Manifestacije.Remove(m);
             m.Organizator = null;
+        }
+
+        public void AddKomentar(Komentar k)
+        {
+            Komentari.Add(k);
+            k.Klijent = this;
+            k.User = this.Ime + " " + this.Prezime;
+        }
+
+        public void RemoveKomentar(Komentar k)
+        {
+            Komentari.Remove(k);
+            k.Klijent = null;
+            k.User = "";
         }
     }
 
@@ -191,6 +206,8 @@ namespace HCI_Projekat.Model
         [Required]
         public bool RasporedDone { get; set; }
 
+        [Required]
+        public bool PredlozenoZaZavrsavanje { get; set; }
 
         public virtual Organizator Organizator { get; set; }
         public virtual List<Ponuda> Ponude { get; set; }
@@ -220,6 +237,7 @@ namespace HCI_Projekat.Model
             Organizator = organizator;
             Klijent = klijent;
             Obrisana = false;
+            PredlozenoZaZavrsavanje = false;
             if(organizator == null)
             {
                 Status = StatusManifestacije.NOVA;

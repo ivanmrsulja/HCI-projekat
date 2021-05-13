@@ -230,5 +230,12 @@ namespace HCI_Projekat.OrganizatorView
             var w = new PregledStareManifestacije(selected);
             w.ShowDialog();
         }
+
+        public void DetaljnijeAktuelno_Click(object sender, EventArgs e)
+        {
+            Manifestacija selected = (Manifestacija)aktuelno.SelectedItem;
+            var w = new PregledAktuelneManifestacije(selected);
+            w.ShowDialog();
+        }
     }
 }
