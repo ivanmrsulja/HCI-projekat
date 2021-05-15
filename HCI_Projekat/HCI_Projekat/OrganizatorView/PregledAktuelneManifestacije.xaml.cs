@@ -25,7 +25,8 @@ namespace HCI_Projekat.OrganizatorView
     {
         private Manifestacija _manifestacija;
         public ObservableCollection<Komentar> Komentari { get; set; }
-        public ObservableCollection<Ponuda> Ponude { get; set; }
+
+        private ObservableCollection<Ponuda> _ponude;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -62,6 +63,22 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
+        public ObservableCollection<Ponuda> Ponude 
+        {
+            get
+            {
+                return _ponude;
+            }
+            set
+            {
+                if (value != _ponude)
+                {
+                    _ponude = value;
+                    OnPropertyChanged("Ponude");
+                }
+            }
+        }
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -93,7 +110,24 @@ namespace HCI_Projekat.OrganizatorView
 
         public void Dodaj_Click(object sender, RoutedEventArgs e)
         {
+            var w = new PregledPonuda(Manifestacija, ponude);
+            w.ShowDialog();
+        }
 
+        public void UkloniPonudu_Click(object sender, RoutedEventArgs e)
+        {
+            Ponuda selected = (Ponuda) ponude.SelectedItem;
+            using (var db = new DatabaseContext())
+            {
+                Ponuda toRemove = (from pon in db.Ponude where pon.Id == selected.Id select pon).FirstOrDefault();
+                Manifestacija toUpdate = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
+                toUpdate.RemovePonuda(toRemove);
+                db.SaveChanges();
+                Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
+                ponude.ItemsSource = Ponude;
+            }
+            var wk = new OkForm("Ponuda je uklonjena\niz manifestacije.", "Ponuda uklonjena");
+            wk.ShowDialog();
         }
 
         public void Komentarisi_Click(object sender, RoutedEventArgs e)

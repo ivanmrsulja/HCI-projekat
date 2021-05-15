@@ -153,6 +153,25 @@ namespace HCI_Projekat.Administrator
 
         }
 
+        public void ObrisiSaradnika_Click(object sender, RoutedEventArgs e)
+        {
+            Saradnik selected = (Saradnik)SarGrid.SelectedItem;
+            using (var db = new DatabaseContext())
+            {
+                Saradnik toDelete = (from sar in db.Saradnici where sar.Id == selected.Id select sar).FirstOrDefault();
+                toDelete.Obrisan = true;
+                db.SaveChanges();
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
+                var toUpdate = from man in db.Manifestacije where man.Obrisana == false && man.Status == StatusManifestacije.U_IZRADI select man;
+                foreach(var manifestacija in toUpdate)
+                {
+                    manifestacija.Ponude.RemoveAll(item => item.Saradnik.Id == toDelete.Id);
+                }
+                db.SaveChanges();
+            }
+        }
+
         public void ObrisiKomentar_Click(object sender, RoutedEventArgs e)
         {
             Komentar selected = (Komentar)KomGrid.SelectedItem;
@@ -180,7 +199,7 @@ namespace HCI_Projekat.Administrator
                                                 e.OriginalSource as DependencyObject) as DataGridRow;
             if (row == null) return;
 
-            if (KorGrid.SelectedItem.GetType() == typeof(Organizator))
+            if (KorGrid.SelectedItem is Organizator)
             {
                 Console.WriteLine((Korisnik)KorGrid.SelectedItem);
                 var w = new DodavanjeOrganizatora((Organizator)KorGrid.SelectedItem, KorGrid);

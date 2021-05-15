@@ -1,0 +1,48 @@
+﻿<Window x:Class="HCI_Projekat.OrganizatorView.PregledPonuda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
+        mc:Ignorable="d"
+        Title="PregledPonuda" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="60*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="25">Pregled saradnika i njihovih ponuda</Label>
+        <DataGrid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" x:Name="ponude" ItemsSource="{Binding Path=Ponude}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cena ponude" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Akcija">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DodajPonudu_Click">Dodaj</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Saradnik: "></TextBlock>
+                                <TextBlock Text="{Binding Name.Naziv}" FontWeight="Bold"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+        </DataGrid>
+    </Grid>
+</Window>

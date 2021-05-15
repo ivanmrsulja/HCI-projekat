@@ -66,6 +66,13 @@
                 <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tip" Width="Auto" Binding="{Binding Tip}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Specijalizacija" Width="Auto" Binding="{Binding Specijalizacija}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Brisanje">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ObrisiSaradnika_Click">Obrisi</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="KomGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Komentari}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
