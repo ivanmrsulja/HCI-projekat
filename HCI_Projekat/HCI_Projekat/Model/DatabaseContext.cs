@@ -432,11 +432,14 @@ namespace HCI_Projekat.Model
         public int Id { get; set; }
         [Required]
         public int BrojOsoba { get; set; }
+        [Required]
+        public int BrojStola { get; set; }
 
         public Sto() { }
-        public Sto(int broj)
+        public Sto(int brojOsoba, int brojStola)
         {
-            BrojOsoba = broj;
+            BrojOsoba = brojOsoba;
+            BrojStola = brojStola;
         }
     }
 
@@ -449,5 +452,6 @@ namespace HCI_Projekat.Model
         public DbSet<Gost> Gosti { get; set; }
         public DbSet<Notifikacija> Notifikacije { get; set; }
         public DbSet<Komentar> Komentari { get; set; }
+        public DbSet<Sto> Stolovi { get; set; }
     }
 }

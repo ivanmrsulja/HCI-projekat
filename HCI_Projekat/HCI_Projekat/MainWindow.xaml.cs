@@ -44,6 +44,8 @@ namespace HCI_Projekat
                     db.Saradnici.Remove(entity);
                 foreach (var entity in db.Notifikacije)
                     db.Notifikacije.Remove(entity);
+                foreach (var entity in db.Stolovi)
+                    db.Stolovi.Remove(entity);
 
                 Komentar ko1 = new Komentar("Sve je super, svaka cast!!! :)", null, null, DateTime.ParseExact("20-04-2021", "dd-MM-yyyy", null));
                 Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam [DATA EXPUNGED]! Ocu pare nazad!", null, null, DateTime.Now);
@@ -91,12 +93,22 @@ namespace HCI_Projekat
                 db.Saradnici.Add(s1);
                 db.Saradnici.Add(s2);
 
+                Sto sto1 = new Sto(4, 1);
+                Sto sto2 = new Sto(4, 2);
+                Sto sto3 = new Sto(6, 3);
+                db.Stolovi.Add(sto1);
+                db.Stolovi.Add(sto1);
+                db.Stolovi.Add(sto1);
+
                 Ponuda pon1 = new Ponuda("Velika sala", 500, s1);
                 Ponuda pon2 = new Ponuda("Mala sala", 200, s1);
                 Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
                 db.Ponude.Add(pon1);
                 db.Ponude.Add(pon2);
                 db.Ponude.Add(pon3);
+                pon1.Stolovi.Add(sto1);
+                pon1.Stolovi.Add(sto3);
+                pon2.Stolovi.Add(sto2);
 
                 s1.AddPonuda(pon1);
                 s1.AddPonuda(pon2);

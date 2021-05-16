@@ -114,6 +114,12 @@ namespace HCI_Projekat.OrganizatorView
             w.ShowDialog();
         }
 
+        public void Rasporedi_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new RasporedjivanjeGostiju(Manifestacija);
+            w.ShowDialog();
+        }
+
         public void UkloniPonudu_Click(object sender, RoutedEventArgs e)
         {
             Ponuda selected = (Ponuda) ponude.SelectedItem;

@@ -102,6 +102,7 @@
     <Compile Include="KlijentView\Profil.xaml.cs">
       <DependentUpon>Profil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\BlueprintRenderer.cs" />
     <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
       <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
     </Compile>
@@ -113,6 +114,9 @@
     </Compile>
     <Compile Include="OrganizatorView\PregledStareManifestacije.xaml.cs">
       <DependentUpon>PregledStareManifestacije.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\RasporedjivanjeGostiju.xaml.cs">
+      <DependentUpon>RasporedjivanjeGostiju.xaml</DependentUpon>
     </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -180,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OrganizatorView\RasporedjivanjeGostiju.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\icon_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\map.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

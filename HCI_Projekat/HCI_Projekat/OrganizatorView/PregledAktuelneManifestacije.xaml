@@ -70,7 +70,7 @@
             <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.Muzika}"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
             <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsEnabled="False" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
-            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18">Rasporedi</Button>
+            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Rasporedi_Click">Rasporedi</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
