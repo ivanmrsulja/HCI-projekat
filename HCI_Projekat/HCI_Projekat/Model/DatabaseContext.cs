@@ -342,14 +342,17 @@ namespace HCI_Projekat.Model
         public virtual Saradnik Saradnik { get; set; }
         public string NazivSaradnika { get; set; }
         public virtual List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Sto> Stolovi { get; set; }
 
         public Ponuda()
         {
             Manifestacije = new List<Manifestacija>();
+            Stolovi = new List<Sto>();
         }
         public Ponuda(string opis, double cena, Saradnik s)
         {
             Manifestacije = new List<Manifestacija>();
+            Stolovi = new List<Sto>();
             Opis = opis;
             Cena = cena;
             Saradnik = s;
@@ -363,18 +366,14 @@ namespace HCI_Projekat.Model
         public int Id { get; set; }
         [Required]
         public string ImePrezime { get; set; }
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double BrojMesta { get; set; }
+        public double BrojStola { get; set; }
         public virtual Manifestacija Manifestacija { get; set; }
 
         public Gost() { }
-        public Gost(string imePrezime, double x, double y, double mesta, Manifestacija m)
+        public Gost(string imePrezime, double sto, Manifestacija m)
         {
             ImePrezime = imePrezime;
-            X = x;
-            Y = y;
-            BrojMesta = mesta;
+            BrojStola = sto;
             Manifestacija = m;
         }
 
@@ -424,6 +423,20 @@ namespace HCI_Projekat.Model
             Obrisan = false;
             DatumPostavljanja = datum;
             User = "";
+        }
+    }
+
+    public class Sto
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public int BrojOsoba { get; set; }
+
+        public Sto() { }
+        public Sto(int broj)
+        {
+            BrojOsoba = broj;
         }
     }
 

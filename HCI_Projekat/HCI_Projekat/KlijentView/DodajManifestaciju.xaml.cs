@@ -123,7 +123,7 @@ namespace HCI_Projekat.KlijentView
                 {
                     for(int i=1;i<=Int32.Parse(brojGostiju.Text);i++)
                     {
-                        Gost tmp = new Gost("gost"+i.ToString(), 0, 0, 0, null);
+                        Gost tmp = new Gost("gost"+i.ToString(), 0, null);
                         listGostiju.Add(tmp);
                     }
                 }
@@ -172,7 +172,7 @@ namespace HCI_Projekat.KlijentView
                     var line = reader.ReadLine();
                     var values = line.Split(',');
 
-                    Gost tmp = new Gost(values[0], 0, 0, 0, null);
+                    Gost tmp = new Gost(values[0], 0, null);
                     listGostiju.Add(tmp);
                 }
             }
