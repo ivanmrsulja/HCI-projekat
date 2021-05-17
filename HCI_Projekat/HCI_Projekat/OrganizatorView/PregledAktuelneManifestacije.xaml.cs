@@ -128,6 +128,19 @@ namespace HCI_Projekat.OrganizatorView
                 Ponuda toRemove = (from pon in db.Ponude where pon.Id == selected.Id select pon).FirstOrDefault();
                 Manifestacija toUpdate = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
                 toUpdate.RemovePonuda(toRemove);
+                if(toRemove.Stolovi.Count > 0)
+                {
+                    foreach (Gost gost in toUpdate.Gosti)
+                    {
+                        foreach (Sto sto in toRemove.Stolovi)
+                        {
+                            if (sto.BrojStola == gost.BrojStola)
+                            {
+                                gost.BrojStola = 0;
+                            }
+                        }
+                    }
+                }
                 db.SaveChanges();
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
                 ponude.ItemsSource = Ponude;
@@ -152,6 +165,7 @@ namespace HCI_Projekat.OrganizatorView
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
             komentariList.ItemsSource = Komentari;
+            noviKomentar.Text = "";
         }
 
         public void Check_Click(object sender, RoutedEventArgs e)
@@ -197,6 +211,10 @@ namespace HCI_Projekat.OrganizatorView
                     case "rasporedCheck":
                         toUpdate.RasporedDone = !toUpdate.RasporedDone;
                         break;
+                }
+                if (check == false)
+                {
+                    toUpdate.PredlozenoZaZavrsavanje = false;
                 }
                 db.SaveChanges();
                 Manifestacija = toUpdate;

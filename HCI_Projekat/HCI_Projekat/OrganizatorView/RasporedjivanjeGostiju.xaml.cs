@@ -52,6 +52,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             InitializeComponent();
             this.DataContext = this;
+            Closing += WindowClosing;
 
             Manifestacija = current;
             BrojMestaZaStolovima = new Dictionary<int, int>();
@@ -66,18 +67,23 @@ namespace HCI_Projekat.OrganizatorView
             this.DataContext = this;
 
             List<Gost> l = new List<Gost>();
-            l.Add(new Gost("Ivan Ivanovic", 0, null));
-            l.Add(new Gost("Marko Markovic", 0, null));
-            l.Add(new Gost("Zika Zikic", 1, null));
-            l.Add(new Gost("Mika Mikic", 0, null));
-            l.Add(new Gost("Ivan Ivanovic", 0, null));
-            l.Add(new Gost("Marko Markovic", 0, null));
-            l.Add(new Gost("Zika Zikic", 1, null));
-            l.Add(new Gost("Mika Mikic", 0, null));
-            l.Add(new Gost("Ivan Ivanovic", 0, null));
-            l.Add(new Gost("Marko Markovic", 0, null));
-            l.Add(new Gost("Zika Zikic", 1, null));
-            l.Add(new Gost("Mika Mikic", 0, null));
+            //l.Add(new Gost("Ivan Ivanovic", 0, null));
+            //l.Add(new Gost("Marko Markovic", 0, null));
+            //l.Add(new Gost("Zika Zikic", 1, null));
+            //l.Add(new Gost("Mika Mikic", 0, null));
+            //l.Add(new Gost("Ivan Ivanovic", 0, null));
+            //l.Add(new Gost("Marko Markovic", 0, null));
+            //l.Add(new Gost("Zika Zikic", 1, null));
+            //l.Add(new Gost("Mika Mikic", 0, null));
+            //l.Add(new Gost("Ivan Ivanovic", 0, null));
+            //l.Add(new Gost("Marko Markovic", 0, null));
+            //l.Add(new Gost("Zika Zikic", 1, null));
+            //l.Add(new Gost("Mika Mikic", 0, null));
+
+            using (var db = new DatabaseContext())
+            {
+                l = (from gos in db.Gosti where gos.Manifestacija.Id == Manifestacija.Id select gos).ToList();
+            }
 
             a_0.ItemsSource = new ObservableCollection<Gost>((from g in l where g.BrojStola == 0 select g));
 
@@ -219,8 +225,6 @@ namespace HCI_Projekat.OrganizatorView
         {
             ListView target = (ListView)sender;
 
-            Console.WriteLine(InitialSender.Name + "->" + target.Name);
-
             if (e.Data.GetDataPresent("myFormat"))
             {
                 Gost gost = e.Data.GetData("myFormat") as Gost;
@@ -237,6 +241,13 @@ namespace HCI_Projekat.OrganizatorView
                 sourceData.Remove(gost);
                 targetData.Add(gost);
                 gost.BrojStola = Int32.Parse(target.Name.Split('_')[1]);
+
+                using(var db = new DatabaseContext())
+                {
+                    Gost toUpdate = (from gosti in db.Gosti where gosti.Id == gost.Id select gosti).FirstOrDefault();
+                    toUpdate.BrojStola = Int32.Parse(target.Name.Split('_')[1]);
+                    db.SaveChanges();
+                }
 
                 target.ItemsSource = targetData;
                 InitialSender.ItemsSource = sourceData;
@@ -273,6 +284,22 @@ namespace HCI_Projekat.OrganizatorView
             {
                 string url = openFileDialog.FileName;
                 Image = new BitmapImage(new Uri(url, UriKind.Absolute));
+            }
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var wk = new YesNo("Da li ste sigurni\nda zelite da izadjete? \nPromene su\nautomatski sacuvane.", 0, "Potvrda izlaska");
+            wk.ShowDialog();
+
+            if (wk.Result != MessageBoxResult.Yes)
+            {
+                e.Cancel = true;
             }
         }
     }

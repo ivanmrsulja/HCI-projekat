@@ -137,6 +137,35 @@ namespace HCI_Projekat
                 man2.TemaDone = true;
                 man2.GostiDone = true;
 
+                Gost gost1 = new Gost("Ivan Ivanovic", 0, null);
+                Gost gost2 = new Gost("Marko Markovic", 0, null);
+                Gost gost3 = new Gost("Zivko Zivkovic", 0, null);
+                Gost gost4 = new Gost("Petar Petrovic", 1, null);
+                Gost gost5 = new Gost("Nikola Nikolic", 0, null);
+                Gost gost6 = new Gost("Marija Ivanovic", 1, null);
+                Gost gost7 = new Gost("Nina Djukanovic", 3, null);
+                Gost gost8 = new Gost("Nadja Nedovic", 0, null);
+                Gost gost9 = new Gost("Jelena Jevtovic", 0, null);
+                db.Gosti.Add(gost1);
+                db.Gosti.Add(gost2);
+                db.Gosti.Add(gost3);
+                db.Gosti.Add(gost4);
+                db.Gosti.Add(gost5);
+                db.Gosti.Add(gost6);
+                db.Gosti.Add(gost7);
+                db.Gosti.Add(gost8);
+                db.Gosti.Add(gost9);
+
+                man1.AddGost(gost1);
+                man1.AddGost(gost2);
+                man1.AddGost(gost3);
+                man1.AddGost(gost4);
+                man1.AddGost(gost5);
+                man1.AddGost(gost6);
+                man1.AddGost(gost7);
+                man1.AddGost(gost8);
+                man1.AddGost(gost9);
+
                 db.SaveChanges();
             }
         }

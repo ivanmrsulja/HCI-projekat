@@ -209,6 +209,7 @@ namespace HCI_Projekat.KlijentView
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
             komentariList.ItemsSource = Komentari;
+            noviKomentar.Text = "";
         }
 
     }
