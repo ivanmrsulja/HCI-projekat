@@ -73,7 +73,7 @@
             <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Muzika}"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
             <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
-            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18">Pogledaj</Button>
+            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Pogledaj_Click">Pogledaj</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
@@ -98,14 +98,24 @@
             <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DatumDone}"></CheckBox>
             <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.RasporedDone}"></CheckBox>
         </Grid>
-        <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Label FontSize="22">Ukupna cena:</Label>
+                <Label Name="ukupnaCena" FontSize="22">0</Label>
+            </StackPanel>
+        </Grid>
         <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <ListView x:Name="komentariList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}">

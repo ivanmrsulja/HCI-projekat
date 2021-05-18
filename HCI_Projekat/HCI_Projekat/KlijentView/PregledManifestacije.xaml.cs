@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.OrganizatorView;
 using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
@@ -77,11 +78,18 @@ namespace HCI_Projekat.KlijentView
                 sacuvaj.IsEnabled = false;
                 otkazi.IsEnabled = false;
             }
+            ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
         }
 
         public void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void Pogledaj_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new PregledRasporeda(Manifestacija);
+            w.ShowDialog();
         }
 
         public void Sacuvaj_Click(object sender, RoutedEventArgs e)

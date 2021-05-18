@@ -95,9 +95,27 @@ namespace HCI_Projekat.OrganizatorView
             Ponuda selected = (Ponuda)ponude.SelectedItem;
             using (var db = new DatabaseContext())
             {
-                Ponuda toRemove = (from pon in db.Ponude where pon.Id == selected.Id select pon).FirstOrDefault();
+                Ponuda toAdd = (from pon in db.Ponude where pon.Id == selected.Id select pon).FirstOrDefault();
                 Manifestacija toUpdate = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
-                toUpdate.AddPonuda(toRemove);
+                foreach (Ponuda p in toUpdate.Ponude)
+                {
+                    Console.WriteLine(p.Stolovi.Count);
+                    if(p.Stolovi.Count > 0 && toAdd.Stolovi.Count > 0 && toAdd.Saradnik.Id != p.Saradnik.Id)
+                    {
+                        var w1 = new OkForm("Prostor za odrzavanje\nje vec odabran.\nMozete uzimati samo\nnjihove ponude.", "Prostor vec odabran");
+                        w1.ShowDialog();
+                        return;
+                    }
+                    if(p.Id == toAdd.Id)
+                    {
+                        var w2 = new OkForm("Ponuda je vec dodata\nu manifestaciju.", "Ponuda vec dodata");
+                        w2.ShowDialog();
+                        return;
+                    }
+                }
+                toUpdate.AddPonuda(toAdd);
+                toUpdate.PredlozenoZaZavrsavanje = false;
+                Manifestacija.PredlozenoZaZavrsavanje = false;
                 db.SaveChanges();
                 ParentData.ItemsSource = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
             }

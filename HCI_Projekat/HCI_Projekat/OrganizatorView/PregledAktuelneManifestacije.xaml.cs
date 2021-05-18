@@ -45,6 +45,7 @@ namespace HCI_Projekat.OrganizatorView
             {
                 predlozi.IsEnabled = true;
             }
+            ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
         }
 
         public Manifestacija Manifestacija
@@ -112,12 +113,21 @@ namespace HCI_Projekat.OrganizatorView
         {
             var w = new PregledPonuda(Manifestacija, ponude);
             w.ShowDialog();
+            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+            {
+                predlozi.IsEnabled = true;
+            }
+            ukupnaCena.Content = (from p in (ObservableCollection<Ponuda>)ponude.ItemsSource select p.Cena).Sum();
         }
 
         public void Rasporedi_Click(object sender, RoutedEventArgs e)
         {
             var w = new RasporedjivanjeGostiju(Manifestacija);
             w.ShowDialog();
+            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+            {
+                predlozi.IsEnabled = true;
+            }
         }
 
         public void UkloniPonudu_Click(object sender, RoutedEventArgs e)
@@ -141,10 +151,17 @@ namespace HCI_Projekat.OrganizatorView
                         }
                     }
                 }
+                toUpdate.PredlozenoZaZavrsavanje = false;
+                Manifestacija.PredlozenoZaZavrsavanje = false;
                 db.SaveChanges();
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
                 ponude.ItemsSource = Ponude;
+                if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+                {
+                    predlozi.IsEnabled = true;
+                }
             }
+            ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
             var wk = new OkForm("Ponuda je uklonjena\niz manifestacije.", "Ponuda uklonjena");
             wk.ShowDialog();
         }

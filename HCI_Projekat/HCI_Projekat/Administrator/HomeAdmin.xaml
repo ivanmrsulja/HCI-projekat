@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.Administrator"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="HomeAdmin" Height="600" Width="950">
+        Title="HomeAdmin" Height="600" Width="950" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>

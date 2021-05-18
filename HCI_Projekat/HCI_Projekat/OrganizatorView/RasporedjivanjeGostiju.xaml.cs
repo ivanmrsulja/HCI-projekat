@@ -61,24 +61,14 @@ namespace HCI_Projekat.OrganizatorView
             CommandBinding cb = new CommandBinding(loadImage);
             cb.Executed += new ExecutedRoutedEventHandler(LoadHandler);
             this.CommandBindings.Add(cb);
+
             //CommandBinding nam omogućava da ako se neka komanda izvrši
             //da prikačimo događaje za razne momente u izvršavanju komande
+            //ovdje treba da ide putanja do mape objekta.
             Image = new BitmapImage(new Uri("../../Source/map.jpg", UriKind.Relative));
             this.DataContext = this;
 
             List<Gost> l = new List<Gost>();
-            //l.Add(new Gost("Ivan Ivanovic", 0, null));
-            //l.Add(new Gost("Marko Markovic", 0, null));
-            //l.Add(new Gost("Zika Zikic", 1, null));
-            //l.Add(new Gost("Mika Mikic", 0, null));
-            //l.Add(new Gost("Ivan Ivanovic", 0, null));
-            //l.Add(new Gost("Marko Markovic", 0, null));
-            //l.Add(new Gost("Zika Zikic", 1, null));
-            //l.Add(new Gost("Mika Mikic", 0, null));
-            //l.Add(new Gost("Ivan Ivanovic", 0, null));
-            //l.Add(new Gost("Marko Markovic", 0, null));
-            //l.Add(new Gost("Zika Zikic", 1, null));
-            //l.Add(new Gost("Mika Mikic", 0, null));
 
             using (var db = new DatabaseContext())
             {
@@ -246,6 +236,8 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     Gost toUpdate = (from gosti in db.Gosti where gosti.Id == gost.Id select gosti).FirstOrDefault();
                     toUpdate.BrojStola = Int32.Parse(target.Name.Split('_')[1]);
+                    toUpdate.Manifestacija.PredlozenoZaZavrsavanje = false;
+                    Manifestacija.PredlozenoZaZavrsavanje = false;
                     db.SaveChanges();
                 }
 

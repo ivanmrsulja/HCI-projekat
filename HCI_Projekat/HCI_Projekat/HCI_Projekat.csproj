@@ -112,6 +112,9 @@
     <Compile Include="OrganizatorView\PregledPonuda.xaml.cs">
       <DependentUpon>PregledPonuda.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\PregledRasporeda.xaml.cs">
+      <DependentUpon>PregledRasporeda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\PregledStareManifestacije.xaml.cs">
       <DependentUpon>PregledStareManifestacije.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrganizatorView\PregledPonuda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\PregledRasporeda.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

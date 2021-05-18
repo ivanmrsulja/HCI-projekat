@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="700" Width="1100">
+        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"></ColumnDefinition>

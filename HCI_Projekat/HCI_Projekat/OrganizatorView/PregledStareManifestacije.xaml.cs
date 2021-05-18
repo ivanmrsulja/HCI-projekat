@@ -36,5 +36,11 @@ namespace HCI_Projekat.OrganizatorView
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
             }
         }
+
+        public void Pogledaj_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new PregledRasporeda(Manifestacija);
+            w.ShowDialog();
+        }
     }
 }

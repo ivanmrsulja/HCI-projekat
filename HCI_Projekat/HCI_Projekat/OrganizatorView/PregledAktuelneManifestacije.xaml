@@ -95,20 +95,30 @@
             <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.DatumDone}"></CheckBox>
             <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.RasporedDone}"></CheckBox>
         </Grid>
-        <DataGrid Name="ponude" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}" FontSize="16">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Akcija">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="UkloniPonudu_Click">Ukloni</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0" Name="ponude" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}" FontSize="16">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Akcija">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="UkloniPonudu_Click">Ukloni</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Label FontSize="22">Ukupna cena:</Label>
+                <Label Name="ukupnaCena" FontSize="22">0</Label>
+            </StackPanel>
+        </Grid>
         <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <ListView x:Name="komentariList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}">

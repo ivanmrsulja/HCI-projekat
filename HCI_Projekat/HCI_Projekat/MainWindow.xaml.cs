@@ -89,30 +89,38 @@ namespace HCI_Projekat
                 db.Korisnici.Add(a1);
 
                 Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "link do mape");
+                Saradnik s3 = new Saradnik("Restoran2", "Lasla Gala 12", TipSaradnika.RESTORAN, "Bolja hrana", "link do mape");
                 Saradnik s2 = new Saradnik("Fotograf Jovo", "Ruzin Gaj 12", TipSaradnika.FOTOGRAF, "Slikam za instagram", "ne treba link do mape");
                 db.Saradnici.Add(s1);
                 db.Saradnici.Add(s2);
+                db.Saradnici.Add(s3);
 
                 Sto sto1 = new Sto(4, 1);
                 Sto sto2 = new Sto(4, 2);
                 Sto sto3 = new Sto(6, 3);
+                Sto sto4 = new Sto(6, 1);
                 db.Stolovi.Add(sto1);
-                db.Stolovi.Add(sto1);
-                db.Stolovi.Add(sto1);
+                db.Stolovi.Add(sto2);
+                db.Stolovi.Add(sto3);
+                db.Stolovi.Add(sto4);
 
                 Ponuda pon1 = new Ponuda("Velika sala", 500, s1);
                 Ponuda pon2 = new Ponuda("Mala sala", 200, s1);
+                Ponuda pon4 = new Ponuda("Mala sala", 300, s3);
                 Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
                 db.Ponude.Add(pon1);
                 db.Ponude.Add(pon2);
                 db.Ponude.Add(pon3);
+                db.Ponude.Add(pon4);
                 pon1.Stolovi.Add(sto1);
                 pon1.Stolovi.Add(sto3);
                 pon2.Stolovi.Add(sto2);
+                pon4.Stolovi.Add(sto4);
 
                 s1.AddPonuda(pon1);
                 s1.AddPonuda(pon2);
                 s2.AddPonuda(pon3);
+                s3.AddPonuda(pon4);
 
                 man1.AddPonuda(pon1);
                 man1.AddPonuda(pon3);
