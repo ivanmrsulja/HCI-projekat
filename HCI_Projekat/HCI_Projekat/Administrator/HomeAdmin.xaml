@@ -43,7 +43,7 @@
                 <DataGridTextColumn Header="Broj Gostiju" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Organizator" Width="Auto" Binding="{Binding Organizator.Username}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>

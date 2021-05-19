@@ -140,7 +140,7 @@
                         <StackPanel Grid.Column="1">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding User}" Margin="10 0"/>
-                                <TextBlock Text="{Binding DatumPostavljanja}" Margin="10 0"/>
+                                <TextBlock Text="{Binding DatumPostavljanja, StringFormat={}{0:dd.MM.yyyy. HH:mm}}" Margin="10 0"/>
                             </StackPanel>
                             <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16"/>
                         </StackPanel>

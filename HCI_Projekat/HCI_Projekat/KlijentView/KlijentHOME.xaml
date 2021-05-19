@@ -44,7 +44,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Broj gostiju" Width="Auto" Binding="{Binding BrojGostiju}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Status manifestacije" Width="Auto" Binding="{Binding Status}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>

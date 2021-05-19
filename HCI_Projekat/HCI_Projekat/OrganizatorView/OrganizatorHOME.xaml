@@ -43,7 +43,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Detaljnije">
@@ -61,7 +61,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Detaljnije">
@@ -79,7 +79,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Preuzimanje">
