@@ -211,6 +211,8 @@ namespace HCI_Projekat
                     }
                 }
             }
+            user.Clear();
+            pass.Clear();
         }
 
         public void RegistrujSe(object sender, RoutedEventArgs e)

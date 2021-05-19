@@ -33,6 +33,8 @@ namespace HCI_Projekat.OrganizatorView
 
         public ObservableCollection<Manifestacija> NedodeljeneManifestacije { get; set; }
 
+        public ObservableCollection<Saradnik> _saradnici { get; set; }
+
         public Korisnik CurrentUser { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,6 +59,20 @@ namespace HCI_Projekat.OrganizatorView
                 OnPropertyChanged("Teme");
             }
         }
+
+        public ObservableCollection<Saradnik> Saradnici
+        {
+            get
+            {
+                return _saradnici;
+            }
+            set
+            {
+                _saradnici = value;
+                OnPropertyChanged("Saradnici");
+            }
+        }
+
         public OrganizatorHOME(Window p, Korisnik current)
         {
             InitializeComponent();
@@ -75,6 +91,7 @@ namespace HCI_Projekat.OrganizatorView
                 StareManifestacije = new ObservableCollection<Manifestacija>(istorija);
                 AktuelneManifestacije = new ObservableCollection<Manifestacija>(aktuelno);
                 NedodeljeneManifestacije = new ObservableCollection<Manifestacija>(nedodeljeno);
+                Saradnici = new ObservableCollection<Saradnik>(from sar in db.Saradnici where sar.Obrisan == false select sar);
             }
             foreach (Manifestacija man in StareManifestacije)
             {
@@ -102,10 +119,14 @@ namespace HCI_Projekat.OrganizatorView
             istorija.Visibility = Visibility.Visible;
             aktuelno.Visibility = Visibility.Hidden;
             nedodeljeno.Visibility = Visibility.Hidden;
+            saradnici.Visibility = Visibility.Hidden;
 
             searchBar.Visibility = Visibility.Visible;
             aktuelnoLabel.Visibility = Visibility.Hidden;
             nedodeljenoLabel.Visibility = Visibility.Hidden;
+            saradniciLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Hidden;
         }
 
         public void Aktuelno_Click(object sender, EventArgs e)
@@ -113,10 +134,14 @@ namespace HCI_Projekat.OrganizatorView
             istorija.Visibility = Visibility.Hidden;
             aktuelno.Visibility = Visibility.Visible;
             nedodeljeno.Visibility = Visibility.Hidden;
+            saradnici.Visibility = Visibility.Hidden;
 
             searchBar.Visibility = Visibility.Hidden;
             aktuelnoLabel.Visibility = Visibility.Visible;
             nedodeljenoLabel.Visibility = Visibility.Hidden;
+            saradniciLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Hidden;
         }
 
         public void Preuzmi_Click(object sender, EventArgs e)
@@ -153,10 +178,69 @@ namespace HCI_Projekat.OrganizatorView
             istorija.Visibility = Visibility.Hidden;
             aktuelno.Visibility = Visibility.Hidden;
             nedodeljeno.Visibility = Visibility.Visible;
+            saradnici.Visibility = Visibility.Hidden;
 
             searchBar.Visibility = Visibility.Hidden;
             aktuelnoLabel.Visibility = Visibility.Hidden;
             nedodeljenoLabel.Visibility = Visibility.Visible;
+            saradniciLabel.Visibility = Visibility.Hidden;
+            DodajSarLabel.Visibility = Visibility.Hidden;
+            DodajSarBtn.Visibility = Visibility.Hidden;
+        }
+
+        public void Saradnici_Click(object sender, EventArgs e)
+        {
+            istorija.Visibility = Visibility.Hidden;
+            aktuelno.Visibility = Visibility.Hidden;
+            nedodeljeno.Visibility = Visibility.Hidden;
+            saradnici.Visibility = Visibility.Visible;
+
+            searchBar.Visibility = Visibility.Hidden;
+            aktuelnoLabel.Visibility = Visibility.Hidden;
+            nedodeljenoLabel.Visibility = Visibility.Hidden;
+            saradniciLabel.Visibility = Visibility.Visible;
+            DodajSarLabel.Visibility = Visibility.Visible;
+            DodajSarBtn.Visibility = Visibility.Visible;
+        }
+
+        public void ObrisiSaradnika_Click(object sender, EventArgs e)
+        {
+            Saradnik current = (Saradnik)saradnici.SelectedItem;
+            using (var db = new DatabaseContext())
+            {
+                Saradnik toDelete = (from sar in db.Saradnici where sar.Id == current.Id select sar).FirstOrDefault();
+                toDelete.Obrisan = true;
+                foreach(Ponuda p in toDelete.Ponude)
+                {
+                    for (int i = p.Manifestacije.Count - 1; i >= 0; i--)
+                    {
+                        if (p.Stolovi.Count > 0)
+                        {
+                            foreach (Gost g in p.Manifestacije[i].Gosti)
+                            {
+                                g.BrojStola = 0;
+                            }
+                        }
+                        if(p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
+                        {
+                            p.Manifestacije[i].PredlozenoZaZavrsavanje = false; // da ne potvrdi a u medjuvremenu je neko izbrisao nesto
+                            p.Manifestacije[i].RemovePonuda(p);
+                        }
+                    }
+                }
+                db.SaveChanges();
+                Saradnici = new ObservableCollection<Saradnik>(from sar in db.Saradnici where sar.Obrisan == false select sar);
+            }
+        }
+
+        public void IzmeniSaradnika_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void DodajSaradnika_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void Odjava(object sender, RoutedEventArgs e)
@@ -237,5 +321,6 @@ namespace HCI_Projekat.OrganizatorView
             var w = new PregledAktuelneManifestacije(selected);
             w.ShowDialog();
         }
+
     }
 }

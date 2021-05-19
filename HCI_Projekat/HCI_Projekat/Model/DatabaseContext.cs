@@ -344,6 +344,8 @@ namespace HCI_Projekat.Model
         public virtual List<Manifestacija> Manifestacije { get; set; }
         public virtual List<Sto> Stolovi { get; set; }
 
+        public bool Obrisana { get; set; }
+
         public Ponuda()
         {
             Manifestacije = new List<Manifestacija>();
@@ -357,6 +359,7 @@ namespace HCI_Projekat.Model
             Cena = cena;
             Saradnik = s;
             NazivSaradnika = s.Naziv;
+            Obrisana = false;
         }
     }
 
