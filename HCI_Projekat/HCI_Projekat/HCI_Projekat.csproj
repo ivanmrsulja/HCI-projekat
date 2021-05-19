@@ -102,7 +102,14 @@
     <Compile Include="KlijentView\Profil.xaml.cs">
       <DependentUpon>Profil.xaml</DependentUpon>
     </Compile>
+
     <Compile Include="OrganizatorView\BlueprintRenderer.cs" />
+    <Compile Include="OrganizatorView\DodajPonudu.xaml.cs">
+      <DependentUpon>DodajPonudu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\DodajSaradnika.xaml.cs">
+      <DependentUpon>DodajSaradnika.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
       <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
     </Compile>
@@ -171,6 +178,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrganizatorView\DodajPonudu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\DodajSaradnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrganizatorView\OrganizatorHOME.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

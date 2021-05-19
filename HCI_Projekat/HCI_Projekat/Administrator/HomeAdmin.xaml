@@ -95,7 +95,7 @@
         <Button Name="DodajOrgBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajOrganizatora_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
 
         <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
-        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="Manifestacije_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
+        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajSaradnika_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
 
     </Grid>
 </Window>

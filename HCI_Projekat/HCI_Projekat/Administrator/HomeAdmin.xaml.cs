@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.OrganizatorView;
 using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
@@ -100,7 +101,7 @@ namespace HCI_Projekat.Administrator
             DodajOrgLabel.Visibility = Visibility.Visible;
             DodajSarLabel.Visibility = Visibility.Hidden;
         }
-
+        
         public void Saradnici_Click(object sender, RoutedEventArgs e)
         {
             KomLabel.Visibility = Visibility.Hidden;
@@ -150,7 +151,13 @@ namespace HCI_Projekat.Administrator
 
         public void DodajSaradnika_Click(object sender, RoutedEventArgs e)
         {
-
+            var w = new DodajSaradnika();
+            w.ShowDialog();
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
+            }
         }
 
         public void ObrisiSaradnika_Click(object sender, RoutedEventArgs e)
@@ -206,6 +213,7 @@ namespace HCI_Projekat.Administrator
                 w.ShowDialog();
             }
         }
+        
 
     }
 }

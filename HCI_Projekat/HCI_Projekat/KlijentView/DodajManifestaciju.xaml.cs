@@ -43,7 +43,6 @@ namespace HCI_Projekat.KlijentView
             Klijent = k;
             BindedGrid = data;
             Manifestacije = mans;
-            FileName = @"C:\Users\Dusan\Desktop\gosti.txt";
         }
 
         private void FormStateChanged(object sender, RoutedEventArgs e)
