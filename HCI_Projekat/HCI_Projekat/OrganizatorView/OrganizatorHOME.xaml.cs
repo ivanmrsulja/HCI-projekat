@@ -240,7 +240,13 @@ namespace HCI_Projekat.OrganizatorView
 
         public void DodajSaradnika_Click(object sender, EventArgs e)
         {
-
+            var w = new DodajSaradnika();
+            w.ShowDialog();
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                saradnici.ItemsSource = Saradnici;
+            }
         }
 
         public void Odjava(object sender, RoutedEventArgs e)

@@ -174,6 +174,16 @@ namespace HCI_Projekat
                 man1.AddGost(gost8);
                 man1.AddGost(gost9);
 
+                Notifikacija not1 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (VENCANJE)", k1);
+                Notifikacija not2 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (RODJENDAN)", k1);
+                Notifikacija not3 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (RODJENDAN)", k1);
+                db.Notifikacije.Add(not1);
+                db.Notifikacije.Add(not2);
+                db.Notifikacije.Add(not3);
+                k1.AddNotifikacija(not1);
+                k1.AddNotifikacija(not2);
+                k1.AddNotifikacija(not3);
+
                 db.SaveChanges();
             }
         }
