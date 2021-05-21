@@ -213,7 +213,26 @@ namespace HCI_Projekat.Administrator
                 w.ShowDialog();
             }
         }
-        
+
+        private void RowSaradnik_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Ensure row was clicked and not empty space
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                                e.OriginalSource as DependencyObject) as DataGridRow;
+            if (row == null) return;
+
+            if (SarGrid.SelectedItem is Saradnik)
+            {
+                
+                var w = new AzurirajSaradnika((Saradnik)SarGrid.SelectedItem);
+                w.ShowDialog();
+            }
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
+            }
+        }
 
     }
 }

@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="Uloga" Width="Auto" Binding="{Binding Uloga}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
+        <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False" MouseDoubleClick="RowSaradnik_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naziv" Width="Auto" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
