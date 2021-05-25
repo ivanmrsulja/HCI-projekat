@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -104,6 +106,32 @@ namespace HCI_Projekat.OrganizatorView
                 db.SaveChanges();
                 Manifestacija = toUpdate;
                 predlozi.IsEnabled = false;
+                new Thread(() => {
+                    try
+                    {
+                        MailMessage mail = new MailMessage();
+                        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                        mail.From = new MailAddress("isamrstim06@gmail.com");
+                        mail.To.Add(toUpdate.Klijent.Email);
+                        mail.Subject = "Manifestacija spremna za uvid";
+                        mail.Body = "Postovani " + toUpdate.Klijent.Ime + " " + toUpdate.Klijent.Prezime
+                            + ",\nObavestavamo se da je ponuda za manifestaciju [" + toUpdate.Tema + "] zakazana za "
+                            + toUpdate.DatumOdrzavanja.Date + " kod organizatora " + toUpdate.Organizator.Ime + " "
+                            + toUpdate.Organizator.Prezime + " spremna za uvid.\n\nSrdacan pozdrav,\nTim 5.1";
+
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("isamrstim06@gmail.com", "isamrs123");
+                        SmtpServer.EnableSsl = true;
+
+                        SmtpServer.Send(mail);
+                    }
+                    catch (Exception)
+                    {
+                        var we = new OkForm("Mail nije bilo moguce poslati\nklijentu(greska u adresi).", "Neuspelo slanje maila");
+                        we.ShowDialog();
+                    }
+                }).Start();
             }
             var wk = new OkForm("Manifestacija je poslata\nna uvid klijentu.", "Predlog poslat");
             wk.ShowDialog();

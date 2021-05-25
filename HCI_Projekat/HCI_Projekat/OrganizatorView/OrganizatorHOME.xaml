@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
+        xmlns:root="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip">
+        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"></ColumnDefinition>
@@ -26,7 +30,7 @@
         <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click">Aktuelno</Button>
         <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click">Nedodeljeno</Button>
         <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top" Click="Saradnici_Click">Pregled saradnika</Button>
-        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top">Pomoc</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" Click="Pomoc_Click">Pomoc</Button>
         <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava">Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -65,7 +65,7 @@ namespace HCI_Projekat.OrganizatorView
             //CommandBinding nam omogućava da ako se neka komanda izvrši
             //da prikačimo događaje za razne momente u izvršavanju komande
             //ovdje treba da ide putanja do mape objekta.
-            Image = new BitmapImage(new Uri("../../Source/map.jpg", UriKind.Relative));
+            //Image = new BitmapImage(new Uri("../../Source/map.jpg", UriKind.Relative));
             this.DataContext = this;
 
             List<Gost> l = new List<Gost>();
@@ -78,16 +78,22 @@ namespace HCI_Projekat.OrganizatorView
             a_0.ItemsSource = new ObservableCollection<Gost>((from g in l where g.BrojStola == 0 select g));
 
             int brojStolova = 0;
+            int flag = 0;
 
             using (var db = new DatabaseContext())
             {
                 Manifestacija manif = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
                 brojStolova = (from pon in manif.Ponude where pon.Stolovi.Count > 0 select pon.Stolovi.Count).ToArray().Sum();
-                
+
                 foreach (Ponuda p in manif.Ponude)
                 {
                     if(p.Stolovi.Count > 0)
                     {
+                        if(flag == 0)
+                        {
+                            Image = new BitmapImage(new Uri(p.Saradnik.MapaObjekta, UriKind.Relative));
+                            flag = 1;
+                        }
                         foreach(Sto sto in p.Stolovi)
                         {
                             BrojMestaZaStolovima[sto.BrojStola] = sto.BrojOsoba;

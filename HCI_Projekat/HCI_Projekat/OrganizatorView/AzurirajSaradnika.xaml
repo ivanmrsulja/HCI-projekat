@@ -7,7 +7,7 @@
         mc:Ignorable="d"        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-        Title="AzurirajSaradnika" Height="670" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Izmena Saradnika" Height="670" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <Grid VerticalAlignment="Stretch">
         <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
             <Rectangle.Fill>
@@ -26,7 +26,7 @@
         </Rectangle>
         <Grid VerticalAlignment="Center" Margin="50,0,49.6,0" Height="530" Grid.ColumnSpan="2" MaxWidth="400">
 
-            <Label Content="AZURIRAJ SARADNIKA" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
+            <Label Content="IZMENI SARADNIKA" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
 
                 <TextBox Name="naziv"  materialDesign:HintAssist.Hint="NAZIV" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>

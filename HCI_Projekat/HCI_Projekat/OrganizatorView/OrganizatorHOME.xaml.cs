@@ -206,6 +206,12 @@ namespace HCI_Projekat.OrganizatorView
         public void ObrisiSaradnika_Click(object sender, EventArgs e)
         {
             Saradnik current = (Saradnik)saradnici.SelectedItem;
+            var wk = new YesNo("Da li ste sigurni da\nzelite da obrisete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
+            wk.ShowDialog();
+            if(wk.Result == MessageBoxResult.No)
+            {
+                return;
+            }
             using (var db = new DatabaseContext())
             {
                 Saradnik toDelete = (from sar in db.Saradnici where sar.Id == current.Id select sar).FirstOrDefault();
@@ -235,7 +241,9 @@ namespace HCI_Projekat.OrganizatorView
 
         public void IzmeniSaradnika_Click(object sender, EventArgs e)
         {
-
+            Saradnik current = (Saradnik)saradnici.SelectedItem;
+            var w = new AzurirajSaradnika(current);
+            w.ShowDialog();
         }
 
         public void DodajSaradnika_Click(object sender, EventArgs e)
@@ -326,6 +334,20 @@ namespace HCI_Projekat.OrganizatorView
             Manifestacija selected = (Manifestacija)aktuelno.SelectedItem;
             var w = new PregledAktuelneManifestacije(selected);
             w.ShowDialog();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this);
+            }
+        }
+
+        public void Pomoc_Click(object sender, EventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpOrganizatorHome", this);
         }
 
     }

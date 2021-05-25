@@ -249,5 +249,19 @@ namespace HCI_Projekat
             }
                 
         }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this);
+            }
+        }
+
+        public void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpRegistracija", this);
+        }
     }
 }

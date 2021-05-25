@@ -69,7 +69,7 @@ namespace HCI_Projekat
                 db.Manifestacije.Add(man5);
                 db.Manifestacije.Add(man6);
 
-                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "email@gmail.com", "0000000000000", "adresa");
+                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "isamrstim06+klijent1@gmail.com", "0000000000000", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
                 k1.AddManifestacija(man3);
@@ -85,11 +85,11 @@ namespace HCI_Projekat
                 o1.AddManifestacija(man2);
                 db.Korisnici.Add(o1);
 
-                Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email@email.com", "0685478521", "adresa");
+                Admin a1 = new Admin("admin", "admin", "Joko", "Joksimovic", "email@email.com", "0685478521", "adresa");
                 db.Korisnici.Add(a1);
 
-                Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "link do mape");
-                Saradnik s3 = new Saradnik("Restoran2", "Lasla Gala 12", TipSaradnika.RESTORAN, "Bolja hrana", "link do mape");
+                Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "../../Images/map_1.png");
+                Saradnik s3 = new Saradnik("Restoran2", "Lasla Gala 12", TipSaradnika.RESTORAN, "Bolja hrana", "../../Images/map_2.png");
                 Saradnik s2 = new Saradnik("Fotograf Jovo", "Ruzin Gaj 12", TipSaradnika.FOTOGRAF, "Slikam za instagram", "ne treba link do mape");
                 db.Saradnici.Add(s1);
                 db.Saradnici.Add(s2);
@@ -97,24 +97,33 @@ namespace HCI_Projekat
 
                 Sto sto1 = new Sto(4, 1);
                 Sto sto2 = new Sto(4, 2);
-                Sto sto3 = new Sto(6, 3);
-                Sto sto4 = new Sto(6, 1);
+                Sto sto3 = new Sto(4, 3);
+                Sto sto4 = new Sto(7, 4);
+                Sto sto5 = new Sto(4, 4);
+                Sto sto6 = new Sto(4, 5);
+                Sto sto7 = new Sto(4, 6);
                 db.Stolovi.Add(sto1);
                 db.Stolovi.Add(sto2);
                 db.Stolovi.Add(sto3);
                 db.Stolovi.Add(sto4);
+                db.Stolovi.Add(sto5);
+                db.Stolovi.Add(sto6);
+                db.Stolovi.Add(sto7);
 
-                Ponuda pon1 = new Ponuda("Velika sala", 500, s1);
-                Ponuda pon2 = new Ponuda("Mala sala", 200, s1);
-                Ponuda pon4 = new Ponuda("Mala sala", 300, s3);
+                Ponuda pon1 = new Ponuda("Gornji dio", 500, s1);
+                Ponuda pon2 = new Ponuda("Sredina restorana", 200, s1);
+                Ponuda pon4 = new Ponuda("Separe", 300, s3);
                 Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
                 db.Ponude.Add(pon1);
                 db.Ponude.Add(pon2);
                 db.Ponude.Add(pon3);
                 db.Ponude.Add(pon4);
                 pon1.Stolovi.Add(sto1);
+                pon1.Stolovi.Add(sto2);
                 pon1.Stolovi.Add(sto3);
-                pon2.Stolovi.Add(sto2);
+                pon2.Stolovi.Add(sto5);
+                pon2.Stolovi.Add(sto6);
+                pon2.Stolovi.Add(sto7);
                 pon4.Stolovi.Add(sto4);
 
                 s1.AddPonuda(pon1);
