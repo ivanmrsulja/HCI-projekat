@@ -48,6 +48,10 @@ namespace HCI_Projekat.OrganizatorView
                 predlozi.IsEnabled = true;
             }
             ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
+            if (Manifestacija.FiksanBudzet)
+            {
+                tipBudzeta.Content = "(fiksno)";
+            }
         }
 
         public Manifestacija Manifestacija

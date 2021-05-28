@@ -117,6 +117,9 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Label FontSize="22">Ukupna cena:</Label>
                 <Label Name="ukupnaCena" FontSize="22">0</Label>
+                <Label FontSize="22">/</Label>
+                <Label FontSize="22" Content="{Binding Manifestacija.Budzet}"></Label>
+                <Label Name="tipBudzeta" FontSize="22"></Label>
             </StackPanel>
         </Grid>
         <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>

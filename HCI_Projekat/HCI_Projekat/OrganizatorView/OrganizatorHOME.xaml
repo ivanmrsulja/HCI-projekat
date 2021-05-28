@@ -26,12 +26,12 @@
             <RowDefinition Height="60*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" FontSize="20" Height="50" VerticalAlignment="Top" Click="Istorija_Click">Istorija</Button>
-        <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click">Aktuelno</Button>
-        <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click">Nedodeljeno</Button>
-        <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top" Click="Saradnici_Click">Pregled saradnika</Button>
-        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" Click="Pomoc_Click">Pomoc</Button>
-        <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava">Odjava</Button>
+        <Button Grid.Row="0" Grid.Column="0" FontSize="20" Height="50" VerticalAlignment="Top" Click="Istorija_Click" ToolTip="Pregled istorije manifestacija" >Istorija</Button>
+        <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click" ToolTip="Pregled aktuelnih manifestacija" >Aktuelno</Button>
+        <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click" ToolTip="Pregled nedodeljenih manifestacija" >Nedodeljeno</Button>
+        <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top" Click="Saradnici_Click" ToolTip="Pregled liste saradnika" >Pregled saradnika</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" ToolTip="Potrebna vam je pomoc?" Click="Pomoc_Click">Pomoc</Button>
+        <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava" ToolTip="Odjavite se sa profila" >Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label FontSize="25">Pretraga po datumu:</Label>

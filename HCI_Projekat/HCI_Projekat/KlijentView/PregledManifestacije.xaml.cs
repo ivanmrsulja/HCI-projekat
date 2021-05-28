@@ -59,11 +59,11 @@ namespace HCI_Projekat.KlijentView
         {
             InitializeComponent();
             DataContext = this;
-            Manifestacija = m;
             KlijentId = k.Id;
             ParentData = data;
             using (var db = new DatabaseContext())
             {
+                Manifestacija = (from man in db.Manifestacije where man.Id == m.Id select man).FirstOrDefault();
                 List<Ponuda> ponude = (from man in db.Manifestacije where man.Id == m.Id select man.Ponude).ToArray()[0];
                 List<Komentar> komentari = (from kom in db.Komentari where kom.Manifestacija.Id == m.Id && kom.Obrisan == false select kom).ToList();
                 Ponude = new ObservableCollection<Ponuda>(ponude);
@@ -73,7 +73,7 @@ namespace HCI_Projekat.KlijentView
             {
                 odobri.IsEnabled = true;
             }
-            if (Manifestacija.Status == StatusManifestacije.ZAVRSENA)
+            if (Manifestacija.Status == StatusManifestacije.ZAVRSENA || Manifestacija.DatumOdrzavanja < DateTime.Now.AddDays(10))
             {
                 sacuvaj.IsEnabled = false;
                 otkazi.IsEnabled = false;
@@ -113,6 +113,14 @@ namespace HCI_Projekat.KlijentView
                     if (stara.Budzet != Manifestacija.Budzet)
                     {
                         stara.Budzet = Manifestacija.Budzet;
+                        stara.BudzetDone = false;
+                        budzetCheck.IsChecked = false;
+                        odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
+                    }
+                    if (stara.FiksanBudzet != Manifestacija.FiksanBudzet)
+                    {
+                        stara.FiksanBudzet = Manifestacija.FiksanBudzet;
                         stara.BudzetDone = false;
                         budzetCheck.IsChecked = false;
                         odobri.IsEnabled = false;

@@ -28,7 +28,7 @@
                 <Label Content="Prijavi Se" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Foreground="Gray" FontSize="18"/>
                 <StackPanel VerticalAlignment="Center" Margin="15">
                     <TextBox  materialDesign:HintAssist.Hint="KORISNICKO IME" MaxWidth="243" Margin="0,10"  Name="user"  FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                    <PasswordBox  materialDesign:HintAssist.Hint="LOZINKA" MaxWidth="243" Margin="0,10"  Name="pass"  FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <PasswordBox  materialDesign:HintAssist.Hint="LOZINKA" MaxWidth="243" Margin="0,10"  Name="pass"  FontFamily="Champagne &amp; Limousines" FontSize="18" KeyDown="Pass_KeyDown"/>
                 </StackPanel>
                 <Button Width="150" HorizontalAlignment="Center" Click="UlogujSe" VerticalAlignment="Bottom" Margin="-20" Content="Prijavi se"/>
                 <Button  Background="Transparent" Content="Registruj se" HorizontalAlignment="Center" Click="RegistrujSe" VerticalAlignment="Bottom" Margin="-50" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent"/>

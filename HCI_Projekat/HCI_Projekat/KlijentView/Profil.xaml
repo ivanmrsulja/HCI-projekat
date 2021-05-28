@@ -35,34 +35,7 @@
 
                     <TextBox Name="ime" materialDesign:HintAssist.Hint="IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
                     <TextBox Name="prezime"  materialDesign:HintAssist.Hint="PREZIME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNICKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
-                        <TextBox.Text>
-                            <Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="Default">
-                                <Binding.ValidationRules>
-                                    <val:UsernameValidationRule ValidationStep="RawProposedValue"/>
-                                    <val:IsBlankValidationRule ValidationStep="RawProposedValue"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-
-                        <Validation.ErrorTemplate>
-                            <ControlTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox2"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-200" VerticalAlignment="Center" Foreground="Red"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Validation.ErrorTemplate>
-                    </TextBox>
-                    <PasswordBox Name="pass"  materialDesign:HintAssist.Hint="LOZINKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged"/>
+                    <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNICKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" Text="{Binding Username}"/>
                     <PasswordBox Name="passNew"  materialDesign:HintAssist.Hint="NOVA LOZINKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                     <TextBox Name="email" materialDesign:HintAssist.Hint="EMAIL" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
@@ -85,7 +58,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox1"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}"  Margin="-220,30,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -113,11 +86,12 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox3"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-275,30,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
                     </TextBox>
+                    <PasswordBox Name="pass"  materialDesign:HintAssist.Hint="UNESI STARU LOZINKU" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged"/>
                 </StackPanel>
             </Grid>
             <Button IsDefault="True" IsEnabled="False" Name="sacuvaj" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="SACUVAJ" Grid.ColumnSpan="2" Click="Sacuvaj_Click"/>

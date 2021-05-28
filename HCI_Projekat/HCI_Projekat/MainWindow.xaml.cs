@@ -51,15 +51,15 @@ namespace HCI_Projekat
                 Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam [DATA EXPUNGED]! Ocu pare nazad!", null, null, DateTime.Now);
                 db.Komentari.Add(ko1);
                 db.Komentari.Add(ko2);
-                string text = "20/04/2021";
-                Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+
+                Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("20/06/2021", "dd/MM/yyyy", null), null, null);
                 man1.Status = StatusManifestacije.U_IZRADI;
-                Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("10/05/2021", "dd/MM/yyyy", null), null, null);
                 man2.Status = StatusManifestacije.ZAVRSENA;
-                Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
-                Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
-                Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
-                Manifestacija man6 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact(text, "dd/MM/yyyy", null), null, null);
+                Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("01/06/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("17/06/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("13/09/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man6 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("31/07/2021", "dd/MM/yyyy", null), null, null);
                 man1.AddKomentar(ko1);
                 man1.AddKomentar(ko2);
                 db.Manifestacije.Add(man1);
@@ -69,7 +69,7 @@ namespace HCI_Projekat
                 db.Manifestacije.Add(man5);
                 db.Manifestacije.Add(man6);
 
-                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "isamrstim06+klijent1@gmail.com", "0000000000000", "adresa");
+                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "isamrstim06@gmail.com", "0000000000000", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
                 k1.AddManifestacija(man3);
@@ -240,6 +240,14 @@ namespace HCI_Projekat
             var w = new Registration();
             w.ShowDialog();
             this.Show();
+        }
+
+        public void Pass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UlogujSe(sender, e);
+            }
         }
     }
 

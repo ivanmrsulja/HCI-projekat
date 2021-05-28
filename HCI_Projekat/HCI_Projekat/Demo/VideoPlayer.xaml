@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NapredneKontrole.Grafika"
         mc:Ignorable="d"
-        Title="VideoPlayer" Height="450" Width="800">
+        Title="VideoPlayer" Height="450" Width="700">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
-        <MediaElement Source="D:\snimci\video.mp4" LoadedBehavior="Manual" Name="mePlayer" />
-        <StackPanel Grid.Row="1">
-            <Slider Name="slider" Thumb.DragCompleted="Wind_Click"></Slider>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="80*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <MediaElement Grid.ColumnSpan="3" Source="D:\snimci\video.mp4" LoadedBehavior="Manual" Name="mePlayer" />
+        <Slider Grid.Column="1" Grid.Row="1" Name="slider" Thumb.DragCompleted="Wind_Click"></Slider>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <Label Name="lblStatus" Content="Nije pusteno..." HorizontalContentAlignment="Center" Margin="5" />
             <WrapPanel HorizontalAlignment="Center">
                 <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>

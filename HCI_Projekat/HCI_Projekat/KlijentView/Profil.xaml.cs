@@ -117,7 +117,6 @@ namespace HCI_Projekat.KlijentView
             Email = k.Email;
             adresa.Text = k.Adresa;
             Telefon = k.Telefon;
-
         }       
 
         private void FormStateChanged(object sender, RoutedEventArgs e)
@@ -144,6 +143,15 @@ namespace HCI_Projekat.KlijentView
             using (var db = new DatabaseContext())
             {
                 var result = db.Korisnici.SingleOrDefault(b => b.Id == klijent.Id);
+                var check_users = (from k in db.Korisnici where k.Username == user.Text && k.Id != result.Id select k);
+
+                if (check_users.ToList().Count > 0)
+                {
+                    var userDijalog = new OkForm("Novi username je vec\nu upotrebi.", "Username vec u upotrebi");
+                    userDijalog.ShowDialog();
+                    return;
+                }
+
                 if (result != null)
                 {
                     result.Ime = ime.Text;
