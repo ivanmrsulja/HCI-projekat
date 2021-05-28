@@ -56,7 +56,7 @@
             <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Manifestacija.Muzika}"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
             <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsEnabled="False" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
-            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18">Pogledaj</Button>
+            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Pogledaj_Click">Pogledaj</Button>
         </Grid>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">Ukljucene ponude</Label>

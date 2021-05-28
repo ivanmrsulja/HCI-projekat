@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
+        xmlns:root="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="700" Width="1100">
+        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"></ColumnDefinition>
@@ -19,13 +23,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
-            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Grid.Column="0" FontSize="20" Height="50" VerticalAlignment="Top" Click="Istorija_Click">Istorija</Button>
         <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click">Aktuelno</Button>
         <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click">Nedodeljeno</Button>
-        <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top">Dodaj saradnika</Button>
-        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top">Pomoc</Button>
+        <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top" Click="Saradnici_Click">Pregled saradnika</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" Click="Pomoc_Click">Pomoc</Button>
         <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava">Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -35,15 +40,16 @@
             <ComboBox Name="tema" Grid.Row="1" Grid.Column="4" FontSize="20" Width="150" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
         </StackPanel>
 
-        <Label x:Name="aktuelnoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Visibility="Hidden">Pregled aktuelnih manifestacija</Label>
-        <Label x:Name="nedodeljenoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Visibility="Hidden">Pregled nedodeljenih manifestacija</Label>
+        <Label x:Name="aktuelnoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled aktuelnih manifestacija</Label>
+        <Label x:Name="nedodeljenoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled nedodeljenih manifestacija</Label>
+        <Label x:Name="saradniciLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled saradnika</Label>
 
         <DataGrid x:Name="istorija" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Top" ItemsSource="{Binding Path = StareManifestacije}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Center" FontSize="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Detaljnije">
@@ -61,13 +67,13 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Detaljnije">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button>Pogledaj</Button>
+                            <Button Click="DetaljnijeAktuelno_Click">Pogledaj</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -79,7 +85,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Lokacija" Width="Auto" Binding="{Binding MestoOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Gosti" Width="Auto" Binding="{Binding BrojGostiju}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Ime klijenta" Width="Auto" Binding="{Binding Klijent.Ime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prezime klijenta" Width="Auto" Binding="{Binding Klijent.Prezime}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Preuzimanje">
@@ -91,5 +97,31 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <DataGrid Name="saradnici" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Width="Auto" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Width="Auto" Binding="{Binding Tip}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Specijalizacija" Width="Auto" Binding="{Binding Specijalizacija}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Brisanje">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ObrisiSaradnika_Click">Obrisi</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Azuriranje">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="IzmeniSaradnika_Click">Izmeni</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
+        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajSaradnika_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
     </Grid>
 </Window>

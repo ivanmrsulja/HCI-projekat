@@ -44,6 +44,8 @@ namespace HCI_Projekat
                     db.Saradnici.Remove(entity);
                 foreach (var entity in db.Notifikacije)
                     db.Notifikacije.Remove(entity);
+                foreach (var entity in db.Stolovi)
+                    db.Stolovi.Remove(entity);
 
                 Komentar ko1 = new Komentar("Sve je super, svaka cast!!! :)", null, null, DateTime.ParseExact("20-04-2021", "dd-MM-yyyy", null));
                 Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam [DATA EXPUNGED]! Ocu pare nazad!", null, null, DateTime.Now);
@@ -67,7 +69,7 @@ namespace HCI_Projekat
                 db.Manifestacije.Add(man5);
                 db.Manifestacije.Add(man6);
 
-                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "email@gmail.com", "0000000000000", "adresa");
+                Klijent k1 = new Klijent("k", "k", "Nikola", "Petrovic", "isamrstim06+klijent1@gmail.com", "0000000000000", "adresa");
                 k1.AddManifestacija(man1);
                 k1.AddManifestacija(man2);
                 k1.AddManifestacija(man3);
@@ -83,24 +85,51 @@ namespace HCI_Projekat
                 o1.AddManifestacija(man2);
                 db.Korisnici.Add(o1);
 
-                Admin a1 = new Admin("admin", "admin", "Joko", "Sompompjerovicjerosolomitipitikovski", "email@email.com", "0685478521", "adresa");
+                Admin a1 = new Admin("admin", "admin", "Joko", "Joksimovic", "email@email.com", "0685478521", "adresa");
                 db.Korisnici.Add(a1);
 
-                Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "link do mape");
+                Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "../../Images/map_1.png");
+                Saradnik s3 = new Saradnik("Restoran2", "Lasla Gala 12", TipSaradnika.RESTORAN, "Bolja hrana", "../../Images/map_2.png");
                 Saradnik s2 = new Saradnik("Fotograf Jovo", "Ruzin Gaj 12", TipSaradnika.FOTOGRAF, "Slikam za instagram", "ne treba link do mape");
                 db.Saradnici.Add(s1);
                 db.Saradnici.Add(s2);
+                db.Saradnici.Add(s3);
 
-                Ponuda pon1 = new Ponuda("Velika sala", 500, s1);
-                Ponuda pon2 = new Ponuda("Mala sala", 200, s1);
+                Sto sto1 = new Sto(4, 1);
+                Sto sto2 = new Sto(4, 2);
+                Sto sto3 = new Sto(4, 3);
+                Sto sto4 = new Sto(7, 4);
+                Sto sto5 = new Sto(4, 4);
+                Sto sto6 = new Sto(4, 5);
+                Sto sto7 = new Sto(4, 6);
+                db.Stolovi.Add(sto1);
+                db.Stolovi.Add(sto2);
+                db.Stolovi.Add(sto3);
+                db.Stolovi.Add(sto4);
+                db.Stolovi.Add(sto5);
+                db.Stolovi.Add(sto6);
+                db.Stolovi.Add(sto7);
+
+                Ponuda pon1 = new Ponuda("Gornji dio", 500, s1);
+                Ponuda pon2 = new Ponuda("Sredina restorana", 200, s1);
+                Ponuda pon4 = new Ponuda("Separe", 300, s3);
                 Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
                 db.Ponude.Add(pon1);
                 db.Ponude.Add(pon2);
                 db.Ponude.Add(pon3);
+                db.Ponude.Add(pon4);
+                pon1.Stolovi.Add(sto1);
+                pon1.Stolovi.Add(sto2);
+                pon1.Stolovi.Add(sto3);
+                pon2.Stolovi.Add(sto5);
+                pon2.Stolovi.Add(sto6);
+                pon2.Stolovi.Add(sto7);
+                pon4.Stolovi.Add(sto4);
 
                 s1.AddPonuda(pon1);
                 s1.AddPonuda(pon2);
                 s2.AddPonuda(pon3);
+                s3.AddPonuda(pon4);
 
                 man1.AddPonuda(pon1);
                 man1.AddPonuda(pon3);
@@ -124,6 +153,45 @@ namespace HCI_Projekat
                 man2.RasporedDone = true;
                 man2.TemaDone = true;
                 man2.GostiDone = true;
+
+                Gost gost1 = new Gost("Ivan Ivanovic", 0, null);
+                Gost gost2 = new Gost("Marko Markovic", 0, null);
+                Gost gost3 = new Gost("Zivko Zivkovic", 0, null);
+                Gost gost4 = new Gost("Petar Petrovic", 1, null);
+                Gost gost5 = new Gost("Nikola Nikolic", 0, null);
+                Gost gost6 = new Gost("Marija Ivanovic", 1, null);
+                Gost gost7 = new Gost("Nina Djukanovic", 3, null);
+                Gost gost8 = new Gost("Nadja Nedovic", 0, null);
+                Gost gost9 = new Gost("Jelena Jevtovic", 0, null);
+                db.Gosti.Add(gost1);
+                db.Gosti.Add(gost2);
+                db.Gosti.Add(gost3);
+                db.Gosti.Add(gost4);
+                db.Gosti.Add(gost5);
+                db.Gosti.Add(gost6);
+                db.Gosti.Add(gost7);
+                db.Gosti.Add(gost8);
+                db.Gosti.Add(gost9);
+
+                man1.AddGost(gost1);
+                man1.AddGost(gost2);
+                man1.AddGost(gost3);
+                man1.AddGost(gost4);
+                man1.AddGost(gost5);
+                man1.AddGost(gost6);
+                man1.AddGost(gost7);
+                man1.AddGost(gost8);
+                man1.AddGost(gost9);
+
+                Notifikacija not1 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (VENCANJE)", k1);
+                Notifikacija not2 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (RODJENDAN)", k1);
+                Notifikacija not3 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (RODJENDAN)", k1);
+                db.Notifikacije.Add(not1);
+                db.Notifikacije.Add(not2);
+                db.Notifikacije.Add(not3);
+                k1.AddNotifikacija(not1);
+                k1.AddNotifikacija(not2);
+                k1.AddNotifikacija(not3);
 
                 db.SaveChanges();
             }
@@ -162,6 +230,8 @@ namespace HCI_Projekat
                     }
                 }
             }
+            user.Clear();
+            pass.Clear();
         }
 
         public void RegistrujSe(object sender, RoutedEventArgs e)

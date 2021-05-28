@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.OrganizatorView;
 using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
@@ -100,7 +101,7 @@ namespace HCI_Projekat.Administrator
             DodajOrgLabel.Visibility = Visibility.Visible;
             DodajSarLabel.Visibility = Visibility.Hidden;
         }
-
+        
         public void Saradnici_Click(object sender, RoutedEventArgs e)
         {
             KomLabel.Visibility = Visibility.Hidden;
@@ -150,7 +151,32 @@ namespace HCI_Projekat.Administrator
 
         public void DodajSaradnika_Click(object sender, RoutedEventArgs e)
         {
+            var w = new DodajSaradnika();
+            w.ShowDialog();
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
+            }
+        }
 
+        public void ObrisiSaradnika_Click(object sender, RoutedEventArgs e)
+        {
+            Saradnik selected = (Saradnik)SarGrid.SelectedItem;
+            using (var db = new DatabaseContext())
+            {
+                Saradnik toDelete = (from sar in db.Saradnici where sar.Id == selected.Id select sar).FirstOrDefault();
+                toDelete.Obrisan = true;
+                db.SaveChanges();
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
+                var toUpdate = from man in db.Manifestacije where man.Obrisana == false && man.Status == StatusManifestacije.U_IZRADI select man;
+                foreach(var manifestacija in toUpdate)
+                {
+                    manifestacija.Ponude.RemoveAll(item => item.Saradnik.Id == toDelete.Id);
+                }
+                db.SaveChanges();
+            }
         }
 
         public void ObrisiKomentar_Click(object sender, RoutedEventArgs e)
@@ -180,11 +206,31 @@ namespace HCI_Projekat.Administrator
                                                 e.OriginalSource as DependencyObject) as DataGridRow;
             if (row == null) return;
 
-            if (KorGrid.SelectedItem.GetType() == typeof(Organizator))
+            if (KorGrid.SelectedItem is Organizator)
             {
                 Console.WriteLine((Korisnik)KorGrid.SelectedItem);
                 var w = new DodavanjeOrganizatora((Organizator)KorGrid.SelectedItem, KorGrid);
                 w.ShowDialog();
+            }
+        }
+
+        private void RowSaradnik_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Ensure row was clicked and not empty space
+            var row = ItemsControl.ContainerFromElement((DataGrid)sender,
+                                                e.OriginalSource as DependencyObject) as DataGridRow;
+            if (row == null) return;
+
+            if (SarGrid.SelectedItem is Saradnik)
+            {
+                
+                var w = new AzurirajSaradnika((Saradnik)SarGrid.SelectedItem);
+                w.ShowDialog();
+            }
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
+                SarGrid.ItemsSource = Saradnici;
             }
         }
 

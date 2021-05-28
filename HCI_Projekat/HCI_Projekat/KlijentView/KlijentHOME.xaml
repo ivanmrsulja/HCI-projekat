@@ -27,6 +27,37 @@
         <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="20,90,20,20">
             <Label FontSize="22">Obavestenja</Label>
         </Grid>
+        <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="25,150,25,30">
+            <ListView x:Name="notificationList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Notifikacije}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Center" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="90*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="40" Height="40" CornerRadius="25" BorderBrush="White" BorderThickness="0.6">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="../Source/icon_comment.png"/>
+                                </Border.Background>
+                            </Border>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Posiljaoc}" Margin="10 0"/>
+                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16" TextWrapping="Wrap"/>
+                                <Button Grid.Row="2" HorizontalAlignment="Left" MaxHeight="20" MaxWidth="70" FontSize="11" Margin="10,0,0,0" Click="Odbaci_Click">Odbaci</Button>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
         <Rectangle Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" Margin="20,90,20,20" RadiusY="10" RadiusX="10" Fill="White">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
@@ -44,7 +75,7 @@
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Broj gostiju" Width="Auto" Binding="{Binding BrojGostiju}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Status manifestacije" Width="Auto" Binding="{Binding Status}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>

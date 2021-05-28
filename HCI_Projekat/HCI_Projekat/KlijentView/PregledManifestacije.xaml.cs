@@ -1,4 +1,5 @@
 ﻿using HCI_Projekat.Model;
+using HCI_Projekat.OrganizatorView;
 using HCI_Projekat.VlalidationForms;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace HCI_Projekat.KlijentView
                 Ponude = new ObservableCollection<Ponuda>(ponude);
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
-            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI)
+            if (Manifestacija.PredlozenoZaZavrsavanje && Manifestacija.Status == StatusManifestacije.U_IZRADI)
             {
                 odobri.IsEnabled = true;
             }
@@ -77,11 +78,18 @@ namespace HCI_Projekat.KlijentView
                 sacuvaj.IsEnabled = false;
                 otkazi.IsEnabled = false;
             }
+            ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
         }
 
         public void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void Pogledaj_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new PregledRasporeda(Manifestacija);
+            w.ShowDialog();
         }
 
         public void Sacuvaj_Click(object sender, RoutedEventArgs e)
@@ -100,6 +108,7 @@ namespace HCI_Projekat.KlijentView
                         stara.MestoOdrzavanjaDone = false;
                         mestoCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     if (stara.Budzet != Manifestacija.Budzet)
                     {
@@ -107,6 +116,7 @@ namespace HCI_Projekat.KlijentView
                         stara.BudzetDone = false;
                         budzetCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     if (stara.Dekoracija != Manifestacija.Dekoracija)
                     {
@@ -114,6 +124,7 @@ namespace HCI_Projekat.KlijentView
                         stara.DekoracijaDone = false;
                         dekoracijaCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     if (stara.Muzika != Manifestacija.Muzika)
                     {
@@ -121,6 +132,7 @@ namespace HCI_Projekat.KlijentView
                         stara.MuzikaDone = false;
                         muzikaCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     if (stara.DodatniZahtevi != Manifestacija.DodatniZahtevi)
                     {
@@ -128,6 +140,7 @@ namespace HCI_Projekat.KlijentView
                         stara.DodatnoDone = false;
                         dodatnoCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     if (stara.DatumOdrzavanja != Manifestacija.DatumOdrzavanja)
                     {
@@ -135,6 +148,7 @@ namespace HCI_Projekat.KlijentView
                         stara.DatumDone = false;
                         datumCheck.IsChecked = false;
                         odobri.IsEnabled = false;
+                        stara.PredlozenoZaZavrsavanje = false;
                     }
                     db.SaveChanges();
                 }
@@ -203,6 +217,7 @@ namespace HCI_Projekat.KlijentView
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
             komentariList.ItemsSource = Komentari;
+            noviKomentar.Text = "";
         }
 
     }

@@ -1,0 +1,47 @@
+﻿<Window x:Class="HCI_Projekat.OrganizatorView.DodajPonudu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
+
+        mc:Ignorable="d"
+        Title="DodajPonudu" Height="290" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow">
+
+    <Grid>
+            <Rectangle  Height="200" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2281D1"/>
+                        <GradientStop Color="#FF34268A" Offset="1"/>
+                        <GradientStop Color="#FF33288B" Offset="0.546"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle Height="200" Width="320" VerticalAlignment="Bottom" Margin="20,0,20,35" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Grid VerticalAlignment="Top" Margin="35,35,35,0" Height="180">
+                
+            <Label Content="DODAJ PONUDU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
+
+            <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
+
+                <TextBox Name="opis" materialDesign:HintAssist.Hint="OPIS PONUDE" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                <TextBox Name="cena" materialDesign:HintAssist.Hint="CENA" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
+                    <Label Name="imeFajla" Content="(AKO JE SALA)" Margin="150,10,0,0" Foreground="Gray" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Width="130" />
+                    <Button Name="izaberiFajl" Click="IzaberiFajl_Click" Content="UBACI STOLOVE" HorizontalAlignment="Left" Cursor="Hand" Width="137"  Margin="0,10,0,0" />
+                </apex:ApexGrid>
+            </StackPanel>
+        </Grid>
+            <Button Name="dodaj" Width="100" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,80,20" Content="DODAJ"  Click="Dodaj_Click"/>
+            <Button Name="odustani"  Width="100" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="80,0,0,20" Content="ODUSTANI" Click="Odustani_Click"/>
+        </Grid>
+</Window>
+    

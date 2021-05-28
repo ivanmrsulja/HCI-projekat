@@ -53,11 +53,24 @@ namespace HCI_Projekat.KlijentView
             }
         }
 
+        public ObservableCollection<Notifikacija> Notifikacije
+        {
+            get
+            {
+                return _notifikacije;
+            }
+            set
+            {
+                _notifikacije = value;
+                OnPropertyChanged("Notifikacije");
+            }
+        }
+
         public Window ParentScreen { get; set; }
         public Korisnik Klijent { get; set; }
 
         public ObservableCollection<Manifestacija> Manifestacije { get; set; }
-
+        public ObservableCollection<Notifikacija> _notifikacije { get; set; }
 
         public KlijentHOME(Window p, Korisnik k)
         {
@@ -72,6 +85,7 @@ namespace HCI_Projekat.KlijentView
                 List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
                 View = CollectionViewSource.GetDefaultView(Manifestacije);
+                Notifikacije = new ObservableCollection<Notifikacija>((from not in db.Notifikacije where not.Dismissed == false && not.Klijent.Id == Klijent.Id select not));
             }
         }
 
@@ -107,6 +121,20 @@ namespace HCI_Projekat.KlijentView
         {
             var w = new DodajManifestaciju(Klijent as Klijent, dgrMain, Manifestacije);
             w.ShowDialog();
+        }
+
+        public void Odbaci_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Notifikacija current = button.DataContext as Notifikacija;
+            if (current == null) { return; }
+            using(var db = new DatabaseContext())
+            {
+                Notifikacija toDismiss = (from n in db.Notifikacije where n.Id == current.Id select n).FirstOrDefault();
+                toDismiss.Dismissed = true;
+                db.SaveChanges();
+                Notifikacije = new ObservableCollection<Notifikacija>((from not in db.Notifikacije where not.Dismissed == false && not.Klijent.Id == Klijent.Id select not));
+            }
         }
 
         public void PretraziDatum(object sender, RoutedEventArgs e)

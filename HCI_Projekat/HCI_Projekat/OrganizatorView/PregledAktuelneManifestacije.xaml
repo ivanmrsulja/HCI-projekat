@@ -1,17 +1,17 @@
-﻿<Window x:Class="HCI_Projekat.KlijentView.PregledManifestacije"
+﻿<Window x:Class="HCI_Projekat.OrganizatorView.PregledAktuelneManifestacije"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
+        xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="PregledManifestacije" Height="900" Width="800" ResizeMode="CanResizeWithGrip">
+        Title="PregledAktuelneManifestacije" Height="900" Width="800" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45*"></RowDefinition>
             <RowDefinition Height="30*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="20*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -29,13 +29,10 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Name="nazad" Grid.Column="0" Width="Auto" Click="Nazad_Click">Nazad</Button>
-            <Button Name="otkazi" Grid.Column="2" Width="Auto" Click="Otkazi_Click">Otkazi</Button>
-            <Button Name="sacuvaj" Grid.Column="4" Width="Auto" Click="Sacuvaj_Click">Sacuvaj</Button>
-            <Button Name="odobri" IsEnabled="False" Grid.Column="6" Width="Auto" Click="Odobri_Click">Odobri</Button>
+            <Button Name="nazad" Grid.Column="0" Width="Auto" Click="Nazad_Click" FontSize="20">Nazad</Button>
+            <Button Name="predlozi" IsEnabled="False" Grid.Column="2" Width="Auto" Click="Predlozi_Click" FontSize="20">Predlozi zavrseno</Button>
+            <Button Name="dodaj" Grid.Column="4" Width="Auto" Click="Dodaj_Click" FontSize="20">Dodaj ponudu</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
@@ -65,15 +62,15 @@
             <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Datum odrzavanja:</Label>
             <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Raspored gostiju:</Label>
 
-            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.MestoOdrzavanja}"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Budzet}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.MestoOdrzavanja}"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.Budzet}"></TextBox>
             <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.BrojGostiju}"></TextBox>
             <TextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.Tema}"></TextBox>
-            <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Dekoracija}"></TextBox>
-            <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Muzika}"></TextBox>
-            <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
-            <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
-            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Pogledaj_Click">Pogledaj</Button>
+            <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.Dekoracija}"></TextBox>
+            <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.Muzika}"></TextBox>
+            <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
+            <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsEnabled="False" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
+            <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Rasporedi_Click">Rasporedi</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
             <Grid.RowDefinitions>
@@ -88,27 +85,33 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <CheckBox Name="mestoCheck" Grid.Row="1" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MestoOdrzavanjaDone}"></CheckBox>
-            <CheckBox Name="budzetCheck" Grid.Row="2" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.BudzetDone}"></CheckBox>
-            <CheckBox Name="gostiCheck" Grid.Row="3" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.GostiDone}"></CheckBox>
-            <CheckBox Name="temaCheck" Grid.Row="4" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.TemaDone}"></CheckBox>
-            <CheckBox Name="dekoracijaCheck" Grid.Row="5" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DekoracijaDone}"></CheckBox>
-            <CheckBox Name="muzikaCheck" Grid.Row="6" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MuzikaDone}"></CheckBox>
-            <CheckBox Name="dodatnoCheck" Grid.Row="7" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DodatnoDone}"></CheckBox>
-            <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DatumDone}"></CheckBox>
-            <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.RasporedDone}"></CheckBox>
+            <CheckBox Name="mestoCheck" Grid.Row="1" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.MestoOdrzavanjaDone}"></CheckBox>
+            <CheckBox Name="budzetCheck" Grid.Row="2" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.BudzetDone}"></CheckBox>
+            <CheckBox Name="gostiCheck" Grid.Row="3" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.GostiDone}"></CheckBox>
+            <CheckBox Name="temaCheck" Grid.Row="4" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.TemaDone}"></CheckBox>
+            <CheckBox Name="dekoracijaCheck" Grid.Row="5" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.DekoracijaDone}"></CheckBox>
+            <CheckBox Name="muzikaCheck" Grid.Row="6" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.MuzikaDone}"></CheckBox>
+            <CheckBox Name="dodatnoCheck" Grid.Row="7" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.DodatnoDone}"></CheckBox>
+            <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.DatumDone}"></CheckBox>
+            <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" Click="Check_Click" IsChecked="{Binding Manifestacija.RasporedDone}"></CheckBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="85*"></RowDefinition>
                 <RowDefinition Height="15*"></RowDefinition>
             </Grid.RowDefinitions>
-            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}">
+            <DataGrid Grid.Row="0" Name="ponude" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}" FontSize="16" Margin="0,10,0,10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Akcija">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="UkloniPonudu_Click">Ukloni</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Row="1" Orientation="Horizontal">

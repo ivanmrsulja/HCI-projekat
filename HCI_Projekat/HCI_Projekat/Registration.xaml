@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_Projekat"
+        xmlns:l="clr-namespace:HCI_Projekat"
         xmlns:val="clr-namespace:HCI_Projekat.Validation"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Registracija korisnika" Height="670" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Registracija korisnika" Height="670" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" l:HelpProvider.HelpKey="HelpRegistracija">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <DockPanel>
         <Grid VerticalAlignment="Stretch">
             <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
@@ -20,7 +23,7 @@
                 </Rectangle.Fill>
             </Rectangle>
 
-            <Rectangle Width="400" Height="510" VerticalAlignment="Center" Margin="47,0,46.6,80" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
+            <Rectangle Width="400" Height="510" VerticalAlignment="Center" Margin="47,0,47,70" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
                 <Rectangle.Effect>
                     <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
                 </Rectangle.Effect>
@@ -88,7 +91,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox1"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-210" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -116,7 +119,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox3"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-270" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>

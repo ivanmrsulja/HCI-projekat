@@ -40,6 +40,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apex, Version=1.5.0.0, Culture=neutral, PublicKeyToken=98d06957926c086d, processorArchitecture=MSIL">
       <HintPath>..\packages\Apex.1.5.0\lib\net40\Apex.dll</HintPath>
@@ -96,6 +99,10 @@
     <Compile Include="Administrator\HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HelpProvider.cs" />
+    <Compile Include="HelpViewer.xaml.cs">
+      <DependentUpon>HelpViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KlijentView\DodajManifestaciju.xaml.cs">
       <DependentUpon>DodajManifestaciju.xaml</DependentUpon>
     </Compile>
@@ -108,11 +115,33 @@
     <Compile Include="KlijentView\Profil.xaml.cs">
       <DependentUpon>Profil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\AzurirajSaradnika.xaml.cs">
+      <DependentUpon>AzurirajSaradnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\BlueprintRenderer.cs" />
+    <Compile Include="OrganizatorView\DodajPonudu.xaml.cs">
+      <DependentUpon>DodajPonudu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\DodajSaradnika.xaml.cs">
+      <DependentUpon>DodajSaradnika.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\OrganizatorHOME.xaml.cs">
       <DependentUpon>OrganizatorHOME.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\PregledAktuelneManifestacije.xaml.cs">
+      <DependentUpon>PregledAktuelneManifestacije.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\PregledPonuda.xaml.cs">
+      <DependentUpon>PregledPonuda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\PregledRasporeda.xaml.cs">
+      <DependentUpon>PregledRasporeda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\PregledStareManifestacije.xaml.cs">
       <DependentUpon>PregledStareManifestacije.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizatorView\RasporedjivanjeGostiju.xaml.cs">
+      <DependentUpon>RasporedjivanjeGostiju.xaml</DependentUpon>
     </Compile>
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -133,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Administrator\HomeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,11 +197,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrganizatorView\AzurirajSaradnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\DodajPonudu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\DodajSaradnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrganizatorView\OrganizatorHOME.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OrganizatorView\PregledAktuelneManifestacije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\PregledPonuda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\PregledRasporeda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrganizatorView\PregledStareManifestacije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\RasporedjivanjeGostiju.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,6 +279,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\icon_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+    <Content Include="Help\HelpDodavanjeSaradnika.html" />
+    <Content Include="Help\HelpOrganizatorHome.html" />
+    <Content Include="Help\HelpRegistracija.html" />
+    <Content Include="Help\index.html" />
+    <Resource Include="Images\map_2.png" />
+    <Resource Include="Images\map_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

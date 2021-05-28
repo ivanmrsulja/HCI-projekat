@@ -113,6 +113,7 @@ namespace HCI_Projekat.Model
     public class Organizator : Korisnik
     {
         public List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Komentar> Komentari { get; set; }
 
         public Organizator() : base()
         {
@@ -133,6 +134,20 @@ namespace HCI_Projekat.Model
         {
             Manifestacije.Remove(m);
             m.Organizator = null;
+        }
+
+        public void AddKomentar(Komentar k)
+        {
+            Komentari.Add(k);
+            k.Klijent = this;
+            k.User = this.Ime + " " + this.Prezime;
+        }
+
+        public void RemoveKomentar(Komentar k)
+        {
+            Komentari.Remove(k);
+            k.Klijent = null;
+            k.User = "";
         }
     }
 
@@ -191,6 +206,8 @@ namespace HCI_Projekat.Model
         [Required]
         public bool RasporedDone { get; set; }
 
+        [Required]
+        public bool PredlozenoZaZavrsavanje { get; set; }
 
         public virtual Organizator Organizator { get; set; }
         public virtual List<Ponuda> Ponude { get; set; }
@@ -220,6 +237,7 @@ namespace HCI_Projekat.Model
             Organizator = organizator;
             Klijent = klijent;
             Obrisana = false;
+            PredlozenoZaZavrsavanje = false;
             if(organizator == null)
             {
                 Status = StatusManifestacije.NOVA;
@@ -324,18 +342,24 @@ namespace HCI_Projekat.Model
         public virtual Saradnik Saradnik { get; set; }
         public string NazivSaradnika { get; set; }
         public virtual List<Manifestacija> Manifestacije { get; set; }
+        public virtual List<Sto> Stolovi { get; set; }
+
+        public bool Obrisana { get; set; }
 
         public Ponuda()
         {
             Manifestacije = new List<Manifestacija>();
+            Stolovi = new List<Sto>();
         }
         public Ponuda(string opis, double cena, Saradnik s)
         {
             Manifestacije = new List<Manifestacija>();
+            Stolovi = new List<Sto>();
             Opis = opis;
             Cena = cena;
             Saradnik = s;
             NazivSaradnika = s.Naziv;
+            Obrisana = false;
         }
     }
 
@@ -345,18 +369,14 @@ namespace HCI_Projekat.Model
         public int Id { get; set; }
         [Required]
         public string ImePrezime { get; set; }
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double BrojMesta { get; set; }
+        public double BrojStola { get; set; }
         public virtual Manifestacija Manifestacija { get; set; }
 
         public Gost() { }
-        public Gost(string imePrezime, double x, double y, double mesta, Manifestacija m)
+        public Gost(string imePrezime, double sto, Manifestacija m)
         {
             ImePrezime = imePrezime;
-            X = x;
-            Y = y;
-            BrojMesta = mesta;
+            BrojStola = sto;
             Manifestacija = m;
         }
 
@@ -409,6 +429,23 @@ namespace HCI_Projekat.Model
         }
     }
 
+    public class Sto
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public int BrojOsoba { get; set; }
+        [Required]
+        public int BrojStola { get; set; }
+
+        public Sto() { }
+        public Sto(int brojOsoba, int brojStola)
+        {
+            BrojOsoba = brojOsoba;
+            BrojStola = brojStola;
+        }
+    }
+
     public class DatabaseContext : DbContext
     {
         public DbSet<Korisnik> Korisnici { get; set; }
@@ -418,5 +455,6 @@ namespace HCI_Projekat.Model
         public DbSet<Gost> Gosti { get; set; }
         public DbSet<Notifikacija> Notifikacije { get; set; }
         public DbSet<Komentar> Komentari { get; set; }
+        public DbSet<Sto> Stolovi { get; set; }
     }
 }
