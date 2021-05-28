@@ -1,0 +1,26 @@
+﻿<Window x:Class="NapredneKontrole.Grafika.VideoPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NapredneKontrole.Grafika"
+        mc:Ignorable="d"
+        Title="VideoPlayer" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <MediaElement Source="D:\snimci\video.mp4" LoadedBehavior="Manual" Name="mePlayer" />
+        <StackPanel Grid.Row="1">
+            <Slider Name="slider" Thumb.DragCompleted="Wind_Click"></Slider>
+            <Label Name="lblStatus" Content="Nije pusteno..." HorizontalContentAlignment="Center" Margin="5" />
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>
+                <Button Name="btnPause" Margin="5,0" Click="btnPause_Click">Pause</Button>
+                <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
+                <Button Name="btnBrzina" Margin="5,0,0,0" Click="Ubrzanje_Click">Ubrzaj</Button>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>

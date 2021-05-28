@@ -32,7 +32,7 @@
         </Rectangle>
 
         <Label Grid.Row="0" Panel.ZIndex="11" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,40" FontSize="25">Treba Vam pomoc pri koriscenju aplikacije?</Label>
-        <Button Grid.Row="0" Panel.ZIndex="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,45,0,0">Pogledaj demo</Button>
+        <Button Grid.Row="0" Panel.ZIndex="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,45,0,0" Click="Demo_Click">Pogledaj demo</Button>
         
         <Rectangle Grid.Row="0" Margin="15,15,15,15" RadiusY="10" RadiusX="10" Fill="White" Panel.ZIndex="10">
             <Rectangle.Effect>

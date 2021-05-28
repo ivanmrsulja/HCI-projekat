@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NapredneKontrole.Grafika;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,6 +61,12 @@ namespace HCI_Projekat
 
         private void wbHelp_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
+        }
+
+        private void Demo_Click(object sender, RoutedEventArgs rea)
+        {
+            var v = new VideoPlayer();
+            v.Show();
         }
 
 
