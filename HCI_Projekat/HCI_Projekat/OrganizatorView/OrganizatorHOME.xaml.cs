@@ -208,7 +208,7 @@ namespace HCI_Projekat.OrganizatorView
             Saradnik current = (Saradnik)saradnici.SelectedItem;
             var wk = new YesNo("Da li ste sigurni da\nzelite da obrisete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
             wk.ShowDialog();
-            if(wk.Result == MessageBoxResult.No)
+            if(wk.Result != MessageBoxResult.Yes)
             {
                 return;
             }
