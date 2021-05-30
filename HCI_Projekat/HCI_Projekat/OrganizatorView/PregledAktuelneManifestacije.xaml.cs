@@ -41,7 +41,7 @@ namespace HCI_Projekat.OrganizatorView
             {
                 Manifestacija = (from man in db.Manifestacije.Include("Organizator") where man.Id == Manifestacija.Id select man).FirstOrDefault();
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
-                Komentari = new ObservableCollection<Komentar>((from kom in db.Komentari where kom.Manifestacija.Id == current.Id select kom).ToList());
+                Komentari = new ObservableCollection<Komentar>((from kom in db.Komentari where kom.Manifestacija.Id == current.Id && kom.Obrisan != true select kom).ToList());
             }
             if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
             {

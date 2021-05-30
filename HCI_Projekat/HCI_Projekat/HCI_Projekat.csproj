@@ -99,6 +99,7 @@
     <Compile Include="Administrator\HomeAdmin.xaml.cs">
       <DependentUpon>HomeAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Administrator\PagingCollectionView.cs" />
     <Compile Include="Demo\VideoPlayer.xaml.cs">
       <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>

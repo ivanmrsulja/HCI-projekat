@@ -163,6 +163,7 @@ namespace HCI_Projekat
                 Gost gost7 = new Gost("Nina Djukanovic", 3, null);
                 Gost gost8 = new Gost("Nadja Nedovic", 0, null);
                 Gost gost9 = new Gost("Jelena Jevtovic", 0, null);
+                Gost gost10 = new Gost("Jelena Jevtovic", 4, null);
                 db.Gosti.Add(gost1);
                 db.Gosti.Add(gost2);
                 db.Gosti.Add(gost3);
@@ -172,6 +173,7 @@ namespace HCI_Projekat
                 db.Gosti.Add(gost7);
                 db.Gosti.Add(gost8);
                 db.Gosti.Add(gost9);
+                db.Gosti.Add(gost10);
 
                 man1.AddGost(gost1);
                 man1.AddGost(gost2);
@@ -182,6 +184,8 @@ namespace HCI_Projekat
                 man1.AddGost(gost7);
                 man1.AddGost(gost8);
                 man1.AddGost(gost9);
+
+                man2.AddGost(gost10);
 
                 Notifikacija not1 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (VENCANJE)", k1);
                 Notifikacija not2 = new Notifikacija("Ana Jovovic", "Manifestacija spremna za uvid. (RODJENDAN)", k1);

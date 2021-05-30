@@ -220,7 +220,7 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     for (int i = p.Manifestacije.Count - 1; i >= 0; i--)
                     {
-                        if (p.Stolovi.Count > 0)
+                        if (p.Stolovi.Count > 0 && p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
                         {
                             foreach (Gost g in p.Manifestacije[i].Gosti)
                             {

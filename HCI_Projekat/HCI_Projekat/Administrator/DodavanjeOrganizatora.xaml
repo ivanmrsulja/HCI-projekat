@@ -56,7 +56,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox2"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-200" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-195,30,0,0" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -86,7 +86,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox1"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-220,30,0,0"  FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
@@ -113,7 +113,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox3"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-200" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-275,30,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>

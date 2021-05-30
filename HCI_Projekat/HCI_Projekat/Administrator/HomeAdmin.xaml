@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Closing="WindowClosing"
         Title="HomeAdmin" Height="600" Width="950" ResizeMode="CanResizeWithGrip">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:HomeAdmin.NewCommand}" Executed="NewCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:HomeAdmin.QCommand}" Executed="QCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:HomeAdmin.WCommand}" Executed="WCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:HomeAdmin.ECommand}" Executed="ECommandExecuted"/>
+        <CommandBinding Command="{x:Static local:HomeAdmin.RCommand}" Executed="RCommandExecuted"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -96,6 +103,21 @@
 
         <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
         <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajSaradnika_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
+
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="314">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnPrev" Width="50" Grid.Column="0" Content="&lt;" Click="OnPreviousClicked" FontSize="22"/>
+            <TextBox Name="PageNum" Grid.Column="1" Text="{Binding CurrentPageNum}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" TextChanged="OnSelectedPage"></TextBox>
+            <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">/</Label>
+            <Label Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Content="{Binding MaxPageSize}"></Label>
+            <Button Grid.Column="4" Name="btnNext" Width="50" Content=">" Click="OnNextClicked" FontSize="22"/>
+        </Grid>
 
     </Grid>
 </Window>
