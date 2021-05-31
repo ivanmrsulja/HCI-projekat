@@ -289,6 +289,34 @@
     <Resource Include="Source\icon_comment.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Screenshot_10.png" />
+    <Resource Include="Images\Screenshot_11.png" />
+    <Resource Include="Images\Screenshot_12.png" />
+    <Resource Include="Images\Screenshot_13.png" />
+    <Resource Include="Images\Screenshot_14.png" />
+    <Resource Include="Images\Screenshot_15.png" />
+    <Resource Include="Images\Screenshot_16.png" />
+    <Resource Include="Images\Screenshot_17.png" />
+    <Resource Include="Images\Screenshot_18.png" />
+    <Resource Include="Images\Screenshot_19.png" />
+    <Resource Include="Images\Screenshot_20.png" />
+    <Resource Include="Images\Screenshot_21.png" />
+    <Resource Include="Images\Screenshot_22.png" />
+    <Resource Include="Images\Screenshot_23.png" />
+    <Resource Include="Images\Screenshot_24.png" />
+    <Resource Include="Images\Screenshot_25.png" />
+    <Resource Include="Images\Screenshot_26.png" />
+    <Resource Include="Images\Screenshot_27.png" />
+    <Resource Include="Images\Screenshot_28.png" />
+    <Resource Include="Images\Screenshot_1.png" />
+    <Resource Include="Images\Screenshot_2.png" />
+    <Resource Include="Images\Screenshot_3.png" />
+    <Resource Include="Images\Screenshot_4.png" />
+    <Resource Include="Images\Screenshot_5.png" />
+    <Resource Include="Images\Screenshot_6.png" />
+    <Resource Include="Images\Screenshot_7.png" />
+    <Resource Include="Images\Screenshot_8.png" />
+    <Resource Include="Images\Screenshot_9.png" />
     <Resource Include="favicon.ico" />
     <Content Include="Help\HelpDodavanjeSaradnika.html" />
     <Content Include="Help\HelpOrganizatorHome.html" />
