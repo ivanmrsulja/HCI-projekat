@@ -237,10 +237,6 @@ namespace HCI_Projekat.KlijentView
             }
         }
 
-        private void Pomoc(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -258,6 +254,11 @@ namespace HCI_Projekat.KlijentView
             Manifestacija selected = (Manifestacija)dgrMain.SelectedItem;
             var w = new PregledManifestacije(selected, dgrMain, Klijent);
             w.ShowDialog();
+        }
+
+        private void Pomoc(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpKorisnikHome", this);
         }
     }
 }
