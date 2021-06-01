@@ -299,7 +299,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni\nda zelite da izadjete? \nPromene su\nautomatski sacuvane.", 0, "Potvrda izlaska");
+            var wk = new YesNo("Da li ste sigurni\nda želite da izađete? \nPromene su\nautomatski sačuvane.", 0, "Potvrda izlaska");
             wk.ShowDialog();
 
             if (wk.Result != MessageBoxResult.Yes)

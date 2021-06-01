@@ -92,7 +92,7 @@ namespace HCI_Projekat.OrganizatorView
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt")
                 {
-                    var wk = new OkForm("Niste izabrali txt fajl.", "");
+                    var wk = new OkForm("Niste izabrali tekstualni fajl.", "");
                     wk.ShowDialog();
                     FileName = "";
                 }

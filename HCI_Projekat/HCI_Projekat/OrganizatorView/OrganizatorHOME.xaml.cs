@@ -99,7 +99,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0, "Odjava");
+            var wk = new YesNo("Da li ste sigurni \nda želite da se odjavite?", 0, "Odjava");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -161,7 +161,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             Manifestacija selected = (Manifestacija)nedodeljeno.SelectedItem;
 
-            var wk = new YesNo("Da li ste sigurni \nda zelite da preuzmete\norganizaciju manifestacije\nkorisnika " + selected.Klijent.Ime + " " + selected.Klijent.Prezime + "?", 0, "Preuzmi manifestaciju");
+            var wk = new YesNo("Da li ste sigurni \nda želite da preuzmete\norganizaciju manifestacije\nkorisnika " + selected.Klijent.Ime + " " + selected.Klijent.Prezime + "?", 0, "Preuzmi manifestaciju");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -180,7 +180,7 @@ namespace HCI_Projekat.OrganizatorView
                     aktuelno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList());
                     nedodeljeno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList());
 
-                    var ok = new OkForm("Uspesno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspesno preuzeto");
+                    var ok = new OkForm("Uspešno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspešno preuzeto");
                     ok.ShowDialog();
                 }
             }
@@ -219,7 +219,7 @@ namespace HCI_Projekat.OrganizatorView
         public void ObrisiSaradnika_Click(object sender, EventArgs e)
         {
             Saradnik current = (Saradnik)saradnici.SelectedItem;
-            var wk = new YesNo("Da li ste sigurni da\nzelite da obrisete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
+            var wk = new YesNo("Da li ste sigurni da\nželite da obrišete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
             wk.ShowDialog();
             if(wk.Result != MessageBoxResult.Yes)
             {

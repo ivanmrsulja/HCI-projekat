@@ -109,7 +109,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
                 else
                 {
-                    var wk = new OkForm("Niste izabrali jpg ili png fajl.", "");
+                    var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Nepodržan format slike");
                     wk.ShowDialog();
                     imeFajla.Content = "IME FAJLA";
                     FileName = "";

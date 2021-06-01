@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Name="nazad" Grid.Column="0" Width="Auto" Click="Nazad_Click">Nazad</Button>
-            <Button Name="otkazi" Grid.Column="2" Width="Auto" Click="Otkazi_Click">Otkazi</Button>
+            <Button Name="otkazi" Grid.Column="2" Width="Auto" Click="Otkazi_Click">Otkaži</Button>
             <Button Name="sacuvaj" Grid.Column="4" Width="Auto" Click="Sacuvaj_Click">Sacuvaj</Button>
             <Button Name="odobri" IsEnabled="False" Grid.Column="6" Width="Auto" Click="Odobri_Click">Odobri</Button>
         </Grid>
@@ -54,15 +54,15 @@
                 <ColumnDefinition Width="47*"></ColumnDefinition>
                 <ColumnDefinition Width="52*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20">Opste informacije</Label>
-            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto odrzavanja:</Label>
-            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budzet:</Label>
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20">Opšte informacije</Label>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto održavanja:</Label>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budžet:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Broj gostiju:</Label>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Tema:</Label>
             <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Dekoracija:</Label>
             <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Muzika:</Label>
             <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Dodatni zahtevi:</Label>
-            <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Datum odrzavanja:</Label>
+            <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Datum održavanja:</Label>
             <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Raspored gostiju:</Label>
 
             <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.MestoOdrzavanja}"></TextBox>

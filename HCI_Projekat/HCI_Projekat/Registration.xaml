@@ -38,7 +38,7 @@
 
                     <TextBox Name="ime" ToolTip="Vase ime" materialDesign:HintAssist.Hint="IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
                     <TextBox Name="prezime" ToolTip="Vase prezime"  materialDesign:HintAssist.Hint="PREZIME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox Name="user" ToolTip="Vase korisnicko ime" materialDesign:HintAssist.Hint="KORISNICKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
+                    <TextBox Name="user" ToolTip="Vase korisnicko ime" materialDesign:HintAssist.Hint="KORISNIČKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
                             <Binding Path="Username" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -128,7 +128,7 @@
             </Grid>
             <Button IsEnabled="False" Name="registrujSe" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="REGISTRUJ SE" Click="Registracija" Grid.ColumnSpan="2"/>
             <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,65" Content="ODUSTANI" Click="Odustani"/>
-            <Button  Background="Transparent" Content="POMOC" ToolTip="Potrebna vam je pomoc za registraciju?" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Button_Click"/>
+            <Button  Background="Transparent" Content="POMOĆ" ToolTip="Potrebna vam je pomoc za registraciju?" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Button_Click"/>
         </Grid>
     </DockPanel>
 </Window>

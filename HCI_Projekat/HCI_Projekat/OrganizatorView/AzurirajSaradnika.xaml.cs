@@ -239,7 +239,7 @@ namespace HCI_Projekat.OrganizatorView
                 db.SaveChanges();
                 saradnik = s1 as Saradnik;
             }
-            var dijalog5 = new OkForm("Uspesno ste azurirali\nprofil.", "Uspesno sacuvano");
+            var dijalog5 = new OkForm("Uspešno ste ažurirali\nprofil.", "Uspešno sačuvano");
             dijalog5.ShowDialog();
             this.Close();
         }
@@ -323,7 +323,7 @@ namespace HCI_Projekat.OrganizatorView
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt")
                 {
-                    var wk = new OkForm("Niste izabrali txt fajl.", "");
+                    var wk = new OkForm("Niste izabrali tekstualni fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
                     FileName = "";
                 }
@@ -331,7 +331,7 @@ namespace HCI_Projekat.OrganizatorView
             catch
             {
                 FileName = "";
-                var wk = new OkForm("Niste izabrali dobro fajl.", "");
+                var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
                 wk.ShowDialog();
                 FileName = "";
             }

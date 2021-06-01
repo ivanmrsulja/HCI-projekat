@@ -211,7 +211,7 @@ namespace HCI_Projekat
                 Korisnik[] currentUser = (from k in db.Korisnici where k.Username == username && k.Password == passw select k).ToArray();
                 if (currentUser.Length == 0)
                 {
-                    var wk = new OkForm("Neispravno korisnicko\nime ili lozinka.", "Neuspela prijava");
+                    var wk = new OkForm("Neispravno korisničko\nime ili lozinka.", "Neuspela prijava");
                     wk.ShowDialog();
                 }
                 else

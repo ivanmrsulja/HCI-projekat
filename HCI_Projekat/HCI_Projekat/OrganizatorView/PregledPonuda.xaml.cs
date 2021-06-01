@@ -102,13 +102,13 @@ namespace HCI_Projekat.OrganizatorView
                     Console.WriteLine(p.Stolovi.Count);
                     if(p.Stolovi.Count > 0 && toAdd.Stolovi.Count > 0 && toAdd.Saradnik.Id != p.Saradnik.Id)
                     {
-                        var w1 = new OkForm("Prostor za odrzavanje\nje vec odabran.\nMozete uzimati samo\nnjihove ponude.", "Prostor vec odabran");
+                        var w1 = new OkForm("Prostor za održavanje\nje već odabran.\nMožete uzimati samo\nnjihove ponude.", "Prostor već odabran");
                         w1.ShowDialog();
                         return;
                     }
                     if(p.Id == toAdd.Id)
                     {
-                        var w2 = new OkForm("Ponuda je vec dodata\nu manifestaciju.", "Ponuda vec dodata");
+                        var w2 = new OkForm("Ponuda je već dodata\nu manifestaciju.", "Ponuda već dodata");
                         w2.ShowDialog();
                         return;
                     }
