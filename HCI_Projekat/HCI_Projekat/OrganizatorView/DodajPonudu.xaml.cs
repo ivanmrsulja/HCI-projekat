@@ -23,9 +23,12 @@ namespace HCI_Projekat.OrganizatorView
     {
         private string FileName;
         string retValue = "";
-        public DodajPonudu()
+        public DodajPonudu(bool res)
         {
             InitializeComponent();
+            if (res == false)
+                izaberiFajl.IsEnabled = false;
+                
         }
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
@@ -47,12 +50,13 @@ namespace HCI_Projekat.OrganizatorView
 
         private void IzaberiFajl_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                FileName = openFileDialog.FileName;
-
             try
             {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
+                    FileName = openFileDialog.FileName;
+
+            
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt")
                 {

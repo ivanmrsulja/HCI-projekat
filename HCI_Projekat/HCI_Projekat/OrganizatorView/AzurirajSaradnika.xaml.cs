@@ -1,9 +1,11 @@
 ﻿using HCI_Projekat.Model;
 using HCI_Projekat.VlalidationForms;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -43,7 +45,15 @@ namespace HCI_Projekat.OrganizatorView
             tip.SelectedIndex = retTip(k.Tip.ToString());
             specijalizacija.Text = k.Specijalizacija;
             imeFajla.Content = k.MapaObjekta;
-            
+
+            if (tip.Text == "RESTORAN")
+            {
+                izaberiFajl.IsEnabled = true;
+                if (imeFajla.Content.ToString() == "IME FAJLA")
+                {
+                    potvrdi.IsEnabled = false;
+                }
+            }
 
             using (var db = new DatabaseContext())
             {
@@ -51,20 +61,22 @@ namespace HCI_Projekat.OrganizatorView
 
                 foreach (var item in p)
                 {
-                    string tmp = "grid" + btnCounter.ToString();
-                    var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
+                    if (item.Obrisana==false) {
+                        string tmp = "grid" + btnCounter.ToString();
+                        var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" Name=""" + tmp + @""">
                                  <Label Content =""" + item.Opis + @""" Margin = ""10,0,0,0"" Foreground = ""Gray"" FontSize = ""18"" HorizontalAlignment = ""Left"" Width = ""280"" />
                                  <Button Name = ""btn" + btnCounter + @""" Content = ""X"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""45"" Margin = ""280,8,0,10.4"" />                      
                             </Grid>";
-                    btnCounter++;
-                    var stringReader = new StringReader(StackPanelAddApex);
-                    XmlReader xmlReader = XmlReader.Create(stringReader);
-                    Grid grid = (Grid)XamlReader.Load(xmlReader);
+                        btnCounter++;
+                        var stringReader = new StringReader(StackPanelAddApex);
+                        XmlReader xmlReader = XmlReader.Create(stringReader);
+                        Grid grid = (Grid)XamlReader.Load(xmlReader);
 
-                    Button b = grid.Children[1] as Button;
-                    b.Click += BtnObrisi_Click;
-                    ponude.Children.Add(grid);
+                        Button b = grid.Children[1] as Button;
+                        b.Click += BtnObrisi_Click;
+                        ponude.Children.Add(grid);
+                    }
                 }
             }
         }
@@ -106,6 +118,7 @@ namespace HCI_Projekat.OrganizatorView
 
         public Saradnik klijent { get; set; }
         public object Sender { get; set; }
+        public string FileName { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -149,6 +162,10 @@ namespace HCI_Projekat.OrganizatorView
                     potvrdi.IsEnabled = false;
                 }
             }
+           else
+            {
+                izaberiFajl.IsEnabled = false;
+            }
         }
 
         private void odustani_Click(object sender, RoutedEventArgs e)
@@ -184,43 +201,43 @@ namespace HCI_Projekat.OrganizatorView
                     s1.Tip = ts(tip.Text);
                     s1.Adresa = adresa.Text;
 
-                    //s1.Ponude.Clear();
-                    //foreach (var item in ponude.Children)
-                    //{
-                    //    if (item is Grid)
-                    //    {
-                    //        string s = "";
-                    //        Grid g = item as Grid;
+                    var pon = (from c in db.Ponude
+                               where c.NazivSaradnika == naziv.Text
+                               select c).ToList();
+                    foreach (var item in pon)
+                    {
+                        item.Obrisana = true;
+                    }
 
-                    //        foreach (var decooo in g.Children)
-                    //        {
-                    //            if (decooo is Label)
-                    //            {
-                    //                Label l = decooo as Label;
-                    //                s = l.Content.ToString();
-                    //            }
-                    //        }
-                    //        if (s != "PONUDE:")
-                    //        {
-                    //            string opisICena = s.Split(',')[0];
-                    //            var pon = db.Ponude.SingleOrDefault(b => b.Opis == opisICena.Split('-')[0] && b.Cena == Convert.ToDouble(opisICena.Split('-')[1]));
-                                
+                    foreach (var item in ponude.Children)
+                    {
+                        if (item is Grid)
+                        {
+                            string s = "";
+                            Grid g = item as Grid;
 
-                    //            foreach (Sto sto in pon.Stolovi)
-                    //            {
-                    //                db.Stolovi.Add(sto);
-                                    
-                    //            }
+                            foreach (var decooo in g.Children)
+                            {
+                                if (decooo is Label)
+                                {
+                                    Label l = decooo as Label;
+                                    s = l.Content.ToString();
+                                }
 
-                    //            s1.AddPonuda(pon);
-                    //            db.SaveChanges();
-                                
-                    //        }
-                    //    }
-                    //}
-                    db.SaveChanges();
-                    saradnik = s1 as Saradnik;
+                                if (s != "PONUDE:" && s != "DODAJ")
+                                {
+                                    string opisICena = s.Split(',')[0];
+
+                                    Ponuda p = pon.Find(x => x.Opis == opisICena.Split('-')[0]);
+                                    p.Obrisana = false;
+
+                                }
+                            }
+                        }
+                    }
                 }
+                db.SaveChanges();
+                saradnik = s1 as Saradnik;
             }
             var dijalog5 = new OkForm("Uspesno ste azurirali\nprofil.", "Uspesno sacuvano");
             dijalog5.ShowDialog();
@@ -229,14 +246,51 @@ namespace HCI_Projekat.OrganizatorView
 
         private void BtnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            DodajPonudu dodajPonuduForm = new DodajPonudu();
+
+            bool res = false;
+            if (tip.Text == "RESTORAN")
+            {
+                res = true;
+            }
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res);
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
             if (tmp != "")
             {
-                addPonuda(tmp.Split(',')[0]);
-                putanjaDoFajla = tmp.Split(',')[1];
+                using (var db = new DatabaseContext())
+                {
+                    addPonuda(tmp.Split(',')[0]);
+                    string putanja = tmp.Split(',')[1];
+
+                    
+                    var s1 = db.Saradnici.SingleOrDefault(b => b.Id == saradnik.Id);
+                    Ponuda p = new Ponuda(tmp.Split(',')[0].Split('-')[0],Convert.ToDouble(tmp.Split(',')[0].Split('-')[1]),s1);
+                    if (putanja!="")
+                    {
+                        p.putanjaDoFile = putanja;
+                        using (var reader = new StreamReader(putanja))
+                        {
+                            while (!reader.EndOfStream)
+                            {
+                                var line = reader.ReadLine();
+                                var values = line.Split(',');
+
+                                Sto sto1 = new Sto(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+                                db.Stolovi.Add(sto1);
+                                p.Stolovi.Add(sto1);
+                            }
+                        }
+                    }
+                    db.Ponude.Add(p);
+                    s1.AddPonuda(p);
+                    db.SaveChanges();
+                }
             }
+
+            //ne diraj ovo i ako ima 10 pametnijih nacina ovo radi
+            string tmp1 = adresa.Text;
+            adresa.Text = adresa.Text + "a";
+            adresa.Text = tmp1;
         }
 
         void addPonuda(string nazivPonude)
@@ -256,6 +310,31 @@ namespace HCI_Projekat.OrganizatorView
             b.Click += BtnObrisi_Click;
             ponude.Children.Add(grid);
         }
-        
+
+        private void IzaberiFajl_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
+                    FileName = openFileDialog.FileName;
+
+
+                imeFajla.Content = System.IO.Path.GetFileName(FileName);
+                if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt")
+                {
+                    var wk = new OkForm("Niste izabrali txt fajl.", "");
+                    wk.ShowDialog();
+                    FileName = "";
+                }
+            }
+            catch
+            {
+                FileName = "";
+                var wk = new OkForm("Niste izabrali dobro fajl.", "");
+                wk.ShowDialog();
+                FileName = "";
+            }
+        }
     }
 }

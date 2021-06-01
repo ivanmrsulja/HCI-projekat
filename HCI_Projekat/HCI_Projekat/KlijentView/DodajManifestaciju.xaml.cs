@@ -157,25 +157,32 @@ namespace HCI_Projekat.KlijentView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                FileName =openFileDialog.FileName;
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
+                    FileName = openFileDialog.FileName;
 
-            ucitajGoste.IsEnabled = false;
-            int counter = 0;
-            using (var reader = new StreamReader(FileName))
-            {               
-                while (!reader.EndOfStream)
+                ucitajGoste.IsEnabled = false;
+                int counter = 0;
+                using (var reader = new StreamReader(FileName))
                 {
-                    counter++;
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                    while (!reader.EndOfStream)
+                    {
+                        counter++;
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
 
-                    Gost tmp = new Gost(values[0], 0, null);
-                    listGostiju.Add(tmp);
+                        Gost tmp = new Gost(values[0], 0, null);
+                        listGostiju.Add(tmp);
+                    }
                 }
+                brojGostiju.Text = counter.ToString();
             }
-            brojGostiju.Text = counter.ToString();
+            catch
+            {
+                brojGostiju.Text = "0";
+            }
         }
     }
 }

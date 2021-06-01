@@ -91,10 +91,11 @@ namespace HCI_Projekat.OrganizatorView
         private void imeFajla_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                FileName = openFileDialog.FileName;
             try
             {
+                if (openFileDialog.ShowDialog() == true)
+                FileName = openFileDialog.FileName;
+           
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if(System.IO.Path.GetFileName(FileName).Split('.')[1]=="jpg"|| System.IO.Path.GetFileName(FileName).Split('.')[1] == "png")
                 {                    
@@ -139,7 +140,12 @@ namespace HCI_Projekat.OrganizatorView
         
         private void BtnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            DodajPonudu dodajPonuduForm = new DodajPonudu();
+            bool res = false;
+            if (tip.Text == "RESTORAN")
+            {
+                res = true;   
+            }
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res);
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
             if (tmp != "")

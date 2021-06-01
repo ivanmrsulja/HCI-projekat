@@ -41,7 +41,7 @@
 
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
                     <Label Name="imeFajla" Content="IME FAJLA" Margin="150,8,0,10.4" Foreground="Gray" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Width="218" />
-                    <Button Name="izaberiFajl" Content="DODAJ MAPU"  HorizontalAlignment="Left" Cursor="Hand" Width="137"  Margin="0,10,0,10.2" />
+                    <Button Name="izaberiFajl" Click="IzaberiFajl_Click" Content="DODAJ MAPU"  HorizontalAlignment="Left" Cursor="Hand" Width="137"  Margin="0,10,0,10.2" />
                 </apex:ApexGrid>
                 <ScrollViewer HorizontalAlignment="Left" Height="200" Width="350" VerticalAlignment="Top" Margin="15,0,15,0" VerticalScrollBarVisibility="Auto">
                     <StackPanel Name="ponude">
