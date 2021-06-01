@@ -160,6 +160,10 @@ namespace HCI_Projekat.KlijentView
 
         public void PretraziDatum(object sender, RoutedEventArgs e)
         {
+            if (datum.Text == "")
+            {
+                return;
+            }
             if (_undoOngoing)
             {
                 return;
