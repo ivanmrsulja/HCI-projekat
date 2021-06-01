@@ -22,10 +22,10 @@
         </Grid.ColumnDefinitions>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="0" Click="DodajManifestaciju" RenderTransformOrigin="0.5,0.504">Dodaj manifestaciju</Button>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="1" Click="Button_Click">Profil</Button>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="2" Click="Pomoc">Pomoc</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="2" Click="Pomoc">Pomoć</Button>
         <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="3" Click="Odjava">Odjava</Button>
         <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="20,90,20,20">
-            <Label FontSize="22">Obavestenja</Label>
+            <TextBlock FontSize="22">Obaveštenja</TextBlock>
         </Grid>
         <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="25,150,25,30">
             <ListView x:Name="notificationList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Notifikacije}">
@@ -63,19 +63,27 @@
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
         </Rectangle>
+        
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Margin="90,50,93,0" MinWidth="451">
-            <Label FontSize="25" VerticalAlignment="Center">Pretrazi po datumu:</Label>
-            <DatePicker Name="datum" FontSize="20" MinWidth="150" MinHeight="40" SelectedDateChanged="PretraziDatum"></DatePicker>
-            <Label FontSize="25" VerticalAlignment="Center">Izaberi temu:</Label>
-            <ComboBox Name="tema" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
+            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0,0,0,5">Pretraži po datumu:</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker Grid.Column="0" Name="datum" FontSize="20" Margin="0,0,7,0" SelectedDateChanged="PretraziDatum"></DatePicker>
+                <Button x:Name="undoBtn" FontSize="22" Grid.Column="1" Click="Undo_Click">⟲</Button>
+            </Grid>
+            <TextBlock FontSize="25" VerticalAlignment="Center" Margin="0,5,0,10">Izaberi temu:</TextBlock>
+            <ComboBox Name="tema" FontSize="20" Width="450" Margin="0,0,5,0" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
         </StackPanel>
 
         <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Budzet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Budžet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Broj gostiju" Width="Auto" Binding="{Binding BrojGostiju}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum odrzavanja" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum održavanja" Width="Auto" Binding="{Binding DatumOdrzavanja, StringFormat={}{0:dd.MM.yyyy.}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Status manifestacije" Width="Auto" Binding="{Binding Status}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>

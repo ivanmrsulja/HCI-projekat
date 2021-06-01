@@ -132,7 +132,7 @@ namespace HCI_Projekat.OrganizatorView
                     }
                     catch (Exception)
                     {
-                        var we = new OkForm("Mail nije bilo moguce poslati\nklijentu(greska u adresi).", "Neuspelo slanje maila");
+                        var we = new OkForm("Mail nije bilo moguće poslati\nklijentu(greška u adresi).", "Neuspelo slanje mail-a");
                         we.ShowDialog();
                     }
                 }).Start();
@@ -164,7 +164,15 @@ namespace HCI_Projekat.OrganizatorView
 
         public void UkloniPonudu_Click(object sender, RoutedEventArgs e)
         {
-            Ponuda selected = (Ponuda) ponude.SelectedItem;
+            Ponuda selected = (Ponuda)ponude.SelectedItem;
+            var wq = new YesNo("Da li ste sigurni da\nželite da uklonite ponudu\n" + selected.Opis + "\niz manifestacije?", 0, "Potvrda uklanjanja");
+            wq.ShowDialog();
+
+            if (wq.Result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+            
             using (var db = new DatabaseContext())
             {
                 Ponuda toRemove = (from pon in db.Ponude where pon.Id == selected.Id select pon).FirstOrDefault();
@@ -278,12 +286,12 @@ namespace HCI_Projekat.OrganizatorView
             }
             if (check == true)
             {
-                var wk = new OkForm("Obelezili ste stavku\nkao zavrseno.", "Obelezena stavka");
+                var wk = new OkForm("Obeležili ste stavku\nkao završeno.", "Obeležena stavka");
                 wk.ShowDialog();
             }
             else
             {
-                var wk = new OkForm("Obelezili ste stavku\nkao nezavrseno.", "Obelezena stavka");
+                var wk = new OkForm("Obeležili ste stavku\nkao nezavršeno.", "Obeležena stavka");
                 wk.ShowDialog();
             }
         }

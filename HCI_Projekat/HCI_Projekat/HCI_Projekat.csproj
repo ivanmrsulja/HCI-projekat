@@ -153,6 +153,7 @@
     <Compile Include="Validation\EmailValidationRule.cs" />
     <Compile Include="Validation\IsBlankValidationRule.cs" />
     <Compile Include="Validation\PasswordValidator.cs" />
+    <Compile Include="Validation\PriceValidationRule.cs" />
     <Compile Include="Validation\TelefonValidationRule.cs" />
     <Compile Include="Validation\UsernameValidationRule.cs" />
     <Compile Include="VlalidationForms\OkForm.xaml.cs">

@@ -276,12 +276,19 @@ namespace HCI_Projekat.OrganizatorView
 
         private void LoadHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Images|*.jpg;*.png";
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                string url = openFileDialog.FileName;
-                Image = new BitmapImage(new Uri(url, UriKind.Absolute));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Images|*.jpg;*.png";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string url = openFileDialog.FileName;
+                    Image = new BitmapImage(new Uri(url, UriKind.Absolute));
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -292,7 +299,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni\nda zelite da izadjete? \nPromene su\nautomatski sacuvane.", 0, "Potvrda izlaska");
+            var wk = new YesNo("Da li ste sigurni\nda želite da izađete? \nPromene su\nautomatski sačuvane.", 0, "Potvrda izlaska");
             wk.ShowDialog();
 
             if (wk.Result != MessageBoxResult.Yes)

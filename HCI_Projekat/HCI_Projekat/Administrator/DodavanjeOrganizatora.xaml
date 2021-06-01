@@ -35,7 +35,7 @@
 
                     <TextBox Name="ime" materialDesign:HintAssist.Hint="IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
                     <TextBox Name="prezime"  materialDesign:HintAssist.Hint="PREZIME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNICKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
+                    <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNIČKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
                             <Binding Path="Username" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -122,7 +122,7 @@
             </Grid>
             <Button IsEnabled="False" Name="dodajBtn" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="DODAJ" Click="Dodaj_Click" Grid.ColumnSpan="2"/>
             <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,65" Content="ODUSTANI" Click="Odustani_Click"/>
-            <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Pomoc_Click"/>
+            <Button  Background="Transparent" Content="POMOĆ" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Pomoc_Click"/>
         </Grid>
     </DockPanel>
 </Window>

@@ -147,7 +147,7 @@ namespace HCI_Projekat.KlijentView
 
                 if (check_users.ToList().Count > 0)
                 {
-                    var userDijalog = new OkForm("Novi username je vec\nu upotrebi.", "Username vec u upotrebi");
+                    var userDijalog = new OkForm("Novi username je već\nu upotrebi.", "Username već u upotrebi");
                     userDijalog.ShowDialog();
                     return;
                 }
@@ -166,7 +166,7 @@ namespace HCI_Projekat.KlijentView
                     }
                     else if(passNew.Password.Contains(" "))
                     {
-                        var passDijalog = new OkForm("Nova lozinka sadrzi\nnedozvoljene karaktere.", "Los format lozinke");
+                        var passDijalog = new OkForm("Nova lozinka sadrži\nnedozvoljene karaktere.", "Loš format lozinke");
                         passDijalog.ShowDialog();
                         return;
                     }
@@ -179,7 +179,7 @@ namespace HCI_Projekat.KlijentView
                     klijent = result as Klijent;
                 }
             }
-            var dijalog5 = new OkForm("Uspesno ste azurirali\nprofil.", "Uspesno sacuvano");
+            var dijalog5 = new OkForm("Uspešno ste ažurirali\nprofil.", "Uspešno sačuvano");
             dijalog5.ShowDialog();
             Window.GetWindow(this).DialogResult = true;
             Window.GetWindow(this).Close();

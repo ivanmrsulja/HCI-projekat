@@ -27,6 +27,8 @@ namespace HCI_Projekat.KlijentView
 
         private ICollectionView _View;
         private List<TemaManifestacije> _teme;
+        private bool _undoOngoing;
+
         public ICollectionView View
         {
             get
@@ -87,6 +89,8 @@ namespace HCI_Projekat.KlijentView
                 View = CollectionViewSource.GetDefaultView(Manifestacije);
                 Notifikacije = new ObservableCollection<Notifikacija>((from not in db.Notifikacije where not.Dismissed == false && not.Klijent.Id == Klijent.Id select not));
             }
+            undoBtn.Visibility = Visibility.Collapsed;
+            _undoOngoing = false;
         }
 
         protected void OnPropertyChanged(string info)
@@ -99,7 +103,7 @@ namespace HCI_Projekat.KlijentView
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0, "Odjava");
+            var wk = new YesNo("Da li ste sigurni \nda želite da se odjavite?", 0, "Odjava");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -115,6 +119,23 @@ namespace HCI_Projekat.KlijentView
         public void Odjava(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            _undoOngoing = true;
+            datum.Text = "";
+            if (tema.SelectedItem == null)
+            {
+                tema.SelectedItem = TemaManifestacije.SVE;
+                tema.SelectedItem = null;
+            }
+            else
+            {
+                Filtriraj(sender, e);
+            }
+            undoBtn.Visibility = Visibility.Collapsed;
+            _undoOngoing = false;
         }
 
         public void DodajManifestaciju(object sender, RoutedEventArgs e)
@@ -139,6 +160,11 @@ namespace HCI_Projekat.KlijentView
 
         public void PretraziDatum(object sender, RoutedEventArgs e)
         {
+            if (_undoOngoing)
+            {
+                return;
+            }
+            undoBtn.Visibility = Visibility.Visible;
             DateTime d = DateTime.Parse(datum.Text);
             using (var db = new DatabaseContext())
             {
@@ -168,6 +194,10 @@ namespace HCI_Projekat.KlijentView
 
         public void Filtriraj(object sender, RoutedEventArgs e)
         {
+            if (tema.SelectedItem == null)
+            {
+                return;
+            }
             TemaManifestacije t = (TemaManifestacije) tema.SelectedItem;
             using (var db = new DatabaseContext())
             {

@@ -39,7 +39,8 @@ namespace HCI_Projekat.OrganizatorView
             this.DataContext = this;
 
             Tip = new List<TipSaradnika> { TipSaradnika.RESTORAN, TipSaradnika.FOTOGRAF, TipSaradnika.KETERING, TipSaradnika.DEKORACIJE, TipSaradnika.MUZIKA };
-            izaberiFajl.IsEnabled = false;
+            izaberiFajl.Visibility = Visibility.Hidden;
+            imeFajla.Visibility = Visibility.Hidden;
         }
 
         protected void OnPropertyChanged(string info)
@@ -73,13 +74,19 @@ namespace HCI_Projekat.OrganizatorView
                 potvrdi.IsEnabled = true;
             }
 
-            if(tip.Text=="RESTORAN")
+            if((TipSaradnika)tip.SelectedItem == TipSaradnika.RESTORAN)
             {
-                izaberiFajl.IsEnabled = true;
-                if(imeFajla.Content.ToString() == "IME FAJLA")
+                izaberiFajl.Visibility = Visibility.Visible;
+                imeFajla.Visibility = Visibility.Visible;
+                if (imeFajla.Content.ToString() == "IME FAJLA")
                 {
                     potvrdi.IsEnabled = false;
                 }
+            }
+            else
+            {
+                izaberiFajl.Visibility = Visibility.Hidden;
+                imeFajla.Visibility = Visibility.Hidden;
             }
         }
 
@@ -91,17 +98,18 @@ namespace HCI_Projekat.OrganizatorView
         private void imeFajla_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                FileName = openFileDialog.FileName;
             try
             {
+                if (openFileDialog.ShowDialog() == true)
+                FileName = openFileDialog.FileName;
+           
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if(System.IO.Path.GetFileName(FileName).Split('.')[1]=="jpg"|| System.IO.Path.GetFileName(FileName).Split('.')[1] == "png")
                 {                    
                 }
                 else
                 {
-                    var wk = new OkForm("Niste izabrali jpg ili png fajl.", "");
+                    var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Nepodržan format slike");
                     wk.ShowDialog();
                     imeFajla.Content = "IME FAJLA";
                     FileName = "";
@@ -139,7 +147,12 @@ namespace HCI_Projekat.OrganizatorView
         
         private void BtnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            DodajPonudu dodajPonuduForm = new DodajPonudu();
+            bool res = false;
+            if (tip.Text == "RESTORAN")
+            {
+                res = true;   
+            }
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res);
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
             if (tmp != "")

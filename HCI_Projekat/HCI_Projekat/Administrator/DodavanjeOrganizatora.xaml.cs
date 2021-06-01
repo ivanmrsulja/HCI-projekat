@@ -116,13 +116,13 @@ namespace HCI_Projekat.Administrator
         {
             if (Organizator == null && (user.Text.Trim() == "" || pass.Password.Trim() == "" || passConf.Password.Trim() == "" || ime.Text.Trim() == "" || prezime.Text.Trim() == "" || email.Text.Trim() == "" || telefon.Text.Trim() == "" || adresa.Text.Trim() == ""))
             {
-                var dijalog3 = new OkForm("Molimo popunite sva polja\ni pokusajte ponovo", "Doslo je do greske");
+                var dijalog3 = new OkForm("Molimo popunite sva polja\ni pokušajte ponovo", "Došlo je do greške");
                 dijalog3.ShowDialog();
                 return;
             }
             if (pass.Password != passConf.Password && Organizator == null)
             {
-                var dijalog4 = new OkForm("Lozinka u polju 'Potvrdi lozinku'\nmora biti ista kao ona u polju 'Lozinka'", "Doslo je do greske");
+                var dijalog4 = new OkForm("Lozinka u polju 'Potvrdi lozinku'\nmora biti ista kao ona u polju 'Lozinka'", "Došlo je do greške");
                 dijalog4.ShowDialog();
                 return;
             }
@@ -136,7 +136,7 @@ namespace HCI_Projekat.Administrator
                     db.SaveChanges();
                 }
 
-                var dijalog5 = new OkForm("Uspesno ste kreirali\nnovog organizatora.", "Organizator kreiran");
+                var dijalog5 = new OkForm("Uspešno ste kreirali\nnovog organizatora.", "Organizator kreiran");
                 dijalog5.ShowDialog();
             }
             else
@@ -157,7 +157,7 @@ namespace HCI_Projekat.Administrator
                         }
                         else if (passConf.Password.Contains(" "))
                         {
-                            var passDijalog = new OkForm("Nova lozinka sadrzi\nnedozvoljene karaktere.", "Los format lozinke");
+                            var passDijalog = new OkForm("Nova lozinka sadrži\nnedozvoljene karaktere.", "Loš format lozinke");
                             passDijalog.ShowDialog();
                             return;
                         }
@@ -165,7 +165,7 @@ namespace HCI_Projekat.Administrator
                     }
                 }
 
-                var dijalog5 = new OkForm("Uspesno ste azurirali\norganizatora " + Organizator.Username + ".", "Uspesno sacuvano");
+                var dijalog5 = new OkForm("Uspešno ste ažurirali\norganizatora " + Organizator.Username + ".", "Uspešno sačuvano");
                 dijalog5.ShowDialog();
             }
             using(var db = new DatabaseContext())

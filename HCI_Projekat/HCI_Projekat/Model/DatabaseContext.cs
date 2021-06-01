@@ -345,6 +345,8 @@ namespace HCI_Projekat.Model
         public virtual List<Sto> Stolovi { get; set; }
 
         public bool Obrisana { get; set; }
+        public string putanjaDoFile { get; set; }
+
 
         public Ponuda()
         {
@@ -360,6 +362,7 @@ namespace HCI_Projekat.Model
             Saradnik = s;
             NazivSaradnika = s.Naziv;
             Obrisana = false;
+            putanjaDoFile = "";
         }
     }
 

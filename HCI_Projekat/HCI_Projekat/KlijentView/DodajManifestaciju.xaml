@@ -33,18 +33,18 @@
                 <ComboBox Name="tema" materialDesign:HintAssist.Hint="TEMA" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="FormStateChanged" ></ComboBox>
 
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
-                    <TextBox Name="budzet"  materialDesign:HintAssist.Hint="BUDZET" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="218" TextChanged="FormStateChanged"/>
+                    <TextBox Name="budzet"  materialDesign:HintAssist.Hint="BUDŽET" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Width="218" TextChanged="FormStateChanged"/>
                     <CheckBox Name="fiksan" Content="FIKSAN" Margin="253,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="0" RenderTransformOrigin="0.53,0.484" HorizontalAlignment="Left" Width="93" Opacity="0.5" />
                 </apex:ApexGrid>
 
 
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
                     <TextBox Name="brojGostiju" materialDesign:HintAssist.Hint="BROJ GOSTIJU" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" HorizontalAlignment="Left" Width="218" />
-                    <Button Name="ucitajGoste" Content="UCITAJ GOSTE" HorizontalAlignment="Left" Cursor="Hand" Width="137" Margin="223,8,0,10.4" Click="Button_Click_1" />
+                    <Button Name="ucitajGoste" Content="UČITAJ GOSTE" HorizontalAlignment="Left" Cursor="Hand" Width="137" Margin="223,8,0,10.4" Click="Button_Click_1" />
                 </apex:ApexGrid>
 
 
-                <TextBox Name="mesto"  materialDesign:HintAssist.Hint="MESTO ODRZAVANJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                <TextBox Name="mesto"  materialDesign:HintAssist.Hint="MESTO ODRŽAVANJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
                 <DatePicker Name="datum"  materialDesign:HintAssist.Hint="DATUM" FontSize="18"  FontFamily="Champagne &amp; Limousines" SelectedDateChanged="FormStateChanged"/>
                 <TextBox Name="muzika" materialDesign:HintAssist.Hint="MUZIKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
@@ -56,6 +56,6 @@
         </Grid>
         <Button IsEnabled="False" Name="potvrdi" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,-15" Content="POTVRDI"  Grid.ColumnSpan="2" Click="Potvrdi_Click"/>
         <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,-15" Content="ODUSTANI" Click="Button_Click" />
-        <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,-60" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" />
+        <Button  Background="Transparent" Content="POMOĆ" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,-60" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" />
     </Grid>
 </Window>

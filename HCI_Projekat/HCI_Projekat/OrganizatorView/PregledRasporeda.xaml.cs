@@ -161,12 +161,19 @@ namespace HCI_Projekat.OrganizatorView
 
         private void LoadHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Images|*.jpg;*.png";
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                string url = openFileDialog.FileName;
-                Image = new BitmapImage(new Uri(url, UriKind.Absolute));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Images|*.jpg;*.png";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string url = openFileDialog.FileName;
+                    Image = new BitmapImage(new Uri(url, UriKind.Absolute));
+                }
+            }
+            catch
+            {
+
             }
         }
 

@@ -37,15 +37,15 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20">Opste informacije</Label>
-            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto odrzavanja:</Label>
-            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budzet:</Label>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="25">Opšte informacije</TextBlock>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto održavanja:</Label>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budžet:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Broj gostiju:</Label>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Tema:</Label>
             <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Dekoracija:</Label>
             <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Muzika:</Label>
             <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Dodatni zahtevi:</Label>
-            <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Datum odrzavanja:</Label>
+            <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Datum održavanja:</Label>
             <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Raspored gostiju:</Label>
 
             <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Manifestacija.MestoOdrzavanja}"></TextBox>
@@ -59,11 +59,10 @@
             <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Pogledaj_Click">Pogledaj</Button>
         </Grid>
 
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">Ukljucene ponude</Label>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25">Uključene ponude</TextBlock>
 
         <DataGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsReadOnly="True" AutoGenerateColumns="False" FontSize="16" ItemsSource="{Binding Path = Ponude}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>

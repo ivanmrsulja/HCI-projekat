@@ -26,7 +26,7 @@ namespace HCI_Projekat.OrganizatorView
         public Window ParentScreen { get; set; }
        
         private List<TemaManifestacije> _teme;
-        
+
         public ObservableCollection<Manifestacija> StareManifestacije { get; set; }
         
         public ObservableCollection<Manifestacija> AktuelneManifestacije { get; set; }
@@ -93,15 +93,13 @@ namespace HCI_Projekat.OrganizatorView
                 NedodeljeneManifestacije = new ObservableCollection<Manifestacija>(nedodeljeno);
                 Saradnici = new ObservableCollection<Saradnik>(from sar in db.Saradnici where sar.Obrisan == false select sar);
             }
-            foreach (Manifestacija man in StareManifestacije)
-            {
-                Console.WriteLine(man.Klijent.Ime);
-            }
+
+            undoBtn.Visibility = Visibility.Collapsed;
         }
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var wk = new YesNo("Da li ste sigurni \nda zelite da se odjavite?", 0, "Odjava");
+            var wk = new YesNo("Da li ste sigurni \nda želite da se odjavite?", 0, "Odjava");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -112,6 +110,21 @@ namespace HCI_Projekat.OrganizatorView
             {
                 e.Cancel = true;
             }
+        }
+
+        public void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            datum.Text = "";
+            if (tema.SelectedItem == null)
+            {
+                tema.SelectedItem = TemaManifestacije.SVE;
+                tema.SelectedItem = null;
+            }
+            else
+            {
+                Filtriraj(sender, e);
+            }
+            undoBtn.Visibility = Visibility.Collapsed;
         }
 
         public void Istorija_Click(object sender, EventArgs e)
@@ -148,7 +161,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             Manifestacija selected = (Manifestacija)nedodeljeno.SelectedItem;
 
-            var wk = new YesNo("Da li ste sigurni \nda zelite da preuzmete\norganizaciju manifestacije\nkorisnika " + selected.Klijent.Ime + " " + selected.Klijent.Prezime + "?", 0, "Preuzmi manifestaciju");
+            var wk = new YesNo("Da li ste sigurni \nda želite da preuzmete\norganizaciju manifestacije\nkorisnika " + selected.Klijent.Ime + " " + selected.Klijent.Prezime + "?", 0, "Preuzmi manifestaciju");
             wk.ShowDialog();
 
             if (wk.Result == MessageBoxResult.Yes)
@@ -167,7 +180,7 @@ namespace HCI_Projekat.OrganizatorView
                     aktuelno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList());
                     nedodeljeno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList());
 
-                    var ok = new OkForm("Uspesno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspesno preuzeto");
+                    var ok = new OkForm("Uspešno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspešno preuzeto");
                     ok.ShowDialog();
                 }
             }
@@ -206,7 +219,7 @@ namespace HCI_Projekat.OrganizatorView
         public void ObrisiSaradnika_Click(object sender, EventArgs e)
         {
             Saradnik current = (Saradnik)saradnici.SelectedItem;
-            var wk = new YesNo("Da li ste sigurni da\nzelite da obrisete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
+            var wk = new YesNo("Da li ste sigurni da\nželite da obrišete saradnika\n" + current.Naziv + "?", 0, "Potvrda brisanja");
             wk.ShowDialog();
             if(wk.Result != MessageBoxResult.Yes)
             {
@@ -264,6 +277,11 @@ namespace HCI_Projekat.OrganizatorView
 
         public void PretraziDatum(object sender, RoutedEventArgs e)
         {
+            if (datum.Text == "")
+            {
+                return;
+            }
+            undoBtn.Visibility = Visibility.Visible;
             DateTime d = DateTime.Parse(datum.Text);
             using (var db = new DatabaseContext())
             {
@@ -290,6 +308,10 @@ namespace HCI_Projekat.OrganizatorView
 
         public void Filtriraj(object sender, RoutedEventArgs e)
         {
+            if (tema.SelectedItem == null)
+            {
+                return;
+            }
             TemaManifestacije t = (TemaManifestacije)tema.SelectedItem;
             using (var db = new DatabaseContext())
             {
