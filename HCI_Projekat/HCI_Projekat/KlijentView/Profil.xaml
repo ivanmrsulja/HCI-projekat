@@ -92,6 +92,8 @@
                         </Validation.ErrorTemplate>
                     </TextBox>
                     <PasswordBox Name="pass"  materialDesign:HintAssist.Hint="UNESI STARU LOZINKU" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged"/>
+                    <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></Separator>
+
                 </StackPanel>
             </Grid>
             <Button IsDefault="True" IsEnabled="False" Name="sacuvaj" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="SAČUVAJ" Grid.ColumnSpan="2" Click="Sacuvaj_Click"/>
