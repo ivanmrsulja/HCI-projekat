@@ -319,6 +319,7 @@
     <Resource Include="Images\Screenshot_9.png" />
     <Resource Include="favicon.ico" />
     <Content Include="Help\HelpDodavanjeSaradnika.html" />
+    <Content Include="Help\HelpKorisnikHome.html" />
     <Content Include="Help\HelpOrganizatorHome.html" />
     <Content Include="Help\HelpRegistracija.html" />
     <Content Include="Help\index.html" />
