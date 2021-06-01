@@ -39,7 +39,8 @@ namespace HCI_Projekat.OrganizatorView
             this.DataContext = this;
 
             Tip = new List<TipSaradnika> { TipSaradnika.RESTORAN, TipSaradnika.FOTOGRAF, TipSaradnika.KETERING, TipSaradnika.DEKORACIJE, TipSaradnika.MUZIKA };
-            izaberiFajl.IsEnabled = false;
+            izaberiFajl.Visibility = Visibility.Hidden;
+            imeFajla.Visibility = Visibility.Hidden;
         }
 
         protected void OnPropertyChanged(string info)
@@ -73,13 +74,19 @@ namespace HCI_Projekat.OrganizatorView
                 potvrdi.IsEnabled = true;
             }
 
-            if(tip.Text=="RESTORAN")
+            if((TipSaradnika)tip.SelectedItem == TipSaradnika.RESTORAN)
             {
-                izaberiFajl.IsEnabled = true;
-                if(imeFajla.Content.ToString() == "IME FAJLA")
+                izaberiFajl.Visibility = Visibility.Visible;
+                imeFajla.Visibility = Visibility.Visible;
+                if (imeFajla.Content.ToString() == "IME FAJLA")
                 {
                     potvrdi.IsEnabled = false;
                 }
+            }
+            else
+            {
+                izaberiFajl.Visibility = Visibility.Hidden;
+                imeFajla.Visibility = Visibility.Hidden;
             }
         }
 

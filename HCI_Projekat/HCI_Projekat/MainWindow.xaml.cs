@@ -54,10 +54,10 @@ namespace HCI_Projekat
 
                 Manifestacija man1 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("20/06/2021", "dd/MM/yyyy", null), null, null);
                 man1.Status = StatusManifestacije.U_IZRADI;
-                Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("10/05/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man2 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("25/06/2021", "dd/MM/yyyy", null), null, null);
                 man2.Status = StatusManifestacije.ZAVRSENA;
-                Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("01/06/2021", "dd/MM/yyyy", null), null, null);
-                Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("17/06/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man3 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("14/06/2021", "dd/MM/yyyy", null), null, null);
+                Manifestacija man4 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("05/06/2021", "dd/MM/yyyy", null), null, null);
                 Manifestacija man5 = new Manifestacija(TemaManifestacije.VENCANJE, 3000, true, 600, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("13/09/2021", "dd/MM/yyyy", null), null, null);
                 Manifestacija man6 = new Manifestacija(TemaManifestacije.RODJENDAN, 10000, true, 500, "restoran", "cvece i baloni", "goci", "nema", DateTime.ParseExact("31/07/2021", "dd/MM/yyyy", null), null, null);
                 man1.AddKomentar(ko1);

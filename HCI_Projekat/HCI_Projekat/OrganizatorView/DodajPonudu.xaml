@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-
+        xmlns:val="clr-namespace:HCI_Projekat.Validation"
         mc:Ignorable="d"
         Title="DodajPonudu" Height="290" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow">
 
@@ -32,8 +32,33 @@
 
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
 
-                <TextBox Name="opis" materialDesign:HintAssist.Hint="OPIS PONUDE" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                <TextBox Name="cena" materialDesign:HintAssist.Hint="CENA" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                <TextBox Name="opis" materialDesign:HintAssist.Hint="OPIS PONUDE" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                <TextBox Name="cena" materialDesign:HintAssist.Hint="CENA" Margin="0,10,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" >
+                    <TextBox.Text>
+                        <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:PriceValidationRule ValidationStep="RawProposedValue"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox2"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-205,30,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Red"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
                     <Label Name="imeFajla" Content="(AKO JE SALA)" Margin="150,10,0,0" Foreground="Gray" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Width="130" />
                     <Button Name="izaberiFajl" Click="IzaberiFajl_Click" Content="UBACI STOLOVE" HorizontalAlignment="Left" Cursor="Hand" Width="137"  Margin="0,10,0,0" />

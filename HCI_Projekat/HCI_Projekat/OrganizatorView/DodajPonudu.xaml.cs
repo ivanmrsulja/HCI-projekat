@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +20,47 @@ namespace HCI_Projekat.OrganizatorView
     /// <summary>
     /// Interaction logic for DodajPonudu.xaml
     /// </summary>
-    public partial class DodajPonudu : Window
+    public partial class DodajPonudu : Window, INotifyPropertyChanged
     {
         private string FileName;
         string retValue = "";
+        private double _cena;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public double Cena
+        {
+            get
+            {
+                return _cena;
+            }
+            set
+            {
+                if (value != _cena)
+                {
+                    _cena = value;
+                    OnPropertyChanged("Cena");
+                }
+            }
+        }
+
         public DodajPonudu(bool res)
         {
             InitializeComponent();
+            DataContext = this;
             if (res == false)
-                izaberiFajl.IsEnabled = false;
-                
+            {
+                izaberiFajl.Visibility = Visibility.Hidden;
+                imeFajla.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
@@ -70,5 +102,31 @@ namespace HCI_Projekat.OrganizatorView
                 FileName = "";
             }
         }
+
+        private void FormStateChanged(object sender, RoutedEventArgs e)
+        {
+            if (opis.Text == "" || cena.Text == "")
+            {
+                dodaj.IsEnabled = false;
+                return;
+            }
+
+            try
+            {
+                double a = Double.Parse(cena.Text);
+                if (a < 0)
+                {
+                    dodaj.IsEnabled = false;
+                    return;
+                }
+            }
+            catch
+            {
+                dodaj.IsEnabled = false;
+                return;
+            }
+            dodaj.IsEnabled = true;
+        }
+
     }
 }

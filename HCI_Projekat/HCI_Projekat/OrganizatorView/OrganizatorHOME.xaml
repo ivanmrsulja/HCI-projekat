@@ -34,15 +34,16 @@
         <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava" ToolTip="Odjavite se sa profila" >Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label FontSize="25">Pretraga po datumu:</Label>
+            <TextBlock FontSize="25" Margin="0,0,7,0">Pretraga po datumu:</TextBlock>
             <DatePicker Name="datum" FontSize="20" Width="150" SelectedDateChanged="PretraziDatum"></DatePicker>
-            <Label FontSize="25">Izaberi temu:</Label>
+            <Button x:Name="undoBtn" FontSize="22" Grid.Column="1" Margin="7,0,0,0" Click="Undo_Click">⟲</Button>
+            <TextBlock FontSize="25" Margin="7,0,7,0">Izaberite temu:</TextBlock>
             <ComboBox Name="tema" Grid.Row="1" Grid.Column="4" FontSize="20" Width="150" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
         </StackPanel>
 
-        <Label x:Name="aktuelnoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled aktuelnih manifestacija</Label>
-        <Label x:Name="nedodeljenoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled nedodeljenih manifestacija</Label>
-        <Label x:Name="saradniciLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled saradnika</Label>
+        <TextBlock x:Name="aktuelnoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled aktuelnih manifestacija</TextBlock>
+        <TextBlock x:Name="nedodeljenoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled nedodeljenih manifestacija</TextBlock>
+        <TextBlock x:Name="saradniciLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Visibility="Hidden">Pregled saradnika</TextBlock>
 
         <DataGrid x:Name="istorija" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Top" ItemsSource="{Binding Path = StareManifestacije}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Center" FontSize="16">
             <DataGrid.Columns>

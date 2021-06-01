@@ -37,10 +37,10 @@
         <Button Grid.Row="0" Grid.Column="4" Height="40" Click="Pomoc_Click" FontSize="20">Pomoc</Button>
         <Button Grid.Row="0" Grid.Column="5" Height="40" Click="Odjava_Click" FontSize="20">Odjava</Button>
 
-        <Label Name="ManLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35">Prikaz manifestacija</Label>
-        <Label Name="KorLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz korisnika</Label>
-        <Label Name="SarLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz saradnika</Label>
-        <Label Name="KomLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz komentara</Label>
+        <TextBlock Name="ManLabel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35">Prikaz manifestacija</TextBlock>
+        <TextBlock Name="KorLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz korisnika</TextBlock>
+        <TextBlock Name="SarLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz saradnika</TextBlock>
+        <TextBlock Name="KomLabel" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35">Prikaz komentara</TextBlock>
 
         <DataGrid Name="ManGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" ItemsSource="{Binding Path = Manifestacije}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
             <DataGrid.Columns>
