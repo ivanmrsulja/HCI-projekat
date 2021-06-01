@@ -205,6 +205,7 @@ namespace HCI_Projekat
             dijalog5.ShowDialog();
             this.Hide();
         }
+        
 
         public void Odustani(object sender, RoutedEventArgs e)
         {

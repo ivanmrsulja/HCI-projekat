@@ -154,17 +154,22 @@ namespace HCI_Projekat.OrganizatorView
                 potvrdi.IsEnabled = true;
             }
 
-            if (tip.Text == "RESTORAN")
+            if (tip.Text!="")
             {
-                izaberiFajl.IsEnabled = true;
-                if (imeFajla.Content.ToString() == "IME FAJLA")
+                if ((TipSaradnika)tip.SelectedItem == TipSaradnika.RESTORAN)
                 {
-                    potvrdi.IsEnabled = false;
+                    izaberiFajl.Visibility = Visibility.Visible;
+                    imeFajla.Visibility = Visibility.Visible;
+                    if (imeFajla.Content.ToString() == "IME FAJLA")
+                    {
+                        potvrdi.IsEnabled = false;
+                    }
                 }
-            }
-           else
-            {
-                izaberiFajl.IsEnabled = false;
+                else
+                {
+                    izaberiFajl.Visibility = Visibility.Hidden;
+                    imeFajla.Visibility = Visibility.Hidden;
+                }
             }
         }
 
