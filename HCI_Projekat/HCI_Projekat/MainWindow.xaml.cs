@@ -213,10 +213,16 @@ namespace HCI_Projekat
                 {
                     var wk = new OkForm("Neispravno korisničko\nime ili lozinka.", "Neuspela prijava");
                     wk.ShowDialog();
+                    return;
                 }
                 else
                 {
-                    Console.WriteLine(currentUser[0].Uloga);
+                    if(currentUser[0].Password != pass.Password || currentUser[0].Username != user.Text)
+                    {
+                        var wk = new OkForm("Neispravno korisničko\nime ili lozinka.", "Neuspela prijava");
+                        wk.ShowDialog();
+                        return;
+                    }
                     switch (currentUser[0].Uloga)
                     {
                         case UlogaKorisnika.ADMIN:

@@ -7,7 +7,7 @@
         xmlns:root="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome">
+        Title="OrganizatorHOME" Height="700" Width="1100" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome" WindowStartupLocation="CenterOwner">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>
@@ -30,7 +30,7 @@
         <Button Grid.Row="0" Grid.Column="1" FontSize="20" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click" ToolTip="Pregled aktuelnih manifestacija" >Aktuelno</Button>
         <Button Grid.Row="0" Grid.Column="2" FontSize="20" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click" ToolTip="Pregled nedodeljenih manifestacija" >Nedodeljeno</Button>
         <Button Grid.Row="0" Grid.Column="3" FontSize="20" Height="50" VerticalAlignment="Top" Click="Saradnici_Click" ToolTip="Pregled liste saradnika" >Pregled saradnika</Button>
-        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" ToolTip="Potrebna vam je pomoc?" Click="Pomoc_Click">Pomoć</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="20" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" ToolTip="Potrebna vam je pomoć?" Click="Pomoc_Click">Pomoć</Button>
         <Button Grid.Row="0" Grid.Column="5" FontSize="20" Height="50" VerticalAlignment="Top" Click="Odjava" ToolTip="Odjavite se sa profila" >Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -163,7 +163,6 @@ namespace HCI_Projekat.KlijentView
                 if (openFileDialog.ShowDialog() == true)
                     FileName = openFileDialog.FileName;
 
-                ucitajGoste.IsEnabled = false;
                 int counter = 0;
                 using (var reader = new StreamReader(FileName))
                 {
