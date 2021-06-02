@@ -256,6 +256,18 @@ namespace HCI_Projekat.KlijentView
             w.ShowDialog();
         }
 
+        private void Notification_DoubleClick(object sender, EventArgs e)
+        {
+            Notifikacija selected = (Notifikacija)notificationList.SelectedItem;
+            Manifestacija man;
+            using (var db = new DatabaseContext())
+            {
+                man = (from m in db.Manifestacije where m.Id == selected.IDManifestacije select m).FirstOrDefault();
+            }
+            var w = new PregledManifestacije(man, dgrMain, Klijent);
+            w.ShowDialog();
+        }
+
         private void Pomoc(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikHome", this);

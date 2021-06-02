@@ -1,0 +1,36 @@
+﻿<Window x:Class="HCI_Projekat.KlijentView.IzborOrganizatora"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
+        mc:Ignorable="d"
+        Title="Izbor organizatora" Height="450" Width="830">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="60*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="80*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="25">Pregled zaposlenih organizatora</TextBlock>
+        <DataGrid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" x:Name="organizatori" ItemsSource="{Binding Path=Organizatori}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding Ime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding Prezime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Trenutno organizuje" Width="*" Binding="{Binding Zauzetost}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Akcija">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Izaberi_Click">Izaberi</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -108,7 +108,7 @@ namespace HCI_Projekat.OrganizatorView
             {
                 Manifestacija toUpdate = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
                 toUpdate.PredlozenoZaZavrsavanje = true;
-                Notifikacija nova = new Notifikacija(toUpdate.Organizator.Ime + " " + toUpdate.Organizator.Prezime, "Manifestacija spremna za uvid.(" + toUpdate.Tema + ")", toUpdate.Klijent);
+                Notifikacija nova = new Notifikacija(toUpdate.Organizator.Ime + " " + toUpdate.Organizator.Prezime, "Manifestacija spremna za uvid.(" + toUpdate.Tema + ")", toUpdate.Klijent, toUpdate.Id);
                 db.Notifikacije.Add(nova);
                 db.SaveChanges();
                 Manifestacija = toUpdate;

@@ -33,6 +33,8 @@ namespace HCI_Projekat.KlijentView
         private string FileName;
         List<Gost> listGostiju = new List<Gost>();
 
+        public List<Organizator> Organizator { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public DodajManifestaciju(Klijent k, DataGrid data, ObservableCollection<Manifestacija> mans)
@@ -43,6 +45,7 @@ namespace HCI_Projekat.KlijentView
             Klijent = k;
             BindedGrid = data;
             Manifestacije = mans;
+            Organizator = new List<Organizator>();
         }
 
         private void FormStateChanged(object sender, RoutedEventArgs e)
@@ -126,6 +129,13 @@ namespace HCI_Projekat.KlijentView
                         listGostiju.Add(tmp);
                     }
                 }
+                if(Organizator.Count > 0)
+                {
+                    int id = Organizator[0].Id;
+                    Organizator org = (from o in db.Korisnici where o.Id == id select o).FirstOrDefault() as Organizator;
+                    org.AddManifestacija(novi);
+                    novi.Status = StatusManifestacije.U_IZRADI;
+                }
                 Klijent klijent = (from k in db.Korisnici where k.Id == Klijent.Id select k).ToArray()[0] as Klijent;
                 klijent.AddManifestacija(novi);
                 db.Manifestacije.Add(novi);
@@ -187,6 +197,16 @@ namespace HCI_Projekat.KlijentView
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikDodajManifestaciju", this);
+        }
+
+        private void Izaberi_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new IzborOrganizatora(Organizator);
+            w.ShowDialog();
+            if(Organizator.Count > 0)
+            {
+                imeOrganizatora.Text = Organizator[0].Ime + " " + Organizator[0].Prezime;
+            }
         }
     }
 }

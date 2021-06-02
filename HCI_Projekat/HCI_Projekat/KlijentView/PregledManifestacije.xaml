@@ -89,7 +89,6 @@
                 <ColumnDefinition Width="47*"></ColumnDefinition>
                 <ColumnDefinition Width="52*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20">Opšte informacije</Label>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto održavanja:</Label>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budžet:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Broj gostiju:</Label>

@@ -27,7 +27,7 @@
         </Rectangle>
         <Grid VerticalAlignment="Center" Margin="50,0,49.6,0" Height="530" Grid.ColumnSpan="2" MaxWidth="400">
 
-            <Label Content="DODAJ MANIFESTACIJU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
+            <TextBlock Text="DODAJ MANIFESTACIJU" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2" Margin="0,-10,0,0"/>
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
 
                 <ComboBox Name="tema" materialDesign:HintAssist.Hint="TEMA" FontSize="20" MinWidth="150" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="FormStateChanged" ></ComboBox>
@@ -43,6 +43,10 @@
                     <Button Name="ucitajGoste" Content="UČITAJ GOSTE" HorizontalAlignment="Left" Cursor="Hand" Width="137" Margin="223,8,0,10.4" Click="Button_Click_1" />
                 </apex:ApexGrid>
 
+                <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
+                    <TextBox Name="imeOrganizatora" IsReadOnly="True" materialDesign:HintAssist.Hint="ORGANIZATOR (OPCIONO)" Margin="0,10,0,10.2" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" HorizontalAlignment="Left" Width="218" />
+                    <Button Name="ucitajOrganizatora" Content="IZABERI" HorizontalAlignment="Left" Cursor="Hand" Width="137" Margin="223,8,0,10.4" Click="Izaberi_Click" />
+                </apex:ApexGrid>
 
                 <TextBox Name="mesto"  materialDesign:HintAssist.Hint="MESTO ODRŽAVANJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
@@ -52,6 +56,7 @@
                 <TextBox Name="dekoracije" materialDesign:HintAssist.Hint="DEKORACIJE" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
                 <TextBox Name="dodatniZahtevi" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" materialDesign:HintAssist.Hint="DODATNI ZAHTEVI" Margin="0,10,-0.4,10" FontFamily="Champagne &amp; Limousines" FontSize="18" Height="105" TextChanged="FormStateChanged"/>
+                
             </StackPanel>
         </Grid>
         <Button IsEnabled="False" Name="potvrdi" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,-15" Content="POTVRDI"  Grid.ColumnSpan="2" Click="Potvrdi_Click"/>

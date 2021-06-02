@@ -114,10 +114,12 @@ namespace HCI_Projekat.Model
     {
         public List<Manifestacija> Manifestacije { get; set; }
         public virtual List<Komentar> Komentari { get; set; }
+        public int Zauzetost { get; set; }
 
         public Organizator() : base()
         {
             Manifestacije = new List<Manifestacija>();
+            Zauzetost = 0;
         }
         public Organizator(string user, string pass, string ime, string prezime, string email, string telefon, string adresa) : base(user, pass, ime, prezime, email, telefon, adresa, UlogaKorisnika.ORGANIZATOR)
         {
@@ -396,14 +398,17 @@ namespace HCI_Projekat.Model
         [Required]
         public bool Dismissed { get; set; }
         public virtual Klijent Klijent { get; set; }
+        [Required]
+        public int IDManifestacije { get; set; }
 
         public Notifikacija() { }
-        public Notifikacija(string posiljaoc, string text, Klijent k)
+        public Notifikacija(string posiljaoc, string text, Klijent k, int idManif)
         {
             Posiljaoc = posiljaoc;
             Tekst = text;
             Dismissed = false;
             Klijent = k;
+            IDManifestacije = idManif;
         }
     }
 

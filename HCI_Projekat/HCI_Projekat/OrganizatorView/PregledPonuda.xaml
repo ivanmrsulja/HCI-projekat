@@ -17,7 +17,7 @@
             <ColumnDefinition Width="60*"></ColumnDefinition>
             <ColumnDefinition Width="20*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="25">Pregled saradnika i njihovih ponuda</Label>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="25">Pregled saradnika i njihovih ponuda</TextBlock>
         <DataGrid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" x:Name="ponude" ItemsSource="{Binding Path=Ponude}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
