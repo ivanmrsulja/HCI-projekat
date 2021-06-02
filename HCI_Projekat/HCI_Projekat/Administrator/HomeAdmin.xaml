@@ -87,7 +87,7 @@
                 <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding Id}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Tekst" Width="Auto" Binding="{Binding Tekst}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Organizator" Width="Auto" Binding="{Binding Manifestacija.Organizator.Username}" IsReadOnly="True"></DataGridTextColumn>
-                <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Autor" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

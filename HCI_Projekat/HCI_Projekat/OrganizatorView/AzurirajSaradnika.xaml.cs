@@ -326,7 +326,14 @@ namespace HCI_Projekat.OrganizatorView
 
 
                 imeFajla.Content = System.IO.Path.GetFileName(FileName);
-                if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt")
+                if (System.IO.Path.GetFileName(FileName) == null)
+                {
+                    FileName = "";
+                    var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
+                    wk.ShowDialog();
+                    FileName = "";
+                }
+                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" || System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
                 {
                     var wk = new OkForm("Niste izabrali tekstualni fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
