@@ -211,7 +211,10 @@ namespace HCI_Projekat.KlijentView
         {
             int idk = KlijentId;
             int idm = Manifestacija.Id;
-            Console.WriteLine(idk);
+            if (noviKomentar.Text.Trim() == "")
+            {
+                return;
+            }
             using (var db = new DatabaseContext())
             {
                 Komentar novi = new Komentar(noviKomentar.Text, null, null, DateTime.Now);

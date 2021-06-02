@@ -370,6 +370,7 @@
     <Resource Include="Images\Screenshot_8.png" />
     <Resource Include="Images\Screenshot_9.png" />
     <Resource Include="favicon.ico" />
+    <Content Include="Demo\video.mp4" />
     <Content Include="Help\HelpAdminHome.html" />
     <Content Include="Help\HelpAdminKomentari.html" />
     <Content Include="Help\HelpAdminKorisnici.html" />

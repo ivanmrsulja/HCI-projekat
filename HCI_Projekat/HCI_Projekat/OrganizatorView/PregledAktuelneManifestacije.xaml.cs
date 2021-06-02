@@ -212,6 +212,10 @@ namespace HCI_Projekat.OrganizatorView
         public void Komentarisi_Click(object sender, RoutedEventArgs e)
         {
             int idm = Manifestacija.Id;
+            if (noviKomentar.Text.Trim() == "")
+            {
+                return;
+            }
             using (var db = new DatabaseContext())
             {
                 Komentar novi = new Komentar(noviKomentar.Text, null, null, DateTime.Now);

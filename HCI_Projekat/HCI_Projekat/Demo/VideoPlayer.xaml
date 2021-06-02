@@ -16,7 +16,7 @@
             <ColumnDefinition Width="80*"></ColumnDefinition>
             <ColumnDefinition Width="10*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <MediaElement Grid.ColumnSpan="3" Source="D:\snimci\video.mp4" LoadedBehavior="Manual" Name="mePlayer" />
+        <MediaElement Grid.ColumnSpan="3" Source="../../Demo/video.mp4" LoadedBehavior="Manual" Name="mePlayer" />
         <Slider Grid.Column="1" Grid.Row="1" Name="slider" Thumb.DragCompleted="Wind_Click"></Slider>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <Label Name="lblStatus" Content="Nije pusteno..." HorizontalAlignment="Center" Margin="5" FontSize="18" />
