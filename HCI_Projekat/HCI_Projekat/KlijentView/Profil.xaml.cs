@@ -189,5 +189,10 @@ namespace HCI_Projekat.KlijentView
         {
             return klijent;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpKorisnikProfil", this);
+        }
     }
 }

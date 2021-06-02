@@ -182,7 +182,7 @@ namespace HCI_Projekat.Administrator
 
         public void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-            
+            HelpProvider.ShowHelp("HelpDodajOrganizatora", this);
         }
 
         private void FormStateChanged(object sender, EventArgs e)

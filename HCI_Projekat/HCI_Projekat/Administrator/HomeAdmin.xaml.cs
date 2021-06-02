@@ -552,7 +552,7 @@ namespace HCI_Projekat.Administrator
 
         public void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-
+            HelpProvider.ShowHelp("HelpAdminHome", this);
         }
 
         public void DodajOrganizatora_Click(object sender, RoutedEventArgs e)

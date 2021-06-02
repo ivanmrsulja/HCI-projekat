@@ -251,5 +251,10 @@ namespace HCI_Projekat.OrganizatorView
                 db.SaveChanges();
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpDodajSaradnika", this);
+        }
     }
 }

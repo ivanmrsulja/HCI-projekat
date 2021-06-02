@@ -184,5 +184,10 @@ namespace HCI_Projekat.KlijentView
                 brojGostiju.Text = "0";
             }
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpKorisnikDodajManifestaciju", this);
+        }
     }
 }

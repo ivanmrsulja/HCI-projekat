@@ -175,7 +175,7 @@ namespace HCI_Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            HelpProvider.ShowHelp("HelpKorisnikRegistracija", this);
         }
 
        
