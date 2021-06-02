@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="PregledAktuelneManifestacije" Height="800" Width="700" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" >
+        Title="Pregled Aktuelne Manifestacije" Height="800" Width="700" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" >
     <Grid>
         <TabControl TabStripPlacement="Top" Margin="10" BorderBrush="Gainsboro">
                 <TabControl.Resources>
@@ -155,10 +155,7 @@
             <TabItem Header="Komentari" FontSize="15" Height="50" Width="150">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50*"></RowDefinition>
-                        <RowDefinition Height="20*"></RowDefinition>
-                        <RowDefinition Height="10*"></RowDefinition>
-                        <RowDefinition Height="10*"></RowDefinition>
+                        <RowDefinition Height="90*"></RowDefinition>
                         <RowDefinition Height="10*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -168,7 +165,7 @@
                         <ColumnDefinition Width="30*"></ColumnDefinition>
                         <ColumnDefinition Width="10*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="komentariList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}">
+                    <ListView x:Name="komentariList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Center" Margin="5">
@@ -177,19 +174,19 @@
                                         <ColumnDefinition Width="90*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border Width="40" Height="40" CornerRadius="25" BorderBrush="White" BorderThickness="0.6">
+                                    <Border Width="40" Height="40" VerticalAlignment="Top" CornerRadius="25" BorderBrush="White" BorderThickness="0.6">
                                         <Border.Background>
                                             <ImageBrush ImageSource="../Source/icon_comment.png"/>
                                         </Border.Background>
                                     </Border>
-                                    <Border Width="10" Height="10" VerticalAlignment="Bottom" Margin="5" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
+                                    <Border Width="10" Height="10" VerticalAlignment="Top" Margin="3,25,0,0" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
 
                                     <StackPanel Grid.Column="1">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding User}" Margin="10 0"/>
-                                            <TextBlock Text="{Binding DatumPostavljanja, StringFormat={}{0:dd.MM.yyyy. HH:mm}}" Margin="10 0"/>
+                                            <TextBlock Text="{Binding User}" Margin="10 0" FontSize="18"/>
+                                            <TextBlock Text="{Binding DatumPostavljanja, StringFormat={}{0:dd.MM.yyyy. HH:mm}}" Margin="10 0" FontSize="18"/>
                                         </StackPanel>
-                                        <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16"/>
+                                        <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="18" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -197,10 +194,10 @@
                     </ListView>
                     
                     
-                    <Separator Grid.Row="3" Height="10" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></Separator>
+                    <Separator Grid.Row="1" Height="10" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
                     
                     
-                    <TextBox x:Name="noviKomentar" Margin="10,0,10,0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="OSTAVI KOMENTAR"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16"></TextBox>
+                    <TextBox x:Name="noviKomentar" Margin="10,0,10,0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="OSTAVI KOMENTAR"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap"></TextBox>
                     <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Width="Auto" Click="Komentarisi_Click" FontSize="16">+</Button>
 
                 </Grid>

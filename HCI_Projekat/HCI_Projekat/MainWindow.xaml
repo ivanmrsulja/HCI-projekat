@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Prijava na sistem" Height="500" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip">
+        Title="Prijava na sistem" Height="500" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <DockPanel>
         <Grid VerticalAlignment="Stretch">
             <Rectangle  MinHeight="280" Height="Auto" VerticalAlignment="Top">

@@ -52,6 +52,9 @@ namespace HCI_Projekat.OrganizatorView
             {
                 tipBudzeta.Content = "(fiksno)";
             }
+
+            
+
         }
 
         public Manifestacija Manifestacija
@@ -294,6 +297,11 @@ namespace HCI_Projekat.OrganizatorView
                 var wk = new OkForm("Obeležili ste stavku\nkao nezavršeno.", "Obeležena stavka");
                 wk.ShowDialog();
             }
+        }
+
+        private void Grid_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
         }
     }
 }
