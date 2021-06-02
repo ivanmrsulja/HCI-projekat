@@ -74,19 +74,30 @@ namespace HCI_Projekat
                 k1.AddManifestacija(man2);
                 k1.AddManifestacija(man3);
                 k1.AddManifestacija(man4);
-                k1.AddManifestacija(man5);
-                k1.AddManifestacija(man6);
                 k1.AddKomentar(ko1);
                 k1.AddKomentar(ko2);
                 db.Korisnici.Add(k1);
+
+                Klijent k2 = new Klijent("petar", "petar", "Petar", "Markovic", "isamrstim06@gmail.com", "0000000000000", "adresa");
+                k2.AddManifestacija(man5);
+                k2.AddManifestacija(man6);
+                db.Korisnici.Add(k2);
 
                 Organizator o1 = new Organizator("o", "o", "Ana", "Jovovic", "email@email.com", "0685478521", "adresa");
                 o1.AddManifestacija(man1);
                 o1.AddManifestacija(man2);
                 db.Korisnici.Add(o1);
 
+                Organizator o2 = new Organizator("dusan", "dusan", "Dusan", "Antic", "email@email.com", "0685478521", "adresa");
+                o2.AddManifestacija(man3);
+                o2.AddManifestacija(man4);
+                db.Korisnici.Add(o2);
+
                 Admin a1 = new Admin("admin", "admin", "Joko", "Joksimovic", "email@email.com", "0685478521", "adresa");
                 db.Korisnici.Add(a1);
+
+                Admin a2 = new Admin("ivan", "ivan", "Ivan", "Mrsulja", "email@email.com", "0685478521", "adresa");
+                db.Korisnici.Add(a2);
 
                 Saradnik s1 = new Saradnik("Restoran1", "Jevrejska 12", TipSaradnika.RESTORAN, "Dobra hrana", "../../Images/map_1.png");
                 Saradnik s3 = new Saradnik("Restoran2", "Lasla Gala 12", TipSaradnika.RESTORAN, "Bolja hrana", "../../Images/map_2.png");
