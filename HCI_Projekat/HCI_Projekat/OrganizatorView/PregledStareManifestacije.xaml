@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Pregled Stare Manifestacije" Height="750" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" >
+        Title="Pregled Stare Manifestacije" Height="750" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55*"></RowDefinition>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.Administrator"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="HomeAdmin" Height="600" Width="950" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" >
+        Title="HomeAdmin" Height="600" Width="950" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:HomeAdmin.NewCommand}" Executed="NewCommandExecuted"/>
         <CommandBinding Command="{x:Static local:HomeAdmin.QCommand}" Executed="QCommandExecuted"/>

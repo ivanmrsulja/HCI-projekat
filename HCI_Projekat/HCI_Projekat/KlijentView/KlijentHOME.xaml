@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="KlijentHOME" Height="750" Width="1350" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterOwner" >
+        Title="KlijentHOME" Height="750" Width="1350" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" >
     <Grid>
 
         <Grid.RowDefinitions>

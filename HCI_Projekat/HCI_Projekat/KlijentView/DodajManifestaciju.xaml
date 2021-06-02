@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-        Title="Dodaj manifestaciju" Height="670" Width="540" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" >
+        Title="Dodaj manifestaciju" Height="670" Width="540" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
 
     <Grid VerticalAlignment="Stretch">
         <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
