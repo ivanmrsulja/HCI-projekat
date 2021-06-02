@@ -113,7 +113,11 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Name="btnPrev" Width="50" Grid.Column="0" Content="&lt;" Click="OnPreviousClicked" FontSize="22"/>
-            <TextBox Name="PageNum" Grid.Column="1" Text="{Binding CurrentPageNum}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" TextChanged="OnSelectedPage"></TextBox>
+            <TextBox Name="PageNum" Grid.Column="1" Text="{Binding CurrentPageNum}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" TextChanged="OnSelectedPage">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate />
+                </Validation.ErrorTemplate>
+            </TextBox>
             <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22">/</Label>
             <Label Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" Content="{Binding MaxPageSize}"></Label>
             <Button Grid.Column="4" Name="btnNext" Width="50" Content=">" Click="OnNextClicked" FontSize="22"/>

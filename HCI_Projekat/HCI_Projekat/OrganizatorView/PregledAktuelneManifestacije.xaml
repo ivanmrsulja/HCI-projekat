@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Pregled Aktuelne Manifestacije" Height="800" Width="700" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
-    <Grid>
+    <Grid VerticalAlignment="Stretch">
         <Rectangle Height="500" VerticalAlignment="Top" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="0,0,-0.4,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
