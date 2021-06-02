@@ -7,25 +7,8 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Pregled Stare Manifestacije" Height="750" Width="700" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
-    <Grid VerticalAlignment="Stretch">
-        <Rectangle Height="500" VerticalAlignment="Top">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF2281D1"/>
-                    <GradientStop Color="#FF34268A" Offset="1"/>
-                    <GradientStop Color="#FF33288B" Offset="0.546"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-
-        <Rectangle Width="600" Height="700" VerticalAlignment="Center" Margin="25,6,25,10" Grid.ColumnSpan="6" Grid.RowSpan="4" RadiusY="10" RadiusX="10" Fill="White" >
-            <Rectangle.Effect>
-                <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Grid Height="750" Width="700">
-
-            <Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
             <RowDefinition Height="55*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="35*"></RowDefinition>
@@ -37,8 +20,23 @@
             <ColumnDefinition Width="30*"></ColumnDefinition>
             <ColumnDefinition Width="20*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-            
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Height="500" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2281D1"/>
+                    <GradientStop Color="#FF34268A" Offset="1"/>
+                    <GradientStop Color="#FF33288B" Offset="0.546"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle VerticalAlignment="Stretch" Margin="25,20,25,20" Grid.ColumnSpan="6" Grid.RowSpan="4" RadiusY="10" RadiusX="10" Fill="White" >
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
+            </Rectangle.Effect>
+        </Rectangle>
+
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,20,0,0" >
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -56,7 +54,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="25">Opšte informacije</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="25" Margin="0,2,0,0">Opšte informacije</TextBlock>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Mesto održavanja:</Label>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Budžet:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontSize="20">Broj gostiju:</Label>
@@ -87,6 +85,5 @@
                 <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        </Grid>
     </Grid>
 </Window>
