@@ -8,21 +8,56 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="PregledManifestacije" Height="900" Width="800" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterOwner" >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45*"></RowDefinition>
-            <RowDefinition Height="30*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="20*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
-            <ColumnDefinition Width="30*"></ColumnDefinition>
-            <ColumnDefinition Width="30*"></ColumnDefinition>
-            <ColumnDefinition Width="30*"></ColumnDefinition>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+        <Rectangle Height="500" VerticalAlignment="Top" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="0,0,-0.4,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2281D1"/>
+                    <GradientStop Color="#FF34268A" Offset="1"/>
+                    <GradientStop Color="#FF33288B" Offset="0.546"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TabControl TabStripPlacement="Top" Margin="10" BorderBrush="Gainsboro">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Opšte informacije" Height="50" FontSize="15" Width="150" >
+            <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"></RowDefinition>
+                        <RowDefinition Height="40*"></RowDefinition>
+                        <RowDefinition Height="10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -129,7 +164,22 @@
         </Grid>
         <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
-        <ListView x:Name="komentariList" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Komentari" FontSize="15" Height="50" Width="150">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90*"></RowDefinition>
+                        <RowDefinition Height="10*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                        <ColumnDefinition Width="10*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="komentariList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" ItemsSource="{Binding Komentari}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Center" Margin="5">
@@ -143,20 +193,25 @@
                                 <ImageBrush ImageSource="../Source/icon_comment.png"/>
                             </Border.Background>
                         </Border>
-                        <Border Width="10" Height="10" VerticalAlignment="Bottom" Margin="5" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
+                        <Border Width="10" Height="10" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
 
                         <StackPanel Grid.Column="1">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding User}" Margin="10 0"/>
+                                <TextBlock Text="{Binding User}" Margin="10 0" FontSize="18"/>
                                 <TextBlock Text="{Binding DatumPostavljanja, StringFormat={}{0:dd.MM.yyyy. HH:mm}}" Margin="10 0"/>
                             </StackPanel>
-                            <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16"/>
+                                        <TextBlock Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="18" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Separator Grid.Row="1" Height="10" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
+
         <TextBox x:Name="noviKomentar" Margin="10,0,10,0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="OSTAVI KOMENTAR"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16"></TextBox>
         <Button Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Width="Auto" Click="Komentarisi_Click" FontSize="16">+</Button>
+        </Grid>
+      </TabItem>
+      </TabControl>
     </Grid>
 </Window>
