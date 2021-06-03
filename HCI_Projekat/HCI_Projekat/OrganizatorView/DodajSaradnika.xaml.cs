@@ -145,7 +145,7 @@ namespace HCI_Projekat.OrganizatorView
             var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                   xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" Name="""+tmp+@""">
                                  <Label Content =""" + nazivPonude + @""" Margin = ""10,0,0,0"" Foreground = ""Gray"" FontSize = ""18"" HorizontalAlignment = ""Left"" Width = ""280"" />
-                                 <Button Name = ""btn" + btnCounter + @""" Content = ""X"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""45"" Margin = ""280,8,0,10.4"" />                      
+                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""280,8,0,10.4"" />                      
                             </Grid>";
             btnCounter++;
             var stringReader = new StringReader(StackPanelAddApex);
