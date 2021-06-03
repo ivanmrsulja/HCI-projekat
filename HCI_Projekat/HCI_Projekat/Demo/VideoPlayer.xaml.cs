@@ -25,11 +25,12 @@ namespace NapredneKontrole.Grafika
 		public VideoPlayer()
 		{
 			InitializeComponent();
-
+			mePlayer.LoadedBehavior = MediaState.Manual;
 			DispatcherTimer timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(1);
 			timer.Tick += timer_Tick;
 			timer.Start();
+			mePlayer.Play();
 		}
 
 		void timer_Tick(object sender, EventArgs e)
@@ -73,7 +74,6 @@ namespace NapredneKontrole.Grafika
 		private void Wind_Click(object sender, RoutedEventArgs e)
 		{
 			mePlayer.Position = TimeSpan.FromSeconds((long)slider.Value);
-			mePlayer.LoadedBehavior = MediaState.Manual;
 			mePlayer.Play();
 		}
 	}

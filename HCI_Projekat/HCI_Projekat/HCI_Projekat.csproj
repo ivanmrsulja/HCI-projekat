@@ -138,6 +138,9 @@
     <Compile Include="OrganizatorView\PregledAktuelneManifestacije.xaml.cs">
       <DependentUpon>PregledAktuelneManifestacije.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrganizatorView\PregledNedodeljeneManifestacije.xaml.cs">
+      <DependentUpon>PregledNedodeljeneManifestacije.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizatorView\PregledPonuda.xaml.cs">
       <DependentUpon>PregledPonuda.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrganizatorView\PregledAktuelneManifestacije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizatorView\PregledNedodeljeneManifestacije.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

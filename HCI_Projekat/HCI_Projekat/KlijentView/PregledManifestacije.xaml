@@ -107,7 +107,11 @@
                     <ColumnDefinition Width="40*"></ColumnDefinition>
                     <ColumnDefinition Width="15*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" FontSize="18" Text="{Binding Manifestacija.Budzet}" HorizontalAlignment="Stretch"></TextBox>
+                <TextBox x:Name="budzet" Grid.Column="0" FontSize="18" Text="{Binding Manifestacija.Budzet}" HorizontalAlignment="Stretch">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate />
+                    </Validation.ErrorTemplate>
+                </TextBox>
                 <Label Grid.Column="1" FontSize="20" Margin="10,0,0,0" HorizontalAlignment="Right">Fiksan:</Label>
                 <CheckBox Grid.Column="2" IsChecked="{Binding Manifestacija.FiksanBudzet}" Margin="10,0,0,0" HorizontalAlignment="Left"></CheckBox>
             </Grid>
@@ -117,7 +121,11 @@
             <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Dekoracija}"></TextBox>
             <TextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.Muzika}"></TextBox>
             <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding Manifestacija.DodatniZahtevi}"></TextBox>
-            <DatePicker Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}"></DatePicker>
+            <DatePicker Name="datum" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="18" SelectedDate="{Binding Manifestacija.DatumOdrzavanja}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate />
+                </Validation.ErrorTemplate>
+            </DatePicker>
             <Button Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" Click="Pogledaj_Click">Pogledaj</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="3">
@@ -150,7 +158,6 @@
             </Grid.RowDefinitions>
             <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>

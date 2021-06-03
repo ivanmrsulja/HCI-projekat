@@ -4,28 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="PregledPonuda" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
             <RowDefinition Height="60*"></RowDefinition>
-            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
             <ColumnDefinition Width="60*"></ColumnDefinition>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="25">Pregled saradnika i njihovih ponuda</TextBlock>
-        <DataGrid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" x:Name="ponude" ItemsSource="{Binding Path=Ponude}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="16">
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="30">Pregled saradnika i njihovih ponuda</TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox Name="search" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" FontSize="25" materialDesign:HintAssist.Hint="Unesite tekst za pretragu"></TextBox>
+            <Button VerticalAlignment="Top" Margin="10,10,0,0" Click="Pretraga_Click">🔍</Button>
+        </StackPanel>
+        <DataGrid Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" x:Name="ponude" ItemsSource="{Binding Path=Ponude}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" FontSize="20">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Cena ponude" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="DodajPonudu_Click">Dodaj</Button>
+                            <Button Click="DodajPonudu_Click" Height="40" FontSize="20">Dodaj</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

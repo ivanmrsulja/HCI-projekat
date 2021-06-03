@@ -55,7 +55,7 @@ namespace HCI_Projekat.OrganizatorView
             }
             set
             {
-                if (value != _GroupView && View != null)
+                if (View != null)
                 {
                     View.GroupDescriptions.Clear();
                     if (value)
@@ -86,6 +86,25 @@ namespace HCI_Projekat.OrganizatorView
             {
                 Ponude = new ObservableCollection<Ponuda>((from pon in db.Ponude where pon.Saradnik.Obrisan == false select pon));
                 View = CollectionViewSource.GetDefaultView(Ponude);
+                GroupView = true;
+            }
+        }
+
+        public void Pretraga_Click(object sender, EventArgs e)
+        {
+            using (var db = new DatabaseContext())
+            {
+                if(search.Text.Trim() == "")
+                {
+                    search.Text = "";
+                    Ponude = new ObservableCollection<Ponuda>((from pon in db.Ponude where pon.Saradnik.Obrisan == false select pon));
+                }
+                else
+                {
+                    Ponude = new ObservableCollection<Ponuda>((from pon in db.Ponude where pon.Saradnik.Obrisan == false && pon.Saradnik.Naziv.Contains(search.Text.Trim()) select pon));
+                }
+                View = CollectionViewSource.GetDefaultView(Ponude);
+                ponude.ItemsSource = View;
                 GroupView = true;
             }
         }

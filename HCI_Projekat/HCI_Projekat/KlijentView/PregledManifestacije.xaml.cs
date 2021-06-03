@@ -99,6 +99,31 @@ namespace HCI_Projekat.KlijentView
 
             if (wk.Result == MessageBoxResult.Yes)
             {
+                if(budzet.Text.Trim() == "")
+                {
+                    var w = new OkForm("Budžet ne sme biti nepopunjen.", "Ostavili ste prazna polja");
+                    w.ShowDialog();
+                    return;
+                }
+                else 
+                {
+                    try
+                    {
+                        double d = Double.Parse(budzet.Text);
+                    }
+                    catch
+                    {
+                        var w = new OkForm("Budžet mora biti broj.", "Loše ste popunili polja");
+                        w.ShowDialog();
+                        return;
+                    }
+                }
+                if (datum.Text.Trim() == "")
+                {
+                    var w = new OkForm("Datum ne sme biti nepopunjen.", "Ostavili ste prazna polja");
+                    w.ShowDialog();
+                    return;
+                }
                 using (var db = new DatabaseContext())
                 {
                     Manifestacija stara = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).ToArray()[0];
@@ -158,7 +183,17 @@ namespace HCI_Projekat.KlijentView
                         odobri.IsEnabled = false;
                         stara.PredlozenoZaZavrsavanje = false;
                     }
-                    db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+                        var w = new OkForm("Uspešno sačuvano.", "Uspešno sačuvano");
+                        w.ShowDialog();
+                    }
+                    catch
+                    {
+                        var w = new OkForm("Morate popuniti sva polja\nsa informacijama.", "Ostavili ste prazna polja");
+                        w.ShowDialog();
+                    }
                 }
             }
         }

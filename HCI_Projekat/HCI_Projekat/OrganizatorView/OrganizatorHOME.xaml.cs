@@ -259,6 +259,13 @@ namespace HCI_Projekat.OrganizatorView
             w.ShowDialog();
         }
 
+        public void Detaljnije_Click(object sender, EventArgs e)
+        {
+            Manifestacija current = (Manifestacija)nedodeljeno.SelectedItem;
+            var w = new PregledNedodeljeneManifestacije(current);
+            w.ShowDialog();
+        }
+
         public void DodajSaradnika_Click(object sender, EventArgs e)
         {
             var w = new DodajSaradnika();

@@ -207,7 +207,7 @@ namespace HCI_Projekat.OrganizatorView
                     s1.Adresa = adresa.Text;
 
                     var pon = (from c in db.Ponude
-                               where c.NazivSaradnika == naziv.Text
+                               where c.Saradnik.Id == saradnik.Id
                                select c).ToList();
                     foreach (var item in pon)
                     {
