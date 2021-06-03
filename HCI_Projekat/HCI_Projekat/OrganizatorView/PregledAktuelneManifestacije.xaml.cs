@@ -135,7 +135,7 @@ namespace HCI_Projekat.OrganizatorView
                     }
                     catch (Exception)
                     {
-                        var we = new OkForm("Mail nije bilo moguće poslati\nklijentu(greška u adresi).", "Neuspelo slanje mail-a");
+                        var we = new OkForm("Mail nije bilo moguće poslati\nmail klijentu.", "Neuspelo slanje mail-a");
                         we.ShowDialog();
                     }
                 }).Start();

@@ -29,15 +29,15 @@
             <Label Content="IZMENI SARADNIKA" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
 
-                <TextBox Name="naziv"  materialDesign:HintAssist.Hint="NAZIV" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                <TextBox Name="naziv"  materialDesign:HintAssist.Hint="NAZIV" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
-                <TextBox Name="adresa"  materialDesign:HintAssist.Hint="ADRESA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-
-
-                <ComboBox Name="tip" materialDesign:HintAssist.Hint="TIP SARADNIKA" FontSize="18"  MinWidth="150" MinHeight="40" ItemsSource="{Binding Tip}" SelectionChanged="FormStateChanged" ></ComboBox>
+                <TextBox Name="adresa"  materialDesign:HintAssist.Hint="ADRESA" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
 
-                <TextBox Name="specijalizacija"  materialDesign:HintAssist.Hint="SPECIJALIZACIJA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                <ComboBox Name="tip" materialDesign:HintAssist.Hint="TIP SARADNIKA" materialDesign:HintAssist.IsFloating="True" FontSize="18"  MinWidth="150" MinHeight="40" ItemsSource="{Binding Tip}" SelectionChanged="FormStateChanged" ></ComboBox>
+
+
+                <TextBox Name="specijalizacija"  materialDesign:HintAssist.Hint="SPECIJALIZACIJA" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
 
                 <apex:ApexGrid Rows="auto,auto" Columns="auto,auto">
                     <Label Name="imeFajla" Content="IME FAJLA" Margin="150,8,0,10.4" Foreground="Gray" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Width="218" />
@@ -56,7 +56,7 @@
 
             </StackPanel>
         </Grid>
-        <Button IsEnabled="False" Name="potvrdi" Click="Potvrdi_Click" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,-15" Content="IYMENI"  Grid.ColumnSpan="2"/>
+        <Button IsEnabled="False" Name="potvrdi" Click="Potvrdi_Click" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,-15" Content="IZMENI"  Grid.ColumnSpan="2"/>
         <Button Width="150" Click="odustani_Click" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,-15" Content="ODUSTANI" />
         <Button  Background="Transparent" Content="POMOC" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,-60" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" />
     </Grid>

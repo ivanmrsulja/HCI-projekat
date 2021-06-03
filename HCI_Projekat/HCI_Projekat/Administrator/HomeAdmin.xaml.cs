@@ -616,6 +616,14 @@ namespace HCI_Projekat.Administrator
         public void ObrisiSaradnika_Click(object sender, RoutedEventArgs e)
         {
             Saradnik selected = (Saradnik)SarGrid.SelectedItem;
+
+            var wk = new YesNo("Da li ste sigurni da\nželite da obrišete saradnika\n" + selected.Naziv + "?", 0, "Potvrda brisanja");
+            wk.ShowDialog();
+            if (wk.Result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             using (var db = new DatabaseContext())
             {
                 Saradnik toDelete = (from sar in db.Saradnici where sar.Id == selected.Id select sar).FirstOrDefault();

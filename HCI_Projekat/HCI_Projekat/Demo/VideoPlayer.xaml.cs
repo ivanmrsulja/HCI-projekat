@@ -73,6 +73,7 @@ namespace NapredneKontrole.Grafika
 		private void Wind_Click(object sender, RoutedEventArgs e)
 		{
 			mePlayer.Position = TimeSpan.FromSeconds((long)slider.Value);
+			mePlayer.LoadedBehavior = MediaState.Manual;
 			mePlayer.Play();
 		}
 	}

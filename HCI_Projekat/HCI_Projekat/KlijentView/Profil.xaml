@@ -25,19 +25,19 @@
                     <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Grid VerticalAlignment="Center" Margin="50,-60,49.6,0" Height="450" Grid.ColumnSpan="2" MaxWidth="400">
+            <Grid VerticalAlignment="Center" Margin="51,0,49,113" Height="526" MaxWidth="400">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="17*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Profil" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
+                <TextBlock Text="PROFIL" Margin="0,45,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="18" Grid.RowSpan="2"/>
                 <StackPanel VerticalAlignment="Center" Margin="15,45,14.6,23" Grid.RowSpan="2">
 
-                    <TextBox Name="ime" materialDesign:HintAssist.Hint="IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox Name="prezime"  materialDesign:HintAssist.Hint="PREZIME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox Name="user" materialDesign:HintAssist.Hint="KORISNIČKO IME" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" Text="{Binding Username}"/>
-                    <PasswordBox Name="passNew"  materialDesign:HintAssist.Hint="NOVA LOZINKA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                    <TextBox Name="email" materialDesign:HintAssist.Hint="EMAIL" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
+                    <TextBox Name="ime" Margin="0,10,0,0" materialDesign:HintAssist.Hint="IME" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                    <TextBox Name="prezime" Margin="0,10,0,0" materialDesign:HintAssist.Hint="PREZIME" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                    <TextBox Name="user" Margin="0,10,0,0" materialDesign:HintAssist.Hint="KORISNIČKO IME" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged" Text="{Binding Username}"/>
+                    <PasswordBox Name="passNew" Margin="0,10,0,0" materialDesign:HintAssist.Hint="NOVA LOZINKA" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <TextBox Name="email" Margin="0,10,0,0" materialDesign:HintAssist.Hint="EMAIL" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
                             <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -58,14 +58,14 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox1"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}"  Margin="-220,30,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}"  Margin="-220,45,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
 
                     </TextBox>
-                    <TextBox Name="adresa" materialDesign:HintAssist.Hint="ADRESA" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
-                    <TextBox  Name="telefon" materialDesign:HintAssist.Hint="TELEFON" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
+                    <TextBox Name="adresa" Margin="0,10,0,0" materialDesign:HintAssist.Hint="ADRESA" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged"/>
+                    <TextBox  Name="telefon" Margin="0,10,0,0" materialDesign:HintAssist.Hint="TELEFON" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" TextChanged="FormStateChanged">
                         <TextBox.Text>
                             <Binding Path="Telefon" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -86,13 +86,12 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox3"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-275,30,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Margin="-275,45,0,0" FontSize="16" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>
                     </TextBox>
-                    <PasswordBox Name="pass"  materialDesign:HintAssist.Hint="UNESI STARU LOZINKU" Margin="0,10" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged"/>
-                    <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></Separator>
+                    <PasswordBox Name="pass" Margin="0,15,0,0" materialDesign:HintAssist.Hint="UNESI STARU LOZINKU" materialDesign:HintAssist.IsFloating="True" FontFamily="Champagne &amp; Limousines" FontSize="18" PasswordChanged="FormStateChanged" Height="44"/>
 
                 </StackPanel>
             </Grid>

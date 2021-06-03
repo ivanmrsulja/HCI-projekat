@@ -99,7 +99,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Name="saradnici" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" CanUserAddRows="False">
+        <DataGrid Name="saradnici" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv" Width="Auto" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
