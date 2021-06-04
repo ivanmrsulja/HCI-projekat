@@ -50,9 +50,9 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Posiljaoc}" Margin="10 0"/>
-                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="16" TextWrapping="Wrap"/>
-                                <Button Grid.Row="2" HorizontalAlignment="Left" MaxHeight="20" MaxWidth="70" FontSize="11" Margin="10,0,0,0" Click="Odbaci_Click">Odbaci</Button>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Posiljaoc}" Margin="10 0" FontSize="18"/>
+                                <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Tekst}" Margin="10 0" Opacity="0.6" FontSize="19" TextWrapping="Wrap"/>
+                                <Button Grid.Row="2" HorizontalAlignment="Left" MaxHeight="30" MaxWidth="100" FontSize="18" Margin="10,0,0,0" Click="Odbaci_Click">Odbaci</Button>
                             </Grid>
                         </Grid>
                     </DataTemplate>
@@ -79,7 +79,7 @@
             <ComboBox Name="tema" FontSize="20" Width="450" Margin="0,0,5,0" MinHeight="40" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
         </StackPanel>
 
-        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3"  Grid.Column="0" Margin="10,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
+        <DataGrid FontSize="20" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" Margin="10,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name="dgrMain" ItemsSource="{Binding Path = Manifestacije}" IsReadOnly="True" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tema" Width="Auto" Binding="{Binding Tema}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Budžet" Width="Auto" Binding="{Binding Budzet}"></DataGridTextColumn>
@@ -89,7 +89,7 @@
                 <DataGridTemplateColumn Header="Akcija">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="Pregledaj_Click">Pregledaj</Button>
+                            <Button Click="Pregledaj_Click" FontSize="20" Height="35">Pregledaj</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

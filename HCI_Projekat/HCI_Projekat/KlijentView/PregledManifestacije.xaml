@@ -43,7 +43,7 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Opšte informacije" Height="50" FontSize="15" Width="150" >
+            <TabItem Header="Opšte informacije" Height="50" FontSize="20" Width="200" >
             <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50*"></RowDefinition>
@@ -67,10 +67,10 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Name="nazad" Grid.Column="0" Width="Auto" Click="Nazad_Click">Nazad</Button>
-            <Button Name="otkazi" Grid.Column="2" Width="Auto" Click="Otkazi_Click">Otkaži</Button>
-            <Button Name="sacuvaj" Grid.Column="4" Width="Auto" Click="Sacuvaj_Click">Sacuvaj</Button>
-            <Button Name="odobri" IsEnabled="False" Grid.Column="6" Width="Auto" Click="Odobri_Click">Odobri</Button>
+            <Button Name="nazad" Grid.Column="0" Width="Auto" FontSize="18" Height="35" Click="Nazad_Click">Nazad</Button>
+            <Button Name="otkazi" Grid.Column="2" Width="Auto" Click="Otkazi_Click" Height="35" FontSize="18">Otkaži</Button>
+            <Button Name="sacuvaj" Grid.Column="4" Width="Auto" Click="Sacuvaj_Click" Height="35" FontSize="18">Sačuvaj</Button>
+            <Button Name="odobri" IsEnabled="False" Grid.Column="6" Width="Auto" Click="Odobri_Click" Height="35" FontSize="18">Odobri</Button>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
@@ -141,27 +141,69 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <CheckBox Name="mestoCheck" Grid.Row="1" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MestoOdrzavanjaDone}"></CheckBox>
-            <CheckBox Name="budzetCheck" Grid.Row="2" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.BudzetDone}"></CheckBox>
-            <CheckBox Name="gostiCheck" Grid.Row="3" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.GostiDone}"></CheckBox>
-            <CheckBox Name="temaCheck" Grid.Row="4" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.TemaDone}"></CheckBox>
-            <CheckBox Name="dekoracijaCheck" Grid.Row="5" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DekoracijaDone}"></CheckBox>
-            <CheckBox Name="muzikaCheck" Grid.Row="6" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MuzikaDone}"></CheckBox>
-            <CheckBox Name="dodatnoCheck" Grid.Row="7" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DodatnoDone}"></CheckBox>
-            <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DatumDone}"></CheckBox>
-            <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.RasporedDone}"></CheckBox>
+            <CheckBox Name="mestoCheck" Grid.Row="1" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MestoOdrzavanjaDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="budzetCheck" Grid.Row="2" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.BudzetDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="gostiCheck" Grid.Row="3" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.GostiDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="temaCheck" Grid.Row="4" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.TemaDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="dekoracijaCheck" Grid.Row="5" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DekoracijaDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="muzikaCheck" Grid.Row="6" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.MuzikaDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="dodatnoCheck" Grid.Row="7" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DodatnoDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="datumCheck" Grid.Row="8" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.DatumDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+            <CheckBox Name="rasporedCheck" Grid.Row="9" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" IsChecked="{Binding Manifestacija.RasporedDone}">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="85*"></RowDefinition>
                 <RowDefinition Height="15*"></RowDefinition>
             </Grid.RowDefinitions>
-            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path = Ponude}">
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True" AutoGenerateColumns="False" FontSize="19" ItemsSource="{Binding Path = Ponude}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Opis ponude" Width="*" Binding="{Binding Opis}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Cena" Width="*" Binding="{Binding Cena}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Saradnik" Width="*" Binding="{Binding NazivSaradnika}"></DataGridTextColumn>
                 </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#66c4ff" />
+                        <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                    </Style>
+                </DataGrid.Resources>
             </DataGrid>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Label FontSize="22">Ukupna cena:</Label>
@@ -172,7 +214,7 @@
         <Separator Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Separator>
                 </Grid>
             </TabItem>
-            <TabItem Header="Komentari" FontSize="15" Height="50" Width="150">
+            <TabItem Header="Komentari" FontSize="20" Height="50" Width="150">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="90*"></RowDefinition>

@@ -26,7 +26,10 @@ namespace HCI_Projekat.OrganizatorView
         {
             InitializeComponent();
             DataContext = this;
-            Manifestacija = current;
+            using (var db = new DatabaseContext())
+            {
+                Manifestacija = (from man in db.Manifestacije where current.Id == man.Id select man).FirstOrDefault();
+            }
         }
 
         public void Nazad_Click(object sender, RoutedEventArgs e)

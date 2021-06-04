@@ -21,11 +21,11 @@
 
         <Slider Grid.Column="1" Grid.Row="1" Name="slider" Thumb.DragCompleted="Wind_Click"></Slider>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
-            <Label Name="lblStatus" Content="Nije pusteno..." HorizontalAlignment="Center" Margin="5" FontSize="18" />
+            <Label Name="lblStatus" Content="Nije pušteno..." HorizontalAlignment="Center" Margin="5" FontSize="20" />
             <WrapPanel HorizontalAlignment="Center">
-                <Button Name="btnPlay" Click="btnPlay_Click">Pusti</Button>
-                <Button Name="btnPause" Margin="5,0" Click="btnPause_Click">Pauziraj</Button>
-                <Button Name="btnStop" Click="btnStop_Click">Zaustavi</Button>
+                <Button Name="btnPlay" Click="btnPlay_Click" FontSize="20" Height="35">Pusti</Button>
+                <Button Name="btnPause" Margin="5,0" Click="btnPause_Click" FontSize="20" Height="35">Pauziraj</Button>
+                <Button Name="btnStop" Click="btnStop_Click" FontSize="20" Height="35">Zaustavi</Button>
             </WrapPanel>
         </StackPanel>
     </Grid>

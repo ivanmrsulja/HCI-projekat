@@ -30,9 +30,9 @@ namespace HCI_Projekat.OrganizatorView
         {
             InitializeComponent();
             DataContext = this;
-            Manifestacija = current;
             using (var db = new DatabaseContext())
             {
+                Manifestacija = (from man in db.Manifestacije where current.Id == man.Id select man).FirstOrDefault();
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
             }
         }
