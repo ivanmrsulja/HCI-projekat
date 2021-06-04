@@ -18,13 +18,13 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle Height="200" Width="320" VerticalAlignment="Bottom" Margin="20,0,20,35" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
+        <Rectangle Name="beli" Height="200" Width="320" VerticalAlignment="Bottom" Margin="20,0,20,35" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
         </Rectangle>
         <Grid VerticalAlignment="Top" Margin="35,35,35,0" Height="180" Grid.ColumnSpan="2">
-            <TextBlock Name="QuestionBox" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,10,20,20" Foreground="Gray" FontSize="18" Height="160" Width="265"/>
+            <TextBlock Name="QuestionBox" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,10,20,20" Foreground="Gray" FontSize="18" Height="160" Width="265"/>
 
         </Grid>
         <Button Name="Ok" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20" Content="OK" Grid.Column="1" Height="Auto" Click="Ok_Click"/>

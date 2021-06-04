@@ -121,13 +121,13 @@ namespace HCI_Projekat.OrganizatorView
                     Console.WriteLine(p.Stolovi.Count);
                     if(p.Stolovi.Count > 0 && toAdd.Stolovi.Count > 0 && toAdd.Saradnik.Id != p.Saradnik.Id)
                     {
-                        var w1 = new OkForm("Prostor za održavanje\nje već odabran.\nMožete uzimati samo\nnjihove ponude.", "Prostor već odabran");
+                        var w1 = new OkForm("Prostor za održavanje\nje već odabran.\nMožete uzimati samo\nnjihove ponude.", "Prostor već odabran", true);
                         w1.ShowDialog();
                         return;
                     }
                     if(p.Id == toAdd.Id)
                     {
-                        var w2 = new OkForm("Ponuda je već dodata\nu manifestaciju.", "Ponuda već dodata");
+                        var w2 = new OkForm("Ponuda je već dodata\nu manifestaciju.", "Ponuda već dodata", true);
                         w2.ShowDialog();
                         return;
                     }
@@ -138,7 +138,7 @@ namespace HCI_Projekat.OrganizatorView
                 db.SaveChanges();
                 ParentData.ItemsSource = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
             }
-            var wk = new OkForm("Ponuda je dodata\nu manifestaciju.", "Ponuda dodata");
+            var wk = new OkForm("Ponuda je dodata\nu manifestaciju.", "Ponuda dodata", true);
             wk.ShowDialog();
         }
 

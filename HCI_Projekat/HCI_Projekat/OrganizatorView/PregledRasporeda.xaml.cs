@@ -125,7 +125,7 @@ namespace HCI_Projekat.OrganizatorView
                 var dataTemplateString = @"<DataTemplate xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                   xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"">
                             <WrapPanel>
-                                <TextBlock Text=""{Binding ImePrezime}"" FontWeight=""Bold"" FontSize=""20"" />
+                                <TextBlock Text=""{Binding ImePrezime}"" FontWeight=""Bold"" FontSize=""22"" />
                             </WrapPanel>
 
                             </DataTemplate> ";
@@ -139,7 +139,7 @@ namespace HCI_Projekat.OrganizatorView
                 Label naslov = new Label();
                 naslov.Content = "Sto broj: " + i + " - Kapacitet: " + BrojMestaZaStolovima[i] + " - " + SaleZaStolove[i];
                 naslov.HorizontalAlignment = HorizontalAlignment.Center;
-                naslov.FontSize = 25;
+                naslov.FontSize = 30;
 
                 parentGrid.Children.Add(naslov);
                 parentGrid.Children.Add(new Separator());

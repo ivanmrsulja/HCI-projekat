@@ -23,7 +23,7 @@ namespace HCI_Projekat.VlalidationForms
     {
         public MessageBoxResult Result { get; set; }
         private int Sec { get; set; }
-        public YesNo(String question,int s, string t)
+        public YesNo(String question,int s, string t, bool hugify = false)
         {
             InitializeComponent();
             QuestionBox.Text = question;
@@ -33,6 +33,20 @@ namespace HCI_Projekat.VlalidationForms
             if(Sec > 0)
             {
                 Yes.IsEnabled = false;
+            }
+            if (hugify)
+            {
+                this.Height = this.Height + 50;
+                this.Width = this.Width + 50;
+                beli.Height = beli.Height + 50;
+                beli.Width = beli.Width + 50;
+                QuestionBox.Height = QuestionBox.Height + 50;
+                QuestionBox.Width = QuestionBox.Width + 50;
+                Yes.FontSize = 22;
+                Yes.Height = 40;
+                No.FontSize = 22;
+                No.Height = 40;
+                QuestionBox.FontSize = 27;
             }
         }
 

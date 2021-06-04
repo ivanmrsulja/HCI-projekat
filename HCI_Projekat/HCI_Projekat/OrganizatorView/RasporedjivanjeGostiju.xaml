@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
-        Title="Raspored gostiju" Height="550" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+        Title="Raspored gostiju" Height="600" Width="830" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"></ColumnDefinition>
@@ -18,7 +18,7 @@
 
         <local:BlueprintRenderer Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BackgroundImage="{Binding Path=Image}"/>
 
-        <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,20,20,50">
+        <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,20,20,60">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="90*"></RowDefinition>
@@ -28,13 +28,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBlock Text="{Binding ImePrezime}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding ImePrezime}" FontSize="22" FontWeight="Bold" />
                         </WrapPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Rectangle Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Stretch" Margin="20,20,20,50" RadiusY="10" RadiusX="10" Fill="White">
+        <Rectangle Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Stretch" Margin="20,20,20,60" RadiusY="10" RadiusX="10" Fill="White">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
@@ -44,6 +44,6 @@
 
             </StackPanel>
         </ScrollViewer>
-        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" FontSize="20" Click="Nazad_Click">Nazad</Button>
+        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Height="40" FontSize="25" Click="Nazad_Click">Nazad</Button>
     </Grid>
 </Window>

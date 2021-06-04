@@ -135,12 +135,12 @@ namespace HCI_Projekat.OrganizatorView
                     }
                     catch (Exception)
                     {
-                        var we = new OkForm("Mail nije bilo moguće poslati\nmail klijentu.", "Neuspelo slanje mail-a");
+                        var we = new OkForm("Mail nije bilo moguće poslati\nmail klijentu.", "Neuspelo slanje mail-a", true);
                         we.ShowDialog();
                     }
                 }).Start();
             }
-            var wk = new OkForm("Manifestacija je poslata\nna uvid klijentu.", "Predlog poslat");
+            var wk = new OkForm("Manifestacija je poslata\nna uvid klijentu.", "Predlog poslat", true);
             wk.ShowDialog();
         }
 
@@ -168,7 +168,7 @@ namespace HCI_Projekat.OrganizatorView
         public void UkloniPonudu_Click(object sender, RoutedEventArgs e)
         {
             Ponuda selected = (Ponuda)ponude.SelectedItem;
-            var wq = new YesNo("Da li ste sigurni da\nželite da uklonite ponudu\n" + selected.Opis + "\niz manifestacije?", 0, "Potvrda uklanjanja");
+            var wq = new YesNo("Da li ste sigurni da\nželite da uklonite ponudu\n" + selected.Opis + "\niz manifestacije?", 0, "Potvrda uklanjanja", true);
             wq.ShowDialog();
 
             if (wq.Result != MessageBoxResult.Yes)
@@ -205,7 +205,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
             }
             ukupnaCena.Content = (from p in Ponude select p.Cena).Sum();
-            var wk = new OkForm("Ponuda je uklonjena\niz manifestacije.", "Ponuda uklonjena");
+            var wk = new OkForm("Ponuda je uklonjena\niz manifestacije.", "Ponuda uklonjena", true);
             wk.ShowDialog();
         }
 
@@ -293,12 +293,12 @@ namespace HCI_Projekat.OrganizatorView
             }
             if (check == true)
             {
-                var wk = new OkForm("Obeležili ste stavku\nkao završeno.", "Obeležena stavka");
+                var wk = new OkForm("Obeležili ste stavku\nkao završeno.", "Obeležena stavka", true);
                 wk.ShowDialog();
             }
             else
             {
-                var wk = new OkForm("Obeležili ste stavku\nkao nezavršeno.", "Obeležena stavka");
+                var wk = new OkForm("Obeležili ste stavku\nkao nezavršeno.", "Obeležena stavka", true);
                 wk.ShowDialog();
             }
         }

@@ -158,6 +158,6 @@
         </DataGrid>
 
         <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="30" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
-        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="45" Click="DodajSaradnika_Click" FontSize="25" Visibility="Hidden" >Dodaj</Button>
+        <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="50" Click="DodajSaradnika_Click" FontSize="25" Visibility="Hidden" >Dodaj</Button>
     </Grid>
 </Window>

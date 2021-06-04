@@ -21,11 +21,24 @@ namespace HCI_Projekat.VlalidationForms
     {
         public MessageBoxResult Result { get; set; }
 
-        public OkForm(string question, string title)
+        public OkForm(string question, string title, bool hugify = false)
         {
             InitializeComponent();
             QuestionBox.Text = question;
             Title = title;
+
+            if (hugify)
+            {
+                this.Height = this.Height + 50;
+                this.Width = this.Width + 50;
+                beli.Height = beli.Height + 50;
+                beli.Width = beli.Width + 50;
+                QuestionBox.Height = QuestionBox.Height + 50;
+                QuestionBox.Width = QuestionBox.Width + 50;
+                Ok.FontSize = 22;
+                Ok.Height = 40;
+                QuestionBox.FontSize = 27;
+            }
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)

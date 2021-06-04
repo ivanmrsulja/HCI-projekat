@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
-        Title="Pregled rasporeda gostiju" Height="550" Width="700" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
+        Title="Pregled rasporeda gostiju" Height="700" Width="950" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"></ColumnDefinition>
@@ -42,6 +42,6 @@
             <StackPanel x:Name="parentGrid" Orientation="Vertical" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True" Margin="10,10,10,10">
             </StackPanel>
         </ScrollViewer>
-        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Click="Nazad_Click">Nazad</Button>
+        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" FontSize="25" Click="Nazad_Click">Nazad</Button>
     </Grid>
 </Window>
