@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-        Title="Dodavanje saradnika" Height="670" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Dodavanje saradnika" Height="700" Width="540" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <Grid VerticalAlignment="Stretch">
         <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
             <Rectangle.Fill>
@@ -58,6 +58,6 @@
         </Grid>
         <Button IsEnabled="False" Name="potvrdi" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,-15" Content="POTVRDI"  Grid.ColumnSpan="2" Click="Potvrdi_Click"/>
         <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,-15" Content="ODUSTANI" Click="Button_Click"  />
-        <Button  Background="Transparent" Content="POMOĆ" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="216,0,216,-1" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Button_Click_1" />
+        <Button Content="POMOĆ" HorizontalAlignment="Center" Margin="216,0,216,-610" Cursor="Hand" Width="100" Click="Button_Click_1" />
     </Grid>
 </Window>

@@ -33,6 +33,9 @@ namespace HCI_Projekat.KlijentView
         private string FileName;
         List<Gost> listGostiju = new List<Gost>();
 
+        private double _budzet;
+        private int _gosti;
+
         public List<Organizator> Organizator { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -108,6 +111,32 @@ namespace HCI_Projekat.KlijentView
             {
                 _teme = value;
                 OnPropertyChanged("Teme");
+            }
+        }
+
+        public double Budzet
+        {
+            get
+            {
+                return _budzet;
+            }
+            set
+            {
+                _budzet = value;
+                OnPropertyChanged("Budzet");
+            }
+        }
+
+        public int Gosti
+        {
+            get
+            {
+                return _gosti;
+            }
+            set
+            {
+                _gosti = value;
+                OnPropertyChanged("Gosti");
             }
         }
 

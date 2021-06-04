@@ -123,7 +123,7 @@
             </Grid>
             <Button IsEnabled="False" Name="dodajBtn" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="DODAJ" Click="Dodaj_Click" Grid.ColumnSpan="2"/>
             <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,65" Content="ODUSTANI" Click="Odustani_Click"/>
-            <Button  Background="Transparent" Content="POMOĆ" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Foreground="Gray" Cursor="Hand" BorderBrush="Transparent" Width="100" Click="Pomoc_Click"/>
+            <Button Content="POMOĆ" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Cursor="Hand" Width="100" Click="Pomoc_Click"/>
         </Grid>
     </DockPanel>
 </Window>
