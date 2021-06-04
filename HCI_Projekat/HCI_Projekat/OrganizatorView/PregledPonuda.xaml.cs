@@ -84,7 +84,7 @@ namespace HCI_Projekat.OrganizatorView
 
             using (var db = new DatabaseContext())
             {
-                Ponude = new ObservableCollection<Ponuda>((from pon in db.Ponude where pon.Saradnik.Obrisan == false select pon));
+                Ponude = new ObservableCollection<Ponuda>((from pon in db.Ponude where pon.Saradnik.Obrisan == false && pon.Obrisana == false select pon));
                 View = CollectionViewSource.GetDefaultView(Ponude);
                 GroupView = true;
             }

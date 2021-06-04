@@ -257,9 +257,10 @@ namespace HCI_Projekat.OrganizatorView
             Saradnik current = (Saradnik)saradnici.SelectedItem;
             var w = new AzurirajSaradnika(current);
             w.ShowDialog();
-            //this.Close();
-            //OrganizatorHOME op = new OrganizatorHOME(ParentScreen,CurrentUser);
-            //op.ShowDialog();
+            using (var db = new DatabaseContext())
+            {
+                Saradnici = new ObservableCollection<Saradnik>(from sar in db.Saradnici where sar.Obrisan == false select sar);
+            }
 
         }
         public void Detaljnije_Click(object sender, EventArgs e)
