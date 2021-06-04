@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.Administrator"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="HomeAdmin" Height="600" Width="950" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+        Title="Admin" Height="600" Width="950" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:HomeAdmin.NewCommand}" Executed="NewCommandExecuted"/>
         <CommandBinding Command="{x:Static local:HomeAdmin.QCommand}" Executed="QCommandExecuted"/>
@@ -54,6 +54,12 @@
                 <DataGridTextColumn Header="Organizator" Width="Auto" Binding="{Binding Organizator.Username}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Klijent" Width="Auto" Binding="{Binding Klijent.Username}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#66c4ff" />
+                    <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <DataGrid Name="KorGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,10,0" Visibility="Hidden" ItemsSource="{Binding Path = Korisnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="RowKorisnik_MouseDoubleClick" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -65,6 +71,12 @@
                 <DataGridTextColumn Header="Adresa" Width="Auto" Binding="{Binding Adresa}" IsReadOnly="True"></DataGridTextColumn>
                 <DataGridTextColumn Header="Uloga" Width="Auto" Binding="{Binding Uloga}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#66c4ff" />
+                    <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <DataGrid Name="SarGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,10,0" Visibility="Hidden" ItemsSource="{Binding Path = Saradnici}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False" MouseDoubleClick="RowSaradnik_MouseDoubleClick">
             <DataGrid.Columns>
@@ -81,6 +93,12 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#66c4ff" />
+                    <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <DataGrid Name="KomGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,10,0" Visibility="Hidden" ItemsSource="{Binding Path = Komentari}" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -96,12 +114,18 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#66c4ff" />
+                    <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
 
         <Label Name="DodajOrgLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog organizatora: </Label>
         <Button Name="DodajOrgBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajOrganizatora_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
 
-        <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog Saradnika:</Label>
+        <Label Name="DodajSarLabel" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25" Visibility="Hidden" >Dodaj novog saradnika:</Label>
         <Button Name="DodajSarBtn" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" Width="Auto" Height="40" Click="DodajSaradnika_Click" FontSize="20" Visibility="Hidden" >Dodaj</Button>
 
         <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="314">

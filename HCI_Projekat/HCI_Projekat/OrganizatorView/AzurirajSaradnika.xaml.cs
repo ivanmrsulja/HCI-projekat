@@ -240,9 +240,9 @@ namespace HCI_Projekat.OrganizatorView
                             }
                         }
                     }
+                    
                 }
                 db.SaveChanges();
-                saradnik = s1 as Saradnik;
             }
             var dijalog5 = new OkForm("Uspešno ste ažurirali\nprofil.", "Uspešno sačuvano");
             dijalog5.ShowDialog();

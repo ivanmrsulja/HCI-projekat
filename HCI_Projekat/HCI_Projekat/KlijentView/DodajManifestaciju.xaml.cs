@@ -80,6 +80,13 @@ namespace HCI_Projekat.KlijentView
             {
                 potvrdi.IsEnabled = true;
             }
+            if(datum.SelectedDate !=null)
+            {
+                if (datum.SelectedDate < DateTime.Now)
+                {
+                    datum.SelectedDate = null;
+                }
+            }
 
         }
 

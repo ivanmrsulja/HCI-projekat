@@ -103,11 +103,11 @@ namespace HCI_Projekat.Administrator
                 Username = Organizator.Username;
                 adresa.Text = Organizator.Adresa;
                 Telefon = Organizator.Telefon;
-                dodajBtn.Content = "SACUVAJ";
+                dodajBtn.Content = "SAČUVAJ";
                 HintAssist.SetHint(passConf, "NOVA LOZINKA");
                 user.IsReadOnly = true;
-                naslov.Content = "AZURIRANJE ORGANIZATORA";
-                Title = "Azuriranje organizatora";
+                naslov.Content = "AŽURIRANJE ORGANIZATORA";
+                Title = "Ažuriranje organizatora";
             }
 
         }

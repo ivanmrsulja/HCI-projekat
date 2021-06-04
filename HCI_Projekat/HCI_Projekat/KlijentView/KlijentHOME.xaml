@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="KlijentHOME" Height="750" Width="1350" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" >
+        Title="Klijent" Height="750" Width="1350" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" WindowState="Maximized" >
     <Grid>
 
         <Grid.RowDefinitions>
@@ -94,6 +94,12 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#66c4ff" />
+                    <Setter Property="Foreground" Value="#FBFAF5"></Setter>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
     </Grid>
 </Window>

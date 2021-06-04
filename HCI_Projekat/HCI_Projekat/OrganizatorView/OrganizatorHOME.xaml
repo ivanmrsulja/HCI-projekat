@@ -7,7 +7,7 @@
         xmlns:root="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="OrganizatorHOME" Height="700" Width="1200" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome" WindowStartupLocation="CenterScreen">
+        Title="Organizator" Height="700" Width="1200" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>
@@ -33,12 +33,16 @@
         <Button Grid.Row="0" Grid.Column="4" FontSize="22" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" ToolTip="Potrebna vam je pomoć?" Click="Pomoc_Click">Pomoć</Button>
         <Button Grid.Row="0" Grid.Column="5" FontSize="22" Height="50" VerticalAlignment="Top" Click="Odjava" ToolTip="Odjavite se sa profila" >Odjava</Button>
 
-        <StackPanel x:Name="searchBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel x:Name="searchBar" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock FontSize="32" Margin="0,0,7,0">Pretraga po datumu:</TextBlock>
             <DatePicker Name="datum" FontSize="32" Width="170" SelectedDateChanged="PretraziDatum"></DatePicker>
             <Button x:Name="undoBtn" FontSize="32" Grid.Column="1" Height="50" Margin="10,0,0,0" Click="Undo_Click">⟲</Button>
-            <TextBlock FontSize="32" Margin="7,0,7,0">Izaberite temu:</TextBlock>
-            <ComboBox Name="tema" Grid.Row="1" Grid.Column="4" FontSize="32" Width="240" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock FontSize="32" Margin="7,0,7,0">Izaberite temu:</TextBlock>
+                <ComboBox Name="tema" Grid.Row="1" Grid.Column="4" FontSize="32" Width="240" ItemsSource="{Binding Teme}" SelectionChanged="Filtriraj"></ComboBox>
+            </StackPanel>
         </StackPanel>
 
         <TextBlock x:Name="aktuelnoLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" Visibility="Hidden">Pregled aktuelnih manifestacija</TextBlock>

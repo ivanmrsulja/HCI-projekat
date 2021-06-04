@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="PregledPonuda" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+        Title="Pregled Ponuda" Height="450" Width="800" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>

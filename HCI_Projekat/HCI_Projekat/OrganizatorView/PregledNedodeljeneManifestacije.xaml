@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
-        Title="Pregled nedodeljene manifestacije" Height="760" Width="800">
+        Title="Pregled nedodeljene manifestacije" Height="700" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"></ColumnDefinition>

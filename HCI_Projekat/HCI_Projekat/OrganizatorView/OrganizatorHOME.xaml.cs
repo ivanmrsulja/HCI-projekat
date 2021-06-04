@@ -257,8 +257,11 @@ namespace HCI_Projekat.OrganizatorView
             Saradnik current = (Saradnik)saradnici.SelectedItem;
             var w = new AzurirajSaradnika(current);
             w.ShowDialog();
-        }
+            //this.Close();
+            //OrganizatorHOME op = new OrganizatorHOME(ParentScreen,CurrentUser);
+            //op.ShowDialog();
 
+        }
         public void Detaljnije_Click(object sender, EventArgs e)
         {
             Manifestacija current = (Manifestacija)nedodeljeno.SelectedItem;
