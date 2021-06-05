@@ -249,6 +249,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
                 db.SaveChanges();
                 Saradnici = new ObservableCollection<Saradnik>(from sar in db.Saradnici where sar.Obrisan == false select sar);
+                saradnici.ItemsSource = Saradnici;
             }
         }
 

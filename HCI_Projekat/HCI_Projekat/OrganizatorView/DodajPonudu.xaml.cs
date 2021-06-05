@@ -1,8 +1,10 @@
-﻿using HCI_Projekat.VlalidationForms;
+﻿using HCI_Projekat.Model;
+using HCI_Projekat.VlalidationForms;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,10 +54,15 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
-        public DodajPonudu(bool res)
+        List<Sto> Stolovi { get; set; }
+
+        public DodajPonudu(bool res, List<Sto> s)
         {
             InitializeComponent();
             DataContext = this;
+
+            Stolovi = s;
+
             if (res == false)
             {
                 izaberiFajl.Visibility = Visibility.Hidden;
@@ -65,6 +72,12 @@ namespace HCI_Projekat.OrganizatorView
 
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (opis.Text.Contains("-"))
+            {
+                var wk = new OkForm("Opis ponude sadrži nedozvoljene karaktere ('-').", "Opis sadrži nedozvoljene karaktere.", true);
+                wk.ShowDialog();
+                return;
+            }
             retValue= opis.Text + " - " + cena.Text+","+ FileName ;
             this.Close();
         }
@@ -95,14 +108,42 @@ namespace HCI_Projekat.OrganizatorView
                     FileName = "";
                     var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
-                    FileName = "";
+                    imeFajla.Content = "(AKO JE SALA)";
+                    return;
                 }
-                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt" || System.IO.Path.GetFileName(FileName).Split('.')[1] != "csv")
+                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "txt" && System.IO.Path.GetFileName(FileName).Split('.')[1] != "csv")
                 {
-                    var wk = new OkForm("Niste izabrali tekstualni fajl.", "");
+                    Console.WriteLine(System.IO.Path.GetFileName(FileName).Split('.')[1]);
+                    var wk = new OkForm("Niste izabrali .txt ili .csv fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
                     FileName = "";
+                    imeFajla.Content = "(AKO JE SALA)";
+                    return;
                 }
+
+                string[] lines = System.IO.File.ReadAllLines(FileName);
+
+                foreach(string line in lines)
+                {
+                    string[] tokens = line.Split(',');
+                    if(tokens.Count() != 2)
+                    {
+                        var wk = new OkForm("Pogrešna struktura fajla.", "Greška u učitavanju");
+                        wk.ShowDialog();
+                    }
+                    try
+                    {
+                        Sto novi = new Sto(Int32.Parse(tokens[0]), Int32.Parse(tokens[1]));
+                        Stolovi.Add(novi);
+                    }
+                    catch
+                    {
+                        var wk = new OkForm("Vrednosti u fajlu su pogrešnog formata.", "Greška u učitavanju");
+                        wk.ShowDialog();
+                    }
+                    
+                }
+
             }
             catch
             {

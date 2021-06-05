@@ -33,6 +33,8 @@ namespace HCI_Projekat.OrganizatorView
         int btnCounter = 1;
         string putanjaDoFajla = "";
 
+        Dictionary<string, List<Sto>> Stolovi = new Dictionary<string, List<Sto>>();
+
         public DodajSaradnika()
         {
             InitializeComponent();
@@ -64,7 +66,7 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
-        private void FormStateChanged(object sender, RoutedEventArgs e)
+        private void FormStateChanged(object sender, EventArgs e)
         {
 
             if (tip.Text.Trim() == "" || naziv.Text.Trim() == "" || adresa.Text.Trim() == "" || specijalizacija.Text.Trim() == "")
@@ -111,21 +113,16 @@ namespace HCI_Projekat.OrganizatorView
                     FileName = "";
                     var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
-                    FileName = "";
-                }
-                else if (System.IO.Path.GetFileName(FileName).Split('.')[1]=="jpg"|| System.IO.Path.GetFileName(FileName).Split('.')[1] == "png")
-                {
-                    var wk = new OkForm("Niste izabrali jpg ili png fajl.", "Pogrešan format fajla");
-                    wk.ShowDialog();
-                    FileName = "";
-                }
-                else
-                {
-                    var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Nepodržan format slike");
-                    wk.ShowDialog();
                     imeFajla.Content = "IME FAJLA";
+                }
+                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" && System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
+                {
+                    var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Pogrešan format fajla");
+                    wk.ShowDialog();
                     FileName = "";
-                }                
+                    imeFajla.Content = "IME FAJLA";
+                }
+                             
             }
             catch
             {
@@ -144,8 +141,8 @@ namespace HCI_Projekat.OrganizatorView
             string tmp= "grid"+btnCounter.ToString();
             var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                   xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" Name="""+tmp+@""">
-                                 <Label Content =""" + nazivPonude + @""" Margin = ""10,0,0,0"" Foreground = ""Gray"" FontSize = ""18"" HorizontalAlignment = ""Left"" Width = ""280"" />
-                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""280,8,0,10.4"" />                      
+                                 <Label Content =""" + nazivPonude + @""" Margin = ""5,0,0,0"" Foreground = ""Gray"" FontSize = ""22"" HorizontalAlignment = ""Left"" Width = ""280"" />
+                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""335,8,0,10.4"" />                      
                             </Grid>";
             btnCounter++;
             var stringReader = new StringReader(StackPanelAddApex);
@@ -164,13 +161,17 @@ namespace HCI_Projekat.OrganizatorView
             {
                 res = true;   
             }
-            DodajPonudu dodajPonuduForm = new DodajPonudu(res);
+
+            List<Sto> stolovi = new List<Sto>();
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi);
+
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
             if (tmp != "")
             {
                 addPonuda(tmp.Split(',')[0]);
                 putanjaDoFajla = tmp.Split(',')[1];
+                Stolovi[tmp.Split(',')[0]] = stolovi;
             }
         }
 
@@ -239,21 +240,19 @@ namespace HCI_Projekat.OrganizatorView
                             string opisICena = s.Split(',')[0];
                             Ponuda p = new Ponuda(opisICena.Split('-')[0], Convert.ToDouble(opisICena.Split('-')[1]), s1);
 
-                            if(imeFajla.Content.ToString()!="IME FAJLA")
-                            {
-                                using (var reader = new StreamReader(putanjaDoFajla))
+                            foreach(Sto st in Stolovi[opisICena])
+                            {   
+                                if(s1.Tip != TipSaradnika.RESTORAN)
                                 {
-                                    while (!reader.EndOfStream)
-                                    {
-                                        var line = reader.ReadLine();
-                                        var values = line.Split(',');
-
-                                        Sto sto1 = new Sto(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
-                                        db.Stolovi.Add(sto1);
-                                        p.Stolovi.Add(sto1);
-                                    }
+                                    var wk = new OkForm("Imate ponudu sa stolovima za saradnika koji nije restoran. Uklonite te ponude ili promenite tip.", "Greška pri čuvanju", true);
+                                    wk.ShowDialog();
+                                    return;
                                 }
+                                Sto sto1 = new Sto(st.BrojOsoba, st.BrojStola);
+                                db.Stolovi.Add(sto1);
+                                p.Stolovi.Add(sto1);
                             }
+
                             db.Ponude.Add(p);
                             s1.AddPonuda(p);
                         }

@@ -33,6 +33,8 @@ namespace HCI_Projekat.OrganizatorView
         private string putanjaDoFajla="";
         int btnCounter = 1;
 
+        Dictionary<string, List<Sto>> Stolovi = new Dictionary<string, List<Sto>>();
+
         public AzurirajSaradnika(Saradnik k)
         {
             InitializeComponent();
@@ -72,8 +74,8 @@ namespace HCI_Projekat.OrganizatorView
                         string tmp = "grid" + btnCounter.ToString();
                         var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" Name=""" + tmp + @""">
-                                 <Label Content =""" + item.Opis + @""" Margin = ""10,0,0,0"" Foreground = ""Gray"" FontSize = ""18"" HorizontalAlignment = ""Left"" Width = ""280"" />
-                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""280,8,0,10.4"" />                      
+                                 <Label Content =""" + item.Opis + @""" Margin = ""5,0,0,0"" Foreground = ""Gray"" FontSize = ""22"" HorizontalAlignment = ""Left"" Width = ""280"" />
+                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""335,8,0,10.4"" />                      
                             </Grid>";
                         btnCounter++;
                         var stringReader = new StringReader(StackPanelAddApex);
@@ -204,22 +206,21 @@ namespace HCI_Projekat.OrganizatorView
         {
             using (var db = new DatabaseContext())
             {
-                var s1 = db.Saradnici.SingleOrDefault(b => b.Id == saradnik.Id);
+                var s1 = db.Saradnici.FirstOrDefault(b => b.Id == saradnik.Id);
                 if (s1 != null)
                 {
                     s1.MapaObjekta = imeFajla.Content.ToString();
                     s1.Naziv = naziv.Text;
                     s1.Specijalizacija = specijalizacija.Text;
-                    s1.Tip = ts(tip.Text);
                     s1.Adresa = adresa.Text;
 
                     var pon = (from c in db.Ponude
                                where c.Saradnik.Id == saradnik.Id
                                select c).ToList();
-                    foreach (var item in pon)
-                    {
-                        item.Obrisana = true;
-                    }
+                    //foreach (var item in pon)
+                    //{
+                    //    item.Obrisana = true;
+                    //}
 
                     foreach (var item in ponude.Children)
                     {
@@ -235,15 +236,33 @@ namespace HCI_Projekat.OrganizatorView
                                     Label l = decooo as Label;
                                     s = l.Content.ToString();
                                 }
+                            }
 
-                                if (s != "PONUDE:" && s != "DODAJ")
+                            if (s != "PONUDE:")
+                            {
+                                string opisICena = s.Split(',')[0];
+
+                                if (opisICena.Split('-').Length == 2)
                                 {
-                                    string opisICena = s.Split(',')[0];
+                                    Ponuda p = new Ponuda(opisICena.Split('-')[0], Convert.ToDouble(opisICena.Split('-')[1]), s1);
 
-                                    Ponuda p = pon.Find(x => x.Opis == opisICena.Split('-')[0]);
-                                    p.Obrisana = false;
+                                    foreach (Sto st in Stolovi[opisICena])
+                                    {
+                                        if (s1.Tip != TipSaradnika.RESTORAN)
+                                        {
+                                            var wk = new OkForm("Imate ponudu sa stolovima za saradnika koji nije restoran. Uklonite te ponude ili promenite tip saradnika.", "Greška pri čuvanju", true);
+                                            wk.ShowDialog();
+                                            return;
+                                        }
+                                        Sto sto1 = new Sto(st.BrojOsoba, st.BrojStola);
+                                        db.Stolovi.Add(sto1);
+                                        p.Stolovi.Add(sto1);
+                                    }
 
+                                    db.Ponude.Add(p);
+                                    s1.AddPonuda(p);
                                 }
+
                             }
                         }
                     }
@@ -267,39 +286,41 @@ namespace HCI_Projekat.OrganizatorView
             {
                 res = true;
             }
-            DodajPonudu dodajPonuduForm = new DodajPonudu(res);
+
+            List<Sto> stolovi = new List<Sto>();
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi);
+            
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
             if (tmp != "")
             {
-                using (var db = new DatabaseContext())
-                {
-                    addPonuda(tmp.Split(',')[0]);
-                    string putanja = tmp.Split(',')[1];
+                addPonuda(tmp.Split(',')[0]);
+                string putanja = tmp.Split(',')[1];
+                Stolovi[tmp.Split(',')[0]] = stolovi;
+                //using (var db = new DatabaseContext())
+                //{
+                //    var s1 = db.Saradnici.SingleOrDefault(b => b.Id == saradnik.Id);
+                //    Ponuda p = new Ponuda(tmp.Split(',')[0].Split('-')[0],Convert.ToDouble(tmp.Split(',')[0].Split('-')[1]),s1);
+                //    if (putanja!="")
+                //    {
+                //        p.putanjaDoFile = putanja;
+                //        using (var reader = new StreamReader(putanja))
+                //        {
+                //            while (!reader.EndOfStream)
+                //            {
+                //                var line = reader.ReadLine();
+                //                var values = line.Split(',');
 
-                    
-                    var s1 = db.Saradnici.SingleOrDefault(b => b.Id == saradnik.Id);
-                    Ponuda p = new Ponuda(tmp.Split(',')[0].Split('-')[0],Convert.ToDouble(tmp.Split(',')[0].Split('-')[1]),s1);
-                    if (putanja!="")
-                    {
-                        p.putanjaDoFile = putanja;
-                        using (var reader = new StreamReader(putanja))
-                        {
-                            while (!reader.EndOfStream)
-                            {
-                                var line = reader.ReadLine();
-                                var values = line.Split(',');
-
-                                Sto sto1 = new Sto(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
-                                db.Stolovi.Add(sto1);
-                                p.Stolovi.Add(sto1);
-                            }
-                        }
-                    }
-                    db.Ponude.Add(p);
-                    s1.AddPonuda(p);
-                    db.SaveChanges();
-                }
+                //                Sto sto1 = new Sto(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+                //                db.Stolovi.Add(sto1);
+                //                p.Stolovi.Add(sto1);
+                //            }
+                //        }
+                //    }
+                //    db.Ponude.Add(p);
+                //    s1.AddPonuda(p);
+                //    db.SaveChanges();
+                //}
             }
 
             //ne diraj ovo i ako ima 10 pametnijih nacina ovo radi
@@ -313,8 +334,8 @@ namespace HCI_Projekat.OrganizatorView
             string tmp = "grid" + btnCounter.ToString();
             var StackPanelAddApex = @"<Grid xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation"" 
                   xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" Name=""" + tmp + @""">
-                                 <Label Content =""" + nazivPonude + @""" Margin = ""10,0,0,0"" Foreground = ""Gray"" FontSize = ""18"" HorizontalAlignment = ""Left"" Width = ""280"" />
-                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""280,8,0,10.4"" />                      
+                                 <Label Content =""" + nazivPonude + @""" Margin = ""5,0,0,0"" Foreground = ""Gray"" FontSize = ""22"" HorizontalAlignment = ""Left"" Width = ""280"" />
+                                 <Button Name = ""btn" + btnCounter + @""" Content = ""🗑"" HorizontalAlignment = ""Left"" Cursor = ""Hand"" Width = ""50"" ToolTip = ""Ukloni ponudu"" Margin = ""335,8,0,10.4"" />                      
                             </Grid>";
             btnCounter++;
             var stringReader = new StringReader(StackPanelAddApex);

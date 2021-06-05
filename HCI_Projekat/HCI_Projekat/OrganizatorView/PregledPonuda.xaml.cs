@@ -131,6 +131,21 @@ namespace HCI_Projekat.OrganizatorView
                         w2.ShowDialog();
                         return;
                     }
+                    foreach(Ponuda ukljucena in toUpdate.Ponude)
+                    {
+                        foreach(Sto uks in ukljucena.Stolovi)
+                        {
+                            foreach(Sto st in toAdd.Stolovi)
+                            {
+                                if(uks.BrojStola == st.BrojStola)
+                                {
+                                    var w2 = new OkForm("Već uključene ponude sadrže (pojedine) iste stolove kao i ova.", "Stolovi dva puta rezervisani", true);
+                                    w2.ShowDialog();
+                                    return;
+                                }
+                            }
+                        }
+                    }
                 }
                 toUpdate.AddPonuda(toAdd);
                 toUpdate.PredlozenoZaZavrsavanje = false;
