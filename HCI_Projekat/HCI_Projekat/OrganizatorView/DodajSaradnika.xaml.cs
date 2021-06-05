@@ -163,7 +163,7 @@ namespace HCI_Projekat.OrganizatorView
             }
 
             List<Sto> stolovi = new List<Sto>();
-            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi);
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi, null);
 
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;
@@ -214,6 +214,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
+            List<string> keepingTrack = new List<string>();
             using (var db = new DatabaseContext())
             {
                 Saradnik s1 = new Saradnik(naziv.Text, adresa.Text, tipSaradnika(tip.Text), specijalizacija.Text, FileName);
@@ -238,7 +239,17 @@ namespace HCI_Projekat.OrganizatorView
                         {
 
                             string opisICena = s.Split(',')[0];
-                            Ponuda p = new Ponuda(opisICena.Split('-')[0], Convert.ToDouble(opisICena.Split('-')[1]), s1);
+                            Ponuda p = new Ponuda(opisICena.Split('-')[0].Trim(), Convert.ToDouble(opisICena.Split('-')[1].Trim()), s1);
+                            foreach(string op in keepingTrack)
+                            {
+                                if(op == opisICena.Split('-')[0])
+                                {
+                                    var wk = new OkForm("Dve ponude kod istog saradnika ne mogu imati isti opis.", "Dupliran opis", true);
+                                    wk.ShowDialog();
+                                    return;
+                                }
+                            }
+                            keepingTrack.Add(opisICena.Split('-')[0]);
 
                             foreach(Sto st in Stolovi[opisICena])
                             {   

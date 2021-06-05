@@ -217,7 +217,10 @@ namespace HCI_Projekat.OrganizatorView
                 var s1 = db.Saradnici.FirstOrDefault(b => b.Id == saradnik.Id);
                 if (s1 != null)
                 {
-                    s1.MapaObjekta = imeFajla.Content.ToString();
+                    if(imeFajla.Content != null)
+                    {
+                        s1.MapaObjekta = imeFajla.Content.ToString();
+                    }
                     s1.Naziv = naziv.Text;
                     s1.Specijalizacija = specijalizacija.Text;
                     s1.Adresa = adresa.Text;
@@ -252,7 +255,7 @@ namespace HCI_Projekat.OrganizatorView
 
                                 if (opisICena.Split('-').Length == 2)
                                 {
-                                    Ponuda p = new Ponuda(opisICena.Split('-')[0], Convert.ToDouble(opisICena.Split('-')[1]), s1);
+                                    Ponuda p = new Ponuda(opisICena.Split('-')[0].Trim(), Convert.ToDouble(opisICena.Split('-')[1].Trim()), s1);
 
                                     foreach (Sto st in Stolovi[opisICena])
                                     {
@@ -296,7 +299,7 @@ namespace HCI_Projekat.OrganizatorView
             }
 
             List<Sto> stolovi = new List<Sto>();
-            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi);
+            DodajPonudu dodajPonuduForm = new DodajPonudu(res, stolovi, saradnik);
             
             dodajPonuduForm.ShowDialog();
             string tmp = dodajPonuduForm.Ret;

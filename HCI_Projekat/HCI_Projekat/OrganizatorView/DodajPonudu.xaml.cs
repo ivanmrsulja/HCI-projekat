@@ -54,14 +54,16 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
-        List<Sto> Stolovi { get; set; }
+        public List<Sto> Stolovi { get; set; }
+        public Saradnik Saradnik;
 
-        public DodajPonudu(bool res, List<Sto> s)
+        public DodajPonudu(bool res, List<Sto> s, Saradnik sa)
         {
             InitializeComponent();
             DataContext = this;
 
             Stolovi = s;
+            Saradnik = sa;
 
             if (res == false)
             {
@@ -78,7 +80,24 @@ namespace HCI_Projekat.OrganizatorView
                 wk.ShowDialog();
                 return;
             }
-            retValue= opis.Text + " - " + cena.Text+","+ FileName ;
+            if(Saradnik != null)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    Saradnik owner = (from sar in db.Saradnici where sar.Id == Saradnik.Id select sar).FirstOrDefault();
+                    foreach (Ponuda p in owner.Ponude)
+                    {
+                        Console.WriteLine(p.Opis == opis.Text);
+                        if (p.Opis.Trim() == opis.Text.Trim())
+                        {
+                            var wk = new OkForm("Dve ponude kod istog saradnika ne mogu imati isti opis.", "Dupliran opis", true);
+                            wk.ShowDialog();
+                            return;
+                        }
+                    }
+                }
+            }
+            retValue = opis.Text + " - " + cena.Text + "," + FileName;
             this.Close();
         }
 
