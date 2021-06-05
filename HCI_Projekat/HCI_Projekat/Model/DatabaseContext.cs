@@ -114,6 +114,7 @@ namespace HCI_Projekat.Model
     {
         public List<Manifestacija> Manifestacije { get; set; }
         public virtual List<Komentar> Komentari { get; set; }
+        [Required]
         public int Zauzetost { get; set; }
 
         public Organizator() : base()

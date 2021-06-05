@@ -91,6 +91,11 @@ namespace HCI_Projekat.KlijentView
             }
             undoBtn.Visibility = Visibility.Collapsed;
             _undoOngoing = false;
+
+            if (Manifestacije.Count == 0)
+            {
+                dgrMain.Visibility = Visibility.Hidden;
+            }
         }
 
         protected void OnPropertyChanged(string info)
