@@ -92,6 +92,14 @@ namespace HCI_Projekat.OrganizatorView
 
         private void BtnObrisi_Click(object sender, RoutedEventArgs e)
         {
+            var wk = new YesNo("Da li ste sigurni \nda želite da obrišete ponudu?", 0, "Obriši ponudu", true);
+            wk.ShowDialog();
+
+            if (wk.Result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             Button btn = sender as Button;
             string tmp = btn.Name.ToString();
             tmp = tmp.Remove(0, 3);
@@ -169,7 +177,7 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     izaberiFajl.Visibility = Visibility.Visible;
                     imeFajla.Visibility = Visibility.Visible;
-                    if (imeFajla.Content.ToString() == "IME FAJLA")
+                    if (imeFajla.Content.ToString() == "IME FAJLA" || imeFajla.Content == null)
                     {
                         potvrdi.IsEnabled = false;
                     }
@@ -366,7 +374,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
                 else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" || System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
                 {
-                    var wk = new OkForm("Niste izabrali tekstualni fajl.", "Pogrešan format fajla");
+                    var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
                     FileName = "";
                 }
