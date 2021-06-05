@@ -147,6 +147,10 @@ namespace HCI_Projekat.KlijentView
         {
             var w = new DodajManifestaciju(Klijent as Klijent, dgrMain, Manifestacije);
             w.ShowDialog();
+            if(dgrMain.Items.Count > 0)
+            {
+                dgrMain.Visibility = Visibility.Visible;
+            }
         }
 
         public void Odbaci_Click(object sender, RoutedEventArgs e)
