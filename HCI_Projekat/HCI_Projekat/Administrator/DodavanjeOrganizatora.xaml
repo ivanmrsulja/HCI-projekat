@@ -56,7 +56,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox2"/>
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-195,45,0,0" VerticalAlignment="Center" Foreground="Red"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" FontSize="16" Margin="-225,45,0,0" VerticalAlignment="Center" Foreground="Red"/>
                                 </Grid>
                             </ControlTemplate>
                         </Validation.ErrorTemplate>

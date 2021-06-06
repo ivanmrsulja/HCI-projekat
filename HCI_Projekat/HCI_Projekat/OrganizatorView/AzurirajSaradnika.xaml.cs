@@ -284,7 +284,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
                 db.SaveChanges();
             }
-            var dijalog5 = new OkForm("Uspešno ste ažurirali\nprofil.", "Uspešno sačuvano", true);
+            var dijalog5 = new OkForm("Uspešno ste ažurirali\nsaradnika.", "Uspešno sačuvano", true);
             dijalog5.ShowDialog();
             this.Close();
         }

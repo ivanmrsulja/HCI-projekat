@@ -147,7 +147,7 @@ namespace HCI_Projekat.KlijentView
 
                 if (check_users.ToList().Count > 0)
                 {
-                    var userDijalog = new OkForm("Novi username je već\nu upotrebi.", "Username već u upotrebi");
+                    var userDijalog = new OkForm("Novo korisničko ime je već\nu upotrebi.", "Korisničko ime već u upotrebi");
                     userDijalog.ShowDialog();
                     return;
                 }

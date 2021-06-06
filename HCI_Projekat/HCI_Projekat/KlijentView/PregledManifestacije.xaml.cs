@@ -110,6 +110,12 @@ namespace HCI_Projekat.KlijentView
                     try
                     {
                         double d = Double.Parse(budzet.Text);
+                        if(d <= 0)
+                        {
+                            var w = new OkForm("Budžet mora biti pozitivan broj.", "Loše ste popunili polja");
+                            w.ShowDialog();
+                            return;
+                        }
                     }
                     catch
                     {

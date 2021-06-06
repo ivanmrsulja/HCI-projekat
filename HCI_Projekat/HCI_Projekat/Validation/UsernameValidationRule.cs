@@ -25,7 +25,7 @@ namespace HCI_Projekat.Validation
                     }
                     else
                     {
-                        return new ValidationResult(false, "Username je vec u upotrebi.");
+                        return new ValidationResult(false, "Korisničko ime je već u upotrebi.");
                     }
                 }
 
