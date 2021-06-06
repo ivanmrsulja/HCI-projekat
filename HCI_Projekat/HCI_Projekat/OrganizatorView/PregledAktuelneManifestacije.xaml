@@ -32,10 +32,10 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

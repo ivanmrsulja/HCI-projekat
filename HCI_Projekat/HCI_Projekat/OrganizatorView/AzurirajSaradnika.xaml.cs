@@ -112,9 +112,56 @@ namespace HCI_Projekat.OrganizatorView
                     if (g.Name == "grid" + tmp)
                     {
                         brisanje = g;
+                        foreach (var i in g.Children)
+                        {
+                            if (i is Label)
+                            {
+                                if (((Label)i).Content.ToString().Contains("-")){
+                                    break;
+                                }
+                                using (var db = new DatabaseContext())
+                                {
+                                    Saradnik toUpdate = (from sar in db.Saradnici where sar.Id == saradnik.Id select sar).FirstOrDefault();
+                                    Ponuda toDelete = null;
+                                    for(int j = 0; j < toUpdate.Ponude.Count; j++)
+                                    {
+                                        if(toUpdate.Ponude[j].Opis == ((Label)i).Content.ToString())
+                                        {
+                                            toDelete = toUpdate.Ponude[j];
+                                            toUpdate.Ponude.RemoveAt(j);
+                                            break;
+                                        }
+                                    }
+                                    if(toDelete != null)
+                                    {
+                                        foreach(Manifestacija man in db.Manifestacije)
+                                        {
+                                            if (man.Status == StatusManifestacije.U_IZRADI)
+                                            {
+                                                man.Ponude.Remove(toDelete);
+                                                if (toDelete.Stolovi.Count > 0)
+                                                {
+                                                    foreach (Gost gost in man.Gosti)
+                                                    {
+                                                        foreach (Sto sto in toDelete.Stolovi)
+                                                        {
+                                                            if (gost.BrojStola == sto.BrojStola)
+                                                            {
+                                                                gost.BrojStola = 0;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        toDelete.Obrisana = true;
+                                        db.SaveChanges();
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-
             }
             if (brisanje != null)
                 ponude.Children.Remove(brisanje);
@@ -228,10 +275,6 @@ namespace HCI_Projekat.OrganizatorView
                     var pon = (from c in db.Ponude
                                where c.Saradnik.Id == saradnik.Id
                                select c).ToList();
-                    //foreach (var item in pon)
-                    //{
-                    //    item.Obrisana = true;
-                    //}
 
                     foreach (var item in ponude.Children)
                     {
@@ -308,30 +351,7 @@ namespace HCI_Projekat.OrganizatorView
                 addPonuda(tmp.Split(',')[0]);
                 string putanja = tmp.Split(',')[1];
                 Stolovi[tmp.Split(',')[0]] = stolovi;
-                //using (var db = new DatabaseContext())
-                //{
-                //    var s1 = db.Saradnici.SingleOrDefault(b => b.Id == saradnik.Id);
-                //    Ponuda p = new Ponuda(tmp.Split(',')[0].Split('-')[0],Convert.ToDouble(tmp.Split(',')[0].Split('-')[1]),s1);
-                //    if (putanja!="")
-                //    {
-                //        p.putanjaDoFile = putanja;
-                //        using (var reader = new StreamReader(putanja))
-                //        {
-                //            while (!reader.EndOfStream)
-                //            {
-                //                var line = reader.ReadLine();
-                //                var values = line.Split(',');
 
-                //                Sto sto1 = new Sto(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
-                //                db.Stolovi.Add(sto1);
-                //                p.Stolovi.Add(sto1);
-                //            }
-                //        }
-                //    }
-                //    db.Ponude.Add(p);
-                //    s1.AddPonuda(p);
-                //    db.SaveChanges();
-                //}
             }
 
             //ne diraj ovo i ako ima 10 pametnijih nacina ovo radi
@@ -371,11 +391,8 @@ namespace HCI_Projekat.OrganizatorView
                 if (System.IO.Path.GetFileName(FileName) == null)
                 {
                     FileName = "";
-                    var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
-                    wk.ShowDialog();
-                    FileName = "";
                 }
-                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" || System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
+                else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" && System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
                 {
                     var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
@@ -387,7 +404,6 @@ namespace HCI_Projekat.OrganizatorView
                 FileName = "";
                 var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
                 wk.ShowDialog();
-                FileName = "";
             }
         }
     }
