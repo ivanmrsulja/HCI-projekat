@@ -229,7 +229,7 @@ namespace HCI_Projekat.OrganizatorView
 
                 if(Int32.Parse(target.Name.Split('_')[1]) > 0 && targetData.Count == BrojMestaZaStolovima[Int32.Parse(target.Name.Split('_')[1])])
                 {
-                    var wk = new OkForm("Kapacitet ovog stola\nje popunjen.", "Nema mesta za stolom");
+                    var wk = new OkForm("Kapacitet ovog stola\nje popunjen.", "Nema mesta za stolom", true);
                     wk.ShowDialog();
                     return;
                 }
@@ -306,6 +306,8 @@ namespace HCI_Projekat.OrganizatorView
             {
                 e.Cancel = true;
             }
+            Image = null;
+            GC.Collect();
         }
     }
 }

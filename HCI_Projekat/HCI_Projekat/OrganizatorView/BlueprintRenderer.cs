@@ -16,7 +16,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                this.BackgroundImage = new BitmapImage(new Uri("../../Source/map.jpg", UriKind.Relative));
+                //this.BackgroundImage = new BitmapImage(new Uri("../../Source/map.jpg", UriKind.Relative));
             }
         }
 
@@ -39,7 +39,12 @@ namespace HCI_Projekat.OrganizatorView
         private static void Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var c = d as BlueprintRenderer;
+            if (c.BackgroundImage == null)
+            {
+                c.BackgroundImage = null;
+            }
             c.InvalidateVisual();
+            GC.Collect();
         }
 
         protected override void OnRender(DrawingContext drawingContext)

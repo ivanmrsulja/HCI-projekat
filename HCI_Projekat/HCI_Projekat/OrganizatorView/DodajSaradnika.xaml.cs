@@ -127,6 +127,7 @@ namespace HCI_Projekat.OrganizatorView
             catch
             {
                 FileName = "";
+                imeFajla.Content = "IME FAJLA";
             }
 
             //ne diraj ovo 
@@ -217,7 +218,23 @@ namespace HCI_Projekat.OrganizatorView
             List<string> keepingTrack = new List<string>();
             using (var db = new DatabaseContext())
             {
-                Saradnik s1 = new Saradnik(naziv.Text, adresa.Text, tipSaradnika(tip.Text), specijalizacija.Text, FileName);
+                string destFileName = "";
+                
+                if (FileName != "" && FileName != null)
+                {
+                    Console.WriteLine(FileName);
+                    Console.WriteLine("../../Images/" + System.IO.Path.GetFileName(FileName));
+                    int localId = (from sar in db.Saradnici select sar.Id).Max() + 1;
+                    destFileName = "../../Images/map" + localId + "." + System.IO.Path.GetFileName(FileName).Split('.')[1];
+                    if (File.Exists(destFileName))
+                    {
+                        File.Delete(destFileName);
+                    }
+                    File.Copy(FileName, destFileName);
+                }
+                
+
+                Saradnik s1 = new Saradnik(naziv.Text, adresa.Text, tipSaradnika(tip.Text), specijalizacija.Text, destFileName);
                 db.Saradnici.Add(s1);
 
                 foreach (var item in ponude.Children)

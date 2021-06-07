@@ -262,12 +262,35 @@ namespace HCI_Projekat.OrganizatorView
             using (var db = new DatabaseContext())
             {
                 var s1 = db.Saradnici.FirstOrDefault(b => b.Id == saradnik.Id);
+
+                string destFileName = s1.MapaObjekta;
+
+                if (FileName != "" && FileName != null)
+                {
+                    try
+                    {
+                        if (File.Exists(destFileName))
+                        {
+                            File.Delete(destFileName);
+                        }
+                        File.Copy(FileName, destFileName);
+                    }
+                    catch
+                    {
+                        int localId = (from sar in db.Saradnici select sar.Id).Max() + 1;
+                        destFileName = "../../Images/map" + localId + "." + System.IO.Path.GetFileName(FileName).Split('.')[1];
+                        if (File.Exists(destFileName))
+                        {
+                            File.Delete(destFileName);
+                        }
+                        File.Copy(FileName, destFileName);
+                        s1.MapaObjekta = destFileName;
+                    }
+                    
+                }
+
                 if (s1 != null)
                 {
-                    if(imeFajla.Content != null)
-                    {
-                        s1.MapaObjekta = imeFajla.Content.ToString();
-                    }
                     s1.Naziv = naziv.Text;
                     s1.Specijalizacija = specijalizacija.Text;
                     s1.Adresa = adresa.Text;
@@ -386,8 +409,6 @@ namespace HCI_Projekat.OrganizatorView
                 if (openFileDialog.ShowDialog() == true)
                     FileName = openFileDialog.FileName;
 
-
-                imeFajla.Content = System.IO.Path.GetFileName(FileName);
                 if (System.IO.Path.GetFileName(FileName) == null)
                 {
                     FileName = "";
@@ -398,6 +419,9 @@ namespace HCI_Projekat.OrganizatorView
                     wk.ShowDialog();
                     FileName = "";
                 }
+
+                imeFajla.Content = System.IO.Path.GetFileName(FileName);
+                FormStateChanged(sender, e);
             }
             catch
             {
