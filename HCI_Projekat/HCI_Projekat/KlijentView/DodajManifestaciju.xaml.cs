@@ -153,10 +153,6 @@ namespace HCI_Projekat.KlijentView
             using (var db = new DatabaseContext())
             {               
                 Manifestacija novi = new Manifestacija(t,Double.Parse(budzet.Text),c,Int32.Parse(brojGostiju.Text),mesto.Text,dekoracije.Text,muzika.Text,dodatniZahtevi.Text,Convert.ToDateTime(datum.Text), null, null);
-                foreach (var item in listGostiju)
-                {
-                    novi.AddGost(item);
-                }
                 if(listGostiju.Count==0)
                 {
                     for(int i=1;i<=Int32.Parse(brojGostiju.Text);i++)
@@ -165,7 +161,11 @@ namespace HCI_Projekat.KlijentView
                         listGostiju.Add(tmp);
                     }
                 }
-                if(Organizator.Count > 0)
+                foreach (var item in listGostiju)
+                {
+                    novi.AddGost(item);
+                }
+                if (Organizator.Count > 0)
                 {
                     int id = Organizator[0].Id;
                     Organizator org = (from o in db.Korisnici where o.Id == id select o).FirstOrDefault() as Organizator;
@@ -212,6 +212,12 @@ namespace HCI_Projekat.KlijentView
                 int counter = 0;
                 using (var reader = new StreamReader(FileName))
                 {
+                    if(!FileName.EndsWith(".csv") && !FileName.EndsWith(".txt"))
+                    {
+                        var w = new OkForm("Goste možete učitati samo iz .txt ili .csv fajla.", "Loš format fajla");
+                        w.ShowDialog();
+                        return;
+                    }
                     while (!reader.EndOfStream)
                     {
                         counter++;
