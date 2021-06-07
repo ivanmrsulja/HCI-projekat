@@ -241,7 +241,7 @@
                                 <ImageBrush ImageSource="../Source/icon_comment.png"/>
                             </Border.Background>
                         </Border>
-                        <Border Width="10" Height="10" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
+                                    <Border Width="10" Height="10" VerticalAlignment="Top" Margin="3,30,0,0" HorizontalAlignment="Right" CornerRadius="15" Background="LightGreen"/>
 
                         <StackPanel Grid.Column="1">
                             <StackPanel Orientation="Horizontal">
