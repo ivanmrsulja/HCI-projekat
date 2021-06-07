@@ -277,14 +277,21 @@ namespace HCI_Projekat.OrganizatorView
                     }
                     catch
                     {
-                        int localId = (from sar in db.Saradnici select sar.Id).Max() + 1;
-                        destFileName = "../../Images/map" + localId + "." + System.IO.Path.GetFileName(FileName).Split('.')[1];
-                        if (File.Exists(destFileName))
+                        int localId = (from sar in db.Saradnici select sar.Id).Max() + 10000;
+                        while (true)
                         {
-                            File.Delete(destFileName);
+                            destFileName = "../../Images/map" + localId + "." + System.IO.Path.GetFileName(FileName).Split('.')[1];
+                            if (File.Exists(destFileName))
+                            {
+                                localId++;
+                            }
+                            else
+                            {
+                                File.Copy(FileName, destFileName);
+                                s1.MapaObjekta = destFileName;
+                                break;
+                            }
                         }
-                        File.Copy(FileName, destFileName);
-                        s1.MapaObjekta = destFileName;
                     }
                     
                 }
