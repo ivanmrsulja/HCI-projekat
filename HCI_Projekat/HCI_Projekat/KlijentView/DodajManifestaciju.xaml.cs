@@ -245,11 +245,19 @@ namespace HCI_Projekat.KlijentView
 
         private void Izaberi_Click(object sender, RoutedEventArgs e)
         {
+            if (ucitajOrganizatora.Content.ToString() == "PONIŠTI")
+            {
+                imeOrganizatora.Text = "";
+                Organizator.Clear();
+                ucitajOrganizatora.Content = "IZABERI";
+                return;
+            }
             var w = new IzborOrganizatora(Organizator);
             w.ShowDialog();
             if(Organizator.Count > 0)
             {
                 imeOrganizatora.Text = Organizator[0].Ime + " " + Organizator[0].Prezime;
+                ucitajOrganizatora.Content = "PONIŠTI";
             }
         }
     }
