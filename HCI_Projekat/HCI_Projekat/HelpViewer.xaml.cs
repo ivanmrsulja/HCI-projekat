@@ -21,7 +21,7 @@ namespace HCI_Projekat
     /// </summary>
     public partial class HelpViewer : Window
     {
-        public HelpViewer(string key, Window originator)
+        public HelpViewer(string key, Window originator, bool showableDemo)
         {
             InitializeComponent();
             string curDir = Directory.GetCurrentDirectory();
@@ -32,7 +32,14 @@ namespace HCI_Projekat
             }
             Uri u = new Uri(String.Format("file:///{0}/../../Help/{1}.html", curDir, key));
             wbHelp.Navigate(u);
-
+            if (showableDemo)
+            {
+                demo.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                demo.Visibility = Visibility.Hidden;
+            }
         }
 
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
