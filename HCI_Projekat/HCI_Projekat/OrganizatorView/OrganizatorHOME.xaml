@@ -7,7 +7,7 @@
         xmlns:root="clr-namespace:HCI_Projekat"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="Organizator" Height="700" Width="1200" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpOrganizatorHome" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Organizator" Height="700" Width="1200" MinHeight="400" MinWidth="750" ResizeMode="CanResizeWithGrip" BorderThickness="0.5" root:HelpProvider.HelpKey="HelpOrganizatorHome" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>

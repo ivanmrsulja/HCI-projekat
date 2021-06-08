@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Pregled aktuelne manifestacije" Height="900" Width="900" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+        Title="Pregled aktuelne manifestacije" Height="900" Width="900" MinHeight="700" MinWidth="600" BorderThickness="0.5" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+   
     <Grid VerticalAlignment="Stretch">
         <Rectangle Height="500" VerticalAlignment="Top" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="0,0,-0.4,0">
             <Rectangle.Fill>

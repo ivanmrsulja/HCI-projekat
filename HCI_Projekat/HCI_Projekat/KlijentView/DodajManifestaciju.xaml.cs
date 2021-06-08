@@ -239,7 +239,9 @@ namespace HCI_Projekat.KlijentView
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikDodajManifestaciju", this);
+            
         }
+
 
         private void Izaberi_Click(object sender, RoutedEventArgs e)
         {

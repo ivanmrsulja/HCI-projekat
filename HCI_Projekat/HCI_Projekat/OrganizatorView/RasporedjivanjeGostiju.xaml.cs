@@ -306,8 +306,11 @@ namespace HCI_Projekat.OrganizatorView
             {
                 e.Cancel = true;
             }
-            Image = null;
-            GC.Collect();
+            else
+            {
+                Image = null;
+                GC.Collect();
+            }
         }
     }
 }

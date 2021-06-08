@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-        Title="Dodavanje saradnika" Height="800" Width="590" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Dodavanje saradnika" Height="800" Width="590"  MinHeight="700" MinWidth="540" BorderThickness="0.5" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+
     <Grid VerticalAlignment="Stretch">
         <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
             <Rectangle.Fill>
@@ -19,12 +20,12 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle Width="450" Height="560" VerticalAlignment="Center" Margin="47,20,46.6,45" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
+        <Rectangle Width="450" Height="620" VerticalAlignment="Center" Margin="47,-30,46.6,45" RadiusY="10" RadiusX="10" Fill="White" Grid.ColumnSpan="2">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Grid VerticalAlignment="Center" Margin="51,42,49,67" Height="560" MaxWidth="450">
+        <Grid VerticalAlignment="Center" Margin="51,0,49,67" Height="600" MaxWidth="450">
 
             <TextBlock Text="DODAJ SARADNIKA" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" FontSize="30" Grid.RowSpan="2"/>
             <StackPanel VerticalAlignment="Center" Margin="15,0,15,0" Grid.RowSpan="2">
@@ -56,8 +57,9 @@
 
             </StackPanel>
         </Grid>
-        <Button IsEnabled="False" Name="potvrdi" Width="150" HorizontalAlignment="Center" FontSize="22" Height="35" VerticalAlignment="Center" Margin="200,520,0,-15" Content="POTVRDI"  Grid.ColumnSpan="2" Click="Potvrdi_Click"/>
-        <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,200,-15" Content="ODUSTANI" Click="Button_Click" FontSize="22" Height="35" />
-        <Button Content="POMOĆ" HorizontalAlignment="Center" Margin="200,654,197,29" Cursor="Hand" Width="119" Click="Button_Click_1" FontSize="22" Height="35"/>
+        <Button IsEnabled="False" Name="potvrdi" Width="150" HorizontalAlignment="Center" FontSize="22" Height="40" VerticalAlignment="Center" Margin="200,520,0,-15" Content="POTVRDI"  Grid.ColumnSpan="2" Click="Potvrdi_Click"/>
+        <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,200,-15" Content="ODUSTANI" Click="Button_Click" FontSize="22" Height="40" />
+        <Button Content="POMOĆ" HorizontalAlignment="Center" Margin="0,590,0,-60" Cursor="Hand" Width="119" Click="Button_Click_1" FontSize="22" Height="40"/>
+
     </Grid>
 </Window>

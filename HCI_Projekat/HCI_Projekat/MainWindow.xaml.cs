@@ -48,7 +48,7 @@ namespace HCI_Projekat
                     db.Stolovi.Remove(entity);
 
                 Komentar ko1 = new Komentar("Sve je super, svaka cast!!! :)", null, null, DateTime.ParseExact("20-04-2021", "dd-MM-yyyy", null));
-                Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam [DATA EXPUNGED]! Ocu pare nazad!", null, null, DateTime.Now);
+                Komentar ko2 = new Komentar("Htio sam Gocija a dobio sam Lapsus bend! Hocu pare nazad!", null, null, DateTime.Now);
                 db.Komentari.Add(ko1);
                 db.Komentari.Add(ko2);
 
@@ -113,6 +113,16 @@ namespace HCI_Projekat
                 Sto sto5 = new Sto(4, 4);
                 Sto sto6 = new Sto(4, 5);
                 Sto sto7 = new Sto(4, 6);
+                Sto sto8 = new Sto(4, 7);
+                Sto sto9 = new Sto(4, 8);
+                Sto sto10 = new Sto(4, 9);
+                Sto sto11 = new Sto(4, 10);
+                Sto sto12 = new Sto(4, 11);
+                Sto sto13 = new Sto(4, 12);
+                Sto sto14 = new Sto(4, 13);
+                Sto sto15 = new Sto(4, 14);
+                Sto sto16 = new Sto(4, 15);
+
                 db.Stolovi.Add(sto1);
                 db.Stolovi.Add(sto2);
                 db.Stolovi.Add(sto3);
@@ -122,23 +132,38 @@ namespace HCI_Projekat
                 db.Stolovi.Add(sto7);
 
                 Ponuda pon1 = new Ponuda("Gornji dio", 500, s1);
-                Ponuda pon2 = new Ponuda("Sredina restorana", 200, s1);
+                Ponuda pon2 = new Ponuda("Sredina restorana", 1200, s1);
                 Ponuda pon4 = new Ponuda("Separe", 300, s3);
                 Ponuda pon3 = new Ponuda("Fotosuting", 100, s2);
+
+                Ponuda pon5 = new Ponuda("Donji dio", 600, s1);
+
                 db.Ponude.Add(pon1);
                 db.Ponude.Add(pon2);
                 db.Ponude.Add(pon3);
                 db.Ponude.Add(pon4);
+                db.Ponude.Add(pon5);
                 pon1.Stolovi.Add(sto1);
                 pon1.Stolovi.Add(sto2);
                 pon1.Stolovi.Add(sto3);
                 pon2.Stolovi.Add(sto5);
                 pon2.Stolovi.Add(sto6);
                 pon2.Stolovi.Add(sto7);
+                pon2.Stolovi.Add(sto8);
+                pon2.Stolovi.Add(sto9);
+                pon2.Stolovi.Add(sto10);
+                pon2.Stolovi.Add(sto11);
+                pon2.Stolovi.Add(sto12);
                 pon4.Stolovi.Add(sto4);
+
+                pon5.Stolovi.Add(sto13);
+                pon5.Stolovi.Add(sto14);
+                pon5.Stolovi.Add(sto15);
+                pon5.Stolovi.Add(sto16);
 
                 s1.AddPonuda(pon1);
                 s1.AddPonuda(pon2);
+                s1.AddPonuda(pon5);
                 s2.AddPonuda(pon3);
                 s3.AddPonuda(pon4);
 

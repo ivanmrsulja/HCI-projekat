@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.OrganizatorView"
         mc:Ignorable="d"
-        Title="Raspored gostiju" Height="600" Width="830" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
+        Title="Raspored gostiju" Height="900" Width="900" MinHeight="400" MinWidth="650" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" BorderThickness="0.5">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"></ColumnDefinition>

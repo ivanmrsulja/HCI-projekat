@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
         Closing="WindowClosing"
-        Title="Klijent" Height="750" Width="1350" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+        Title="Klijent" Height="750" Width="1350" MinHeight="400" MinWidth="750" ResizeMode="CanResizeWithGrip" BorderThickness="0.5" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
     <Grid>
 
         <Grid.RowDefinitions>
@@ -21,10 +21,10 @@
             <ColumnDefinition Width="25*"></ColumnDefinition>
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="0" Click="DodajManifestaciju" RenderTransformOrigin="0.5,0.504">Dodaj manifestaciju</Button>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="1" Click="Button_Click">Profil</Button>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="2" Click="Pomoc">Pomoć</Button>
-        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="3" Click="Odjava">Odjava</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="0" Click="DodajManifestaciju" RenderTransformOrigin="0.5,0.504"  VerticalAlignment="Top">Dodaj manifestaciju</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="1" Click="Button_Click" VerticalAlignment="Top">Profil</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="2" Click="Pomoc" VerticalAlignment="Top">Pomoć</Button>
+        <Button FontSize="22" MinHeight="50" Grid.Row="0" Grid.Column="3" Click="Odjava" VerticalAlignment="Top">Odjava</Button>
         <Grid Panel.ZIndex="10" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="20,90,20,20">
             <TextBlock FontSize="22">Obaveštenja</TextBlock>
         </Grid>

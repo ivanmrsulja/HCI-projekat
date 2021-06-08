@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Manifestacija" Height="900" Width="800" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" BorderThickness="1">
+        Title="Pregled manifestacije" Height="900" Width="700" MinHeight="700" MinWidth="600" ResizeMode="CanResizeWithGrip"  WindowStartupLocation="CenterScreen" BorderThickness="0.5">
     <Grid>
         <Rectangle Height="500" VerticalAlignment="Top" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="0,0,-0.4,0">
             <Rectangle.Fill>

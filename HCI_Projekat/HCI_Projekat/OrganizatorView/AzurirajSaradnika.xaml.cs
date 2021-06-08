@@ -46,7 +46,7 @@ namespace HCI_Projekat.OrganizatorView
             adresa.Text = k.Adresa;
             tip.SelectedIndex = retTip(k.Tip.ToString());
             specijalizacija.Text = k.Specijalizacija;
-            imeFajla.Content = k.MapaObjekta;
+            imeFajla.Content = System.IO.Path.GetFileName(k.MapaObjekta);
 
 
             if (saradnik.Tip == TipSaradnika.RESTORAN)
@@ -437,5 +437,11 @@ namespace HCI_Projekat.OrganizatorView
                 wk.ShowDialog();
             }
         }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        
     }
 }

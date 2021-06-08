@@ -229,8 +229,8 @@ namespace HCI_Projekat.Administrator
                     dodajBtn.IsEnabled = true;
                 }
             }
-            
 
+           
         }
 
     }

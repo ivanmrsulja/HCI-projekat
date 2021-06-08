@@ -7,7 +7,7 @@
         xmlns:val="clr-namespace:HCI_Projekat.Validation"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Registracija korisnika" Height="670" Width="540"  WindowStartupLocation="CenterScreen"  ResizeMode="CanResizeWithGrip" l:HelpProvider.HelpKey="HelpRegistracija">
+        Title="Registracija korisnika" Height="670" Width="540" MinHeight="650" MinWidth="415" WindowStartupLocation="CenterScreen" BorderThickness="0.5"  ResizeMode="CanResizeWithGrip" l:HelpProvider.HelpKey="HelpRegistracija">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>
@@ -126,8 +126,8 @@
 
                 </StackPanel>
             </Grid>
-            <Button IsEnabled="False" Name="registrujSe" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,520,0,65" Content="REGISTRUJ SE" Click="Registracija" Grid.ColumnSpan="2"/>
-            <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,520,170,65" Content="ODUSTANI" Click="Odustani"/>
+            <Button IsEnabled="False" Name="registrujSe" Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="170,510,0,65" Content="REGISTRUJ SE" Click="Registracija" Grid.ColumnSpan="2"/>
+            <Button Width="150" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,510,170,65" Content="ODUSTANI" Click="Odustani"/>
             <Button Content="POMOĆ" ToolTip="Potrebna vam je pomoc za registraciju?" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,550,0,0" Cursor="Hand" Width="100" Click="Button_Click"/>
         </Grid>
     </DockPanel>

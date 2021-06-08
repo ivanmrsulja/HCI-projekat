@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HCI_Projekat.VlalidationForms"
         mc:Ignorable="d"
         
-        Title="YesNo" Height="290" Width="390" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
+        Title="YesNo" Height="290" Width="390" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded" BorderThickness="0.5">
 
     <Grid>        
         <Rectangle  Height="200" VerticalAlignment="Top" Grid.ColumnSpan="2">

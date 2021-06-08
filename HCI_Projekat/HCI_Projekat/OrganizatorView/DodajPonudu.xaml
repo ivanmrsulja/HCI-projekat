@@ -8,7 +8,7 @@
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
         xmlns:val="clr-namespace:HCI_Projekat.Validation"
         mc:Ignorable="d"
-        Title="Dodavanje ponude" Height="400" Width="490" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow">
+        Title="Dodavanje ponude" Height="400" Width="490" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" WindowStyle="SingleBorderWindow" BorderThickness="0.5">
 
     <Grid>
             <Rectangle  Height="200" VerticalAlignment="Top" Grid.ColumnSpan="2">

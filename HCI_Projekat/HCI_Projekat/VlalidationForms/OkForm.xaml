@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.VlalidationForms"
         mc:Ignorable="d"
-       Title="Ok" Height="290" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True"  WindowStyle="SingleBorderWindow">
+       Title="Ok" Height="290" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True"  WindowStyle="SingleBorderWindow" BorderThickness="0.5">
 
     <Grid>       
         <Rectangle  Height="200" VerticalAlignment="Top" Grid.ColumnSpan="2">

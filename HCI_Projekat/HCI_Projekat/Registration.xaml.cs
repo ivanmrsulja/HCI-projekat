@@ -244,10 +244,5 @@ namespace HCI_Projekat
                 HelpProvider.ShowHelp(str, this);
             }
         }
-
-        public void Pomoc_Click(object sender, RoutedEventArgs e)
-        {
-            HelpProvider.ShowHelp("HelpRegistracija", this);
-        }
     }
 }
