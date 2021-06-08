@@ -449,7 +449,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("HelpAzuriranjeSaradnika", this);
+            HelpProvider.ShowHelp("HelpAzuriranjeSaradnika", this, true);
         }
         
     }
