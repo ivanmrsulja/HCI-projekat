@@ -376,13 +376,13 @@ namespace HCI_Projekat.OrganizatorView
             if (sender is DependencyObject)
             {
                 string str = HelpProvider.GetHelpKey((DependencyObject)sender);
-                HelpProvider.ShowHelp(str, this);
+                HelpProvider.ShowHelp(str, this, true);
             }
         }
 
         public void Pomoc_Click(object sender, EventArgs e)
         {
-            HelpProvider.ShowHelp("HelpOrganizatorHome", this);
+            HelpProvider.ShowHelp("HelpOrganizatorHome", this, true);
         }
 
     }

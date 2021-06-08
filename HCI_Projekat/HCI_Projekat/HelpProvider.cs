@@ -27,9 +27,9 @@ namespace HCI_Projekat
             Console.WriteLine((string)d.GetValue(HelpKeyProperty));
         }
 
-        public static void ShowHelp(string key, Window originator)
+        public static void ShowHelp(string key, Window originator, bool demoShowable = false)
         {
-            HelpViewer hh = new HelpViewer(key, originator);
+            HelpViewer hh = new HelpViewer(key, originator, demoShowable);
             hh.ShowDialog();
         }
     }
