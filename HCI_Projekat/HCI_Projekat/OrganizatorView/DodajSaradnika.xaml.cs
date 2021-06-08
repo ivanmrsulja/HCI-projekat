@@ -293,7 +293,7 @@ namespace HCI_Projekat.OrganizatorView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("HelpDodajSaradnika", this);
+            HelpProvider.ShowHelp("HelpDodajSaradnika", this , true);
         }
     }
 }
