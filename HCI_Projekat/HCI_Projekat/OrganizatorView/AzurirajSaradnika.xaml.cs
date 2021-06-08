@@ -438,6 +438,15 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this, true);
+            }
+        }
+
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpAzuriranjeSaradnika", this);
