@@ -189,7 +189,14 @@ namespace HCI_Projekat.KlijentView
         {
             return klijent;
         }
-
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this);
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikProfil", this);

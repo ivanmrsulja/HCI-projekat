@@ -277,6 +277,15 @@ namespace HCI_Projekat.KlijentView
             w.ShowDialog();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this);
+            }
+        }
+
         private void Pomoc(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikHome", this);

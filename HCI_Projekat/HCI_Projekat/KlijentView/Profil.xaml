@@ -3,11 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:local="clr-namespace:HCI_Projekat"
+        xmlns:root="clr-namespace:HCI_Projekat"
+
         xmlns:val="clr-namespace:HCI_Projekat.Validation"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Profil" Height="670" Width="540" MinHeight="630" MinWidth="430" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" BorderThickness="0.5">
+        Title="Profil" Height="670" Width="540" MinHeight="630" MinWidth="430" WindowStartupLocation="CenterScreen" root:HelpProvider.HelpKey="HelpKorisnikProfil"
+ResizeMode="CanResizeWithGrip" BorderThickness="0.5">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <DockPanel>
         <Grid VerticalAlignment="Stretch">
             <Rectangle Height="400" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">

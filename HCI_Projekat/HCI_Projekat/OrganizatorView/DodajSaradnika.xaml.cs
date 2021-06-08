@@ -32,11 +32,12 @@ namespace HCI_Projekat.OrganizatorView
         private string FileName;
         int btnCounter = 1;
         string putanjaDoFajla = "";
-
+        bool isOrg;
         Dictionary<string, List<Sto>> Stolovi = new Dictionary<string, List<Sto>>();
 
-        public DodajSaradnika()
+        public DodajSaradnika(bool isOrg = false)
         {
+            this.isOrg = isOrg;
             InitializeComponent();
             this.DataContext = this;
 
@@ -291,9 +292,26 @@ namespace HCI_Projekat.OrganizatorView
             }
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                if (isOrg)
+                {
+                    HelpProvider.ShowHelp(str, this, isOrg);
+                }
+                else
+                {
+                    HelpProvider.ShowHelp(str, this);
+                }
+
+            }
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("HelpDodajSaradnika", this , true);
+            HelpProvider.ShowHelp("HelpDodajSaradnika", this , isOrg);
         }
     }
 }

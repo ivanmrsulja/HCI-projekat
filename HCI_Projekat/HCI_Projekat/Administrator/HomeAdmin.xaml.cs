@@ -750,6 +750,15 @@ namespace HCI_Projekat.Administrator
             }
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this, true);
+            }
+        }
+
         private void RowSaradnik_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Ensure row was clicked and not empty space

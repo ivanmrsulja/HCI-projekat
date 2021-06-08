@@ -236,6 +236,15 @@ namespace HCI_Projekat.KlijentView
             }
         }
 
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this);
+            }
+        }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpKorisnikDodajManifestaciju", this);

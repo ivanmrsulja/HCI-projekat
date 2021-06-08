@@ -32,11 +32,12 @@ namespace HCI_Projekat.OrganizatorView
         private Saradnik saradnik;
         private string putanjaDoFajla="";
         int btnCounter = 1;
-
+        bool isOrg;
         Dictionary<string, List<Sto>> Stolovi = new Dictionary<string, List<Sto>>();
-
-        public AzurirajSaradnika(Saradnik k)
+        
+        public AzurirajSaradnika(Saradnik k, bool isOrg = false)
         {
+            this.isOrg = isOrg;
             InitializeComponent();
             DataContext = this;
             saradnik = k;
@@ -443,13 +444,20 @@ namespace HCI_Projekat.OrganizatorView
             if (sender is DependencyObject)
             {
                 string str = HelpProvider.GetHelpKey((DependencyObject)sender);
-                HelpProvider.ShowHelp(str, this, true);
+                if (isOrg)
+                {
+                    HelpProvider.ShowHelp(str, this, true);
+                }
+                else {
+                    HelpProvider.ShowHelp(str, this);
+                }
+                
             }
         }
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("HelpAzuriranjeSaradnika", this, true);
+            HelpProvider.ShowHelp("HelpAzuriranjeSaradnika", this, isOrg);
         }
         
     }

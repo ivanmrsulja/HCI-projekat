@@ -256,7 +256,7 @@ namespace HCI_Projekat.OrganizatorView
         public void IzmeniSaradnika_Click(object sender, EventArgs e)
         {
             Saradnik current = (Saradnik)saradnici.SelectedItem;
-            var w = new AzurirajSaradnika(current);
+            var w = new AzurirajSaradnika(current, true);
             w.ShowDialog();
             using (var db = new DatabaseContext())
             {
@@ -274,7 +274,7 @@ namespace HCI_Projekat.OrganizatorView
 
         public void DodajSaradnika_Click(object sender, EventArgs e)
         {
-            var w = new DodajSaradnika();
+            var w = new DodajSaradnika(true);
             w.ShowDialog();
             using (var db = new DatabaseContext())
             {

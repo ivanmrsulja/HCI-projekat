@@ -180,6 +180,15 @@ namespace HCI_Projekat.Administrator
             this.Close();
         }
 
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (sender is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)sender);
+                HelpProvider.ShowHelp(str, this, true);
+            }
+        }
+
         public void Pomoc_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("HelpDodajOrganizatora", this);
