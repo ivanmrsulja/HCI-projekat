@@ -30,7 +30,7 @@ namespace HCI_Projekat
         public static void ShowHelp(string key, Window originator)
         {
             HelpViewer hh = new HelpViewer(key, originator);
-            hh.Show();
+            hh.ShowDialog();
         }
     }
 }
