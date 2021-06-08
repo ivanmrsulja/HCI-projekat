@@ -122,10 +122,10 @@ namespace HCI_Projekat.OrganizatorView
                         mail.From = new MailAddress("isamrstim06@gmail.com");
                         mail.To.Add(toUpdate.Klijent.Email);
                         mail.Subject = "Manifestacija spremna za uvid";
-                        mail.Body = "Postovani " + toUpdate.Klijent.Ime + " " + toUpdate.Klijent.Prezime
-                            + ",\nObavestavamo Vas da je ponuda za manifestaciju [" + toUpdate.Tema + "] zakazana za "
+                        mail.Body = "Poštovani " + toUpdate.Klijent.Ime + " " + toUpdate.Klijent.Prezime
+                            + ",\nObaveštavamo Vas da je ponuda za manifestaciju [" + toUpdate.Tema + "] zakazana za "
                             + toUpdate.DatumOdrzavanja.Date.ToString().Split(' ')[0] + " kod organizatora " + toUpdate.Organizator.Ime + " "
-                            + toUpdate.Organizator.Prezime + " spremna za uvid.\n\nSrdacan pozdrav,\nTim 5.1";
+                            + toUpdate.Organizator.Prezime + " spremna za uvid.\n\nSrdačan pozdrav,\nTim 5.1";
 
                         SmtpServer.Port = 587;
                         SmtpServer.Credentials = new System.Net.NetworkCredential("isamrstim06@gmail.com", "isamrs123");
