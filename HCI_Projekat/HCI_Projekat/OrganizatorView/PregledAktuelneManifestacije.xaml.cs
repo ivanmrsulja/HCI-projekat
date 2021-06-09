@@ -104,7 +104,8 @@ namespace HCI_Projekat.OrganizatorView
 
         public void Predlozi_Click(object sender, RoutedEventArgs e)
         {
-            using(var db = new DatabaseContext())
+            bool flag = false;
+            using (var db = new DatabaseContext())
             {
                 Manifestacija toUpdate = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).FirstOrDefault();
                 toUpdate.PredlozenoZaZavrsavanje = true;
@@ -135,13 +136,17 @@ namespace HCI_Projekat.OrganizatorView
                     }
                     catch (Exception)
                     {
-                        var we = new OkForm("Mail nije bilo moguće poslati\nmail klijentu.", "Neuspelo slanje mail-a", true);
-                        we.ShowDialog();
+                        flag = true;
                     }
                 }).Start();
             }
             var wk = new OkForm("Manifestacija je poslata\nna uvid klijentu.", "Predlog poslat", true);
             wk.ShowDialog();
+            if (flag)
+            {
+                var w = new OkForm("Nije bilo moguće poslati e-mail. Proverite internet konekciju.", "Email nije poslat", true);
+                w.ShowDialog();
+            }
         }
 
         public void Dodaj_Click(object sender, RoutedEventArgs e)
