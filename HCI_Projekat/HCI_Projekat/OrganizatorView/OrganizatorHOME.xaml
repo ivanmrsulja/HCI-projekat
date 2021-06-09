@@ -11,6 +11,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"></ColumnDefinition>
@@ -26,12 +27,30 @@
             <RowDefinition Height="60*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" FontSize="22" Height="50" VerticalAlignment="Top" Click="Istorija_Click" ToolTip="Pregled istorije manifestacija" >Istorija</Button>
-        <Button Grid.Row="0" Grid.Column="1" FontSize="22" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click" ToolTip="Pregled aktuelnih manifestacija" >Aktuelno</Button>
-        <Button Grid.Row="0" Grid.Column="2" FontSize="22" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click" ToolTip="Pregled nedodeljenih manifestacija" >Nedodeljeno</Button>
-        <Button Grid.Row="0" Grid.Column="3" FontSize="22" Height="50" VerticalAlignment="Top" Click="Saradnici_Click" ToolTip="Pregled liste saradnika" >Pregled saradnika</Button>
-        <Button Grid.Row="0" Grid.Column="4" FontSize="22" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" ToolTip="Potrebna vam je pomoć?" Click="Pomoc_Click">Pomoć</Button>
-        <Button Grid.Row="0" Grid.Column="5" FontSize="22" Height="50" VerticalAlignment="Top" Click="Odjava" ToolTip="Odjavite se sa profila" >Odjava</Button>
+        <Button Grid.Row="0" Grid.Column="0" FontSize="22" Height="50" VerticalAlignment="Top" Click="Istorija_Click" >
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Pregled istorije manifestacija"/>
+            </ToolTipService.ToolTip> Istorija</Button>
+        <Button Grid.Row="0" Grid.Column="1" FontSize="22" Height="50" VerticalAlignment="Top" Click="Aktuelno_Click" >
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Pregled aktuelnih manifestacija"/>
+            </ToolTipService.ToolTip> Aktuelno</Button>
+        <Button Grid.Row="0" Grid.Column="2" FontSize="22" Height="50" VerticalAlignment="Top" Click="Nedodeljeno_Click" >
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Pregled nedodeljenih manifestacija"/>
+            </ToolTipService.ToolTip> Nedodeljeno</Button>
+        <Button Grid.Row="0" Grid.Column="3" FontSize="22" Height="50" VerticalAlignment="Top" Click="Saradnici_Click" >
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Pregled liste saradnika"/>
+            </ToolTipService.ToolTip> Pregled saradnika</Button>
+        <Button Grid.Row="0" Grid.Column="4" FontSize="22" Height="50" VerticalAlignment="Top" root:HelpProvider.HelpKey="HelpOrganizatorHome" Click="Pomoc_Click">
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Potrebna vam je pomoć?"/>
+            </ToolTipService.ToolTip> Pomoć</Button>
+        <Button Grid.Row="0" Grid.Column="5" FontSize="22" Height="50" VerticalAlignment="Top" Click="Odjava">
+            <ToolTipService.ToolTip>
+                <TextBlock FontSize="22" Text="Odjavite se sa profila"/>
+            </ToolTipService.ToolTip> Odjava</Button>
 
         <StackPanel x:Name="searchBar" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -108,7 +127,10 @@
                 <DataGridTemplateColumn Header="Preuzimanje">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="Preuzmi_Click" Height="50" FontSize="25">Preuzmi</Button>
+                            <Button Click="Preuzmi_Click" Height="50" FontSize="25">
+                                <ToolTipService.ToolTip>
+                                    <TextBlock FontSize="22" Text="Preuzmi organizovanje manifestacije"/>
+                                </ToolTipService.ToolTip> Preuzmi</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
