@@ -1,5 +1,5 @@
 # HCI-projekat
-Predmetni projekat iz predmeta Interakcija Covek Racunar.
+Predmetni projekat iz predmeta Interakcija Čovek Računar.
 
 # Projekat rade:
 - Baćić Stefan   SW/68-2018
