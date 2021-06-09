@@ -82,7 +82,7 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     izaberiFajl.Visibility = Visibility.Visible;
                     imeFajla.Visibility = Visibility.Visible;
-                    if (imeFajla.Content.ToString() == "IME FAJLA")
+                    if (imeFajla.Content.ToString() == "NIJE IZABRANO")
                     {
                         potvrdi.IsEnabled = false;
                     }
@@ -114,21 +114,21 @@ namespace HCI_Projekat.OrganizatorView
                     FileName = "";
                     var wk = new OkForm("Niste izabrali dobar fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
-                    imeFajla.Content = "IME FAJLA";
+                    imeFajla.Content = "NIJE IZABRANO";
                 }
                 else if (System.IO.Path.GetFileName(FileName).Split('.')[1] != "jpg" && System.IO.Path.GetFileName(FileName).Split('.')[1] != "png")
                 {
                     var wk = new OkForm("Niste izabrali .jpg ili .png fajl.", "Pogrešan format fajla");
                     wk.ShowDialog();
                     FileName = "";
-                    imeFajla.Content = "IME FAJLA";
+                    imeFajla.Content = "NIJE IZABRANO";
                 }
                              
             }
             catch
             {
                 FileName = "";
-                imeFajla.Content = "IME FAJLA";
+                imeFajla.Content = "NIJE IZABRANO";
             }
 
             //ne diraj ovo 
