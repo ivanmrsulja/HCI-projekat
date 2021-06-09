@@ -755,7 +755,7 @@ namespace HCI_Projekat.Administrator
             if (sender is DependencyObject)
             {
                 string str = HelpProvider.GetHelpKey((DependencyObject)sender);
-                HelpProvider.ShowHelp(str, this, true);
+                HelpProvider.ShowHelp(str, this);
             }
         }
 
