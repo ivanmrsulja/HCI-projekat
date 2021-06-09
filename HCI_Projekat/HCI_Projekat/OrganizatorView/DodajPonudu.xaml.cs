@@ -80,7 +80,13 @@ namespace HCI_Projekat.OrganizatorView
                 wk.ShowDialog();
                 return;
             }
-            if(Saradnik != null)
+            if (opis.Text.Contains(","))
+            {
+                var wk = new OkForm("Opis ponude sadrži nedozvoljene karaktere (',').", "Opis sadrži nedozvoljene karaktere.", true);
+                wk.ShowDialog();
+                return;
+            }
+            if (Saradnik != null)
             {
                 using (var db = new DatabaseContext())
                 {
