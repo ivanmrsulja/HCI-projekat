@@ -13,4 +13,4 @@ VAŽNO: Pre pokretanja same aplikacije proverite da li imate instaliran "Data St
 
 Aplikaciju je moguće pokrenuti na 2 načina:
 - Unutar foldera HCIProjekat/ duplim klikom otvoriti HCI_Projekat.sln i pokrenuti aplikaciju iz Visual Studio programa pritiskom na Ctrl + F5
-- Unutar foldera HCIProjekat/HCI_Projekat/HCI_Projekat/bin/Release nalazi se HCI_Projekat.exe (izvršni fajl aplikacije), duplim klikom na ovaj fajl pokreće se aplikacija
+- Unutar foldera HCIProjekat/HCI_Projekat/HCI_Projekat/app nalazi se HCI_Projekat.exe (izvršni fajl aplikacije), duplim klikom na ovaj fajl pokreće se aplikacija
