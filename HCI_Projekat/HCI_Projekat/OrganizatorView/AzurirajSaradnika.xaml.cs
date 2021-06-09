@@ -137,7 +137,7 @@ namespace HCI_Projekat.OrganizatorView
                                     {
                                         foreach(Manifestacija man in db.Manifestacije)
                                         {
-                                            if (man.Status == StatusManifestacije.U_IZRADI)
+                                            if (man.Status == StatusManifestacije.IZRADA)
                                             {
                                                 man.Ponude.Remove(toDelete);
                                                 if (toDelete.Stolovi.Count > 0)

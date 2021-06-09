@@ -11,8 +11,8 @@ namespace HCI_Projekat.Model
 {
     public enum UlogaKorisnika { KLIJENT, ADMIN, ORGANIZATOR}
     public enum TipSaradnika { RESTORAN, FOTOGRAF, KETERING, DEKORACIJE, MUZIKA }
-    public enum StatusManifestacije { NOVA, U_IZRADI, ZAVRSENA}
-    public enum TemaManifestacije { VENCANJE, RODJENDAN, KOKTEL_PARTY, REJV, OTVARANJE, SVE}
+    public enum StatusManifestacije { NOVA, IZRADA, ZAVRŠENA}
+    public enum TemaManifestacije { VENČANJE, ROĐENDAN, ŽURKA, REJV, OTVARANJE, SVE}
 
     public abstract class Korisnik
     {
@@ -247,7 +247,7 @@ namespace HCI_Projekat.Model
             }
             else
             {
-                Status = StatusManifestacije.U_IZRADI;
+                Status = StatusManifestacije.IZRADA;
             }
         }
 

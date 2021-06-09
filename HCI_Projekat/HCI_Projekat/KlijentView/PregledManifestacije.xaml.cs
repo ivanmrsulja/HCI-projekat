@@ -69,11 +69,11 @@ namespace HCI_Projekat.KlijentView
                 Ponude = new ObservableCollection<Ponuda>(ponude);
                 Komentari = new ObservableCollection<Komentar>(komentari);
             }
-            if (Manifestacija.PredlozenoZaZavrsavanje && Manifestacija.Status == StatusManifestacije.U_IZRADI)
+            if (Manifestacija.PredlozenoZaZavrsavanje && Manifestacija.Status == StatusManifestacije.IZRADA)
             {
                 odobri.IsEnabled = true;
             }
-            if (Manifestacija.Status == StatusManifestacije.ZAVRSENA || Manifestacija.DatumOdrzavanja < DateTime.Now.AddDays(10))
+            if (Manifestacija.Status == StatusManifestacije.ZAVRŠENA || Manifestacija.DatumOdrzavanja < DateTime.Now.AddDays(10))
             {
                 sacuvaj.IsEnabled = false;
                 otkazi.IsEnabled = false;
@@ -242,7 +242,7 @@ namespace HCI_Projekat.KlijentView
                 using (var db = new DatabaseContext())
                 {
                     Manifestacija toComplete = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).ToArray()[0];
-                    toComplete.Status = StatusManifestacije.ZAVRSENA;
+                    toComplete.Status = StatusManifestacije.ZAVRŠENA;
                     db.SaveChanges();
                 }
                 using (var db = new DatabaseContext())

@@ -155,6 +155,9 @@ namespace HCI_Projekat.OrganizatorView
                     {
                         var wk = new OkForm("Pogrešna struktura fajla.", "Greška u učitavanju");
                         wk.ShowDialog();
+                        FileName = "";
+                        imeFajla.Content = "(AKO JE SALA)";
+                        return;
                     }
                     try
                     {
@@ -165,6 +168,9 @@ namespace HCI_Projekat.OrganizatorView
                     {
                         var wk = new OkForm("Vrednosti u fajlu su pogrešnog formata.", "Greška u učitavanju");
                         wk.ShowDialog();
+                        FileName = "";
+                        imeFajla.Content = "(AKO JE SALA)";
+                        return;
                     }
                     
                 }

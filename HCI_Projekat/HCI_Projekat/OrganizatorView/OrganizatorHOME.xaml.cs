@@ -81,11 +81,11 @@ namespace HCI_Projekat.OrganizatorView
             ParentScreen.Hide();
             DataContext = this;
 
-            Teme = new List<TemaManifestacije> { TemaManifestacije.RODJENDAN, TemaManifestacije.KOKTEL_PARTY, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENCANJE, TemaManifestacije.SVE };
+            Teme = new List<TemaManifestacije> { TemaManifestacije.ROĐENDAN, TemaManifestacije.ŽURKA, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENČANJE, TemaManifestacije.SVE };
             using (var db = new DatabaseContext())
             {
-                List<Manifestacija> istorija = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
-                List<Manifestacija> aktuelno = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList();
+                List<Manifestacija> istorija = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.ZAVRŠENA && m.Obrisana != true select m).ToList();
+                List<Manifestacija> aktuelno = (from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.IZRADA && m.Obrisana != true select m).ToList();
                 List<Manifestacija> nedodeljeno = (from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList();
 
                 StareManifestacije = new ObservableCollection<Manifestacija>(istorija);
@@ -174,10 +174,10 @@ namespace HCI_Projekat.OrganizatorView
                     Console.WriteLine(manifestacija.Id);
 
                     organizator.AddManifestacija(manifestacija);
-                    manifestacija.Status = StatusManifestacije.U_IZRADI;
+                    manifestacija.Status = StatusManifestacije.IZRADA;
 
                     db.SaveChanges();
-                    aktuelno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.U_IZRADI && m.Obrisana != true select m).ToList());
+                    aktuelno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where CurrentUser.Id == m.Organizator.Id && m.Status == StatusManifestacije.IZRADA && m.Obrisana != true select m).ToList());
                     nedodeljeno.ItemsSource = new ObservableCollection<Manifestacija>((from m in db.Manifestacije.Include("Klijent") where m.Status == StatusManifestacije.NOVA && m.Obrisana != true select m).ToList());
 
                     var ok = new OkForm("Uspešno preuzeto.\nManifestacija se nalazi u\nsekciji 'Aktuelno'.", "Uspešno preuzeto", true);
@@ -233,14 +233,14 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     for (int i = p.Manifestacije.Count - 1; i >= 0; i--)
                     {
-                        if (p.Stolovi.Count > 0 && p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
+                        if (p.Stolovi.Count > 0 && p.Manifestacije[i].Status != StatusManifestacije.ZAVRŠENA)
                         {
                             foreach (Gost g in p.Manifestacije[i].Gosti)
                             {
                                 g.BrojStola = 0;
                             }
                         }
-                        if(p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
+                        if(p.Manifestacije[i].Status != StatusManifestacije.ZAVRŠENA)
                         {
                             p.Manifestacije[i].PredlozenoZaZavrsavanje = false; // da ne potvrdi a u medjuvremenu je neko izbrisao nesto
                             p.Manifestacije[i].RemovePonuda(p);
@@ -301,18 +301,18 @@ namespace HCI_Projekat.OrganizatorView
                 List<Manifestacija> manifestations = null;
                 if (tema.SelectedItem == null)
                 {
-                    manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                    manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRŠENA && m.Obrisana != true select m).ToList();
                 }
                 else
                 {
                     TemaManifestacije t = (TemaManifestacije)tema.SelectedItem;
                     if (t == TemaManifestacije.SVE)
                     {
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRŠENA && m.Obrisana != true select m).ToList();
                     }
                     else
                     {
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRSENA && m.Tema == t && m.Obrisana != true select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Status == StatusManifestacije.ZAVRŠENA && m.Tema == t && m.Obrisana != true select m).ToList();
                     }
                 }
                 istorija.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);
@@ -333,24 +333,24 @@ namespace HCI_Projekat.OrganizatorView
                 {
                     if (datum.Text == "")
                     {
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRŠENA select m).ToList();
                     }
                     else
                     {
                         DateTime d = DateTime.Parse(datum.Text);
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRŠENA select m).ToList();
                     }
                 }
                 else
                 {
                     if (datum.Text == "")
                     {
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Tema == t && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRSENA select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.Tema == t && m.Obrisana != true && m.Status == StatusManifestacije.ZAVRŠENA select m).ToList();
                     }
                     else
                     {
                         DateTime d = DateTime.Parse(datum.Text);
-                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Tema == t && m.Status == StatusManifestacije.ZAVRSENA && m.Obrisana != true select m).ToList();
+                        manifestations = (from m in db.Manifestacije.Include("Klijent") where m.Organizator.Id == CurrentUser.Id && m.DatumOdrzavanja == d && m.Tema == t && m.Status == StatusManifestacije.ZAVRŠENA && m.Obrisana != true select m).ToList();
                     }
                 }
                 istorija.ItemsSource = new ObservableCollection<Manifestacija>(manifestations);

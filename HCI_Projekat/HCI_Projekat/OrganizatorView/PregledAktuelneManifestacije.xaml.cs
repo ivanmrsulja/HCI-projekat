@@ -43,7 +43,7 @@ namespace HCI_Projekat.OrganizatorView
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
                 Komentari = new ObservableCollection<Komentar>((from kom in db.Komentari where kom.Manifestacija.Id == current.Id && kom.Obrisan != true select kom).ToList());
             }
-            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.IZRADA && Manifestacija.PredlozenoZaZavrsavanje == false)
             {
                 predlozi.IsEnabled = true;
             }
@@ -153,7 +153,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             var w = new PregledPonuda(Manifestacija, ponude);
             w.ShowDialog();
-            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.IZRADA && Manifestacija.PredlozenoZaZavrsavanje == false)
             {
                 predlozi.IsEnabled = true;
             }
@@ -164,7 +164,7 @@ namespace HCI_Projekat.OrganizatorView
         {
             var w = new RasporedjivanjeGostiju(Manifestacija);
             w.ShowDialog();
-            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+            if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.IZRADA && Manifestacija.PredlozenoZaZavrsavanje == false)
             {
                 predlozi.IsEnabled = true;
             }
@@ -204,7 +204,7 @@ namespace HCI_Projekat.OrganizatorView
                 db.SaveChanges();
                 Ponude = new ObservableCollection<Ponuda>((from man in db.Manifestacije where man.Id == Manifestacija.Id select man.Ponude).FirstOrDefault().ToList());
                 ponude.ItemsSource = Ponude;
-                if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI && Manifestacija.PredlozenoZaZavrsavanje == false)
+                if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.IZRADA && Manifestacija.PredlozenoZaZavrsavanje == false)
                 {
                     predlozi.IsEnabled = true;
                 }
@@ -287,7 +287,7 @@ namespace HCI_Projekat.OrganizatorView
                 }
                 db.SaveChanges();
                 Manifestacija = toUpdate;
-                if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.U_IZRADI)
+                if (Manifestacija.MestoOdrzavanjaDone && Manifestacija.BudzetDone && Manifestacija.TemaDone && Manifestacija.GostiDone && Manifestacija.RasporedDone && Manifestacija.DekoracijaDone && Manifestacija.MuzikaDone && Manifestacija.DodatnoDone && Manifestacija.DatumDone && Manifestacija.Status == StatusManifestacije.IZRADA)
                 {
                     predlozi.IsEnabled = true;
                 }

@@ -96,13 +96,13 @@ namespace HCI_Projekat.OrganizatorView
 
                 foreach (Ponuda p in manif.Ponude)
                 {
-                    if (flag == 0)
-                    {
-                        Image = new BitmapImage(new Uri(p.Saradnik.MapaObjekta, UriKind.Relative));
-                        flag = 1;
-                    }
                     if (p.Stolovi.Count > 0)
                     {
+                        if (flag == 0)
+                        {
+                            Image = new BitmapImage(new Uri(p.Saradnik.MapaObjekta, UriKind.Relative));
+                            flag = 1;
+                        }
                         foreach (Sto sto in p.Stolovi)
                         {
                             BrojMestaZaStolovima[sto.BrojStola] = sto.BrojOsoba;

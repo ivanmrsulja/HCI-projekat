@@ -44,7 +44,7 @@ namespace HCI_Projekat.KlijentView
         {
             InitializeComponent();
             this.DataContext = this;
-            Teme = new List<TemaManifestacije> { TemaManifestacije.RODJENDAN, TemaManifestacije.KOKTEL_PARTY, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENCANJE};
+            Teme = new List<TemaManifestacije> { TemaManifestacije.ROĐENDAN, TemaManifestacije.ŽURKA, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENČANJE};
             Klijent = k;
             BindedGrid = data;
             Manifestacije = mans;
@@ -170,12 +170,22 @@ namespace HCI_Projekat.KlijentView
                     int id = Organizator[0].Id;
                     Organizator org = (from o in db.Korisnici where o.Id == id select o).FirstOrDefault() as Organizator;
                     org.AddManifestacija(novi);
-                    novi.Status = StatusManifestacije.U_IZRADI;
+                    novi.Status = StatusManifestacije.IZRADA;
                 }
                 Klijent klijent = (from k in db.Korisnici where k.Id == Klijent.Id select k).ToArray()[0] as Klijent;
                 klijent.AddManifestacija(novi);
                 db.Manifestacije.Add(novi);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    var dw = new OkForm("Nije uspelo čuvanje manifestacije. Proverite listu gostiju pa probajte ponovo.", "Nije uspelo kreiranje");
+                    dw.ShowDialog();
+                    return;
+                }
+                
                 List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
                 Manifestacije = new ObservableCollection<Manifestacija>(manifestations);
             }
@@ -188,12 +198,12 @@ namespace HCI_Projekat.KlijentView
 
         private TemaManifestacije stringToManifestacija(string manUpper)
         {
-            if (manUpper == "VENCANJE")
-                return TemaManifestacije.VENCANJE;
-            else if (manUpper == "RODJENDAN")
-                return TemaManifestacije.RODJENDAN;
-            else if (manUpper == "KOKTEL_PARTY")
-                return TemaManifestacije.KOKTEL_PARTY;
+            if (manUpper == "VENČANJE")
+                return TemaManifestacije.VENČANJE;
+            else if (manUpper == "ROĐENDAN")
+                return TemaManifestacije.ROĐENDAN;
+            else if (manUpper == "ŽURKA")
+                return TemaManifestacije.ŽURKA;
             else if (manUpper == "REJV")
                 return TemaManifestacije.REJV;
             else if (manUpper == "OTVARANJE")
@@ -218,13 +228,22 @@ namespace HCI_Projekat.KlijentView
                         w.ShowDialog();
                         return;
                     }
+                    listGostiju.Clear();
                     while (!reader.EndOfStream)
                     {
                         counter++;
                         var line = reader.ReadLine();
-                        var values = line.Split(',');
+                        String[] values = line.Split(',');
 
-                        Gost tmp = new Gost(values[0], 0, null);
+                        Gost tmp = null;
+                        if(values.Length > 1)
+                        {
+                            tmp = new Gost(values[0] + values[1], 0, null);
+                        }
+                        else
+                        {
+                            tmp = new Gost(values[0], 0, null);
+                        }
                         listGostiju.Add(tmp);
                     }
                 }

@@ -631,7 +631,7 @@ namespace HCI_Projekat.Administrator
                 //db.SaveChanges();
                 //Saradnici = new ObservableCollection<Saradnik>((from sar in db.Saradnici where sar.Obrisan == false select sar));
                 //SarGrid.ItemsSource = Saradnici;
-                //var toUpdate = from man in db.Manifestacije where man.Obrisana == false && man.Status == StatusManifestacije.U_IZRADI select man;
+                //var toUpdate = from man in db.Manifestacije where man.Obrisana == false && man.Status == StatusManifestacije.IZRADA select man;
                 //foreach(var manifestacija in toUpdate)
                 //{
                 //    manifestacija.Ponude.RemoveAll(item => item.Saradnik.Id == toDelete.Id);
@@ -640,14 +640,14 @@ namespace HCI_Projekat.Administrator
                 {
                     for (int i = p.Manifestacije.Count - 1; i >= 0; i--)
                     {
-                        if (p.Stolovi.Count > 0 && p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
+                        if (p.Stolovi.Count > 0 && p.Manifestacije[i].Status != StatusManifestacije.ZAVRŠENA)
                         {
                             foreach (Gost g in p.Manifestacije[i].Gosti)
                             {
                                 g.BrojStola = 0;
                             }
                         }
-                        if (p.Manifestacije[i].Status != StatusManifestacije.ZAVRSENA)
+                        if (p.Manifestacije[i].Status != StatusManifestacije.ZAVRŠENA)
                         {
                             p.Manifestacije[i].PredlozenoZaZavrsavanje = false; // da ne potvrdi a u medjuvremenu je neko izbrisao nesto
                             p.Manifestacije[i].RemovePonuda(p);

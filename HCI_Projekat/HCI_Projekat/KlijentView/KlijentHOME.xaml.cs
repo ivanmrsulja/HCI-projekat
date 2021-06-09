@@ -81,7 +81,7 @@ namespace HCI_Projekat.KlijentView
             ParentScreen = p;
             ParentScreen.Hide();
             Klijent = k;
-            Teme = new List<TemaManifestacije> { TemaManifestacije.RODJENDAN, TemaManifestacije.KOKTEL_PARTY, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENCANJE, TemaManifestacije.SVE };
+            Teme = new List<TemaManifestacije> { TemaManifestacije.ROĐENDAN, TemaManifestacije.ŽURKA, TemaManifestacije.OTVARANJE, TemaManifestacije.REJV, TemaManifestacije.VENČANJE, TemaManifestacije.SVE };
             using (var db = new DatabaseContext())
             {
                 List<Manifestacija> manifestations = (from m in db.Manifestacije where m.Klijent.Id == Klijent.Id && m.Obrisana != true select m).ToList();
@@ -268,6 +268,10 @@ namespace HCI_Projekat.KlijentView
         private void Notification_DoubleClick(object sender, EventArgs e)
         {
             Notifikacija selected = (Notifikacija)notificationList.SelectedItem;
+            if(selected == null)
+            {
+                return;
+            }
             Manifestacija man;
             using (var db = new DatabaseContext())
             {

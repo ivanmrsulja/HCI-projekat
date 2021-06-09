@@ -48,7 +48,7 @@ namespace HCI_Projekat.KlijentView
                 Organizatori = (from org in db.Korisnici where org.Uloga == UlogaKorisnika.ORGANIZATOR select org as Organizator).ToList();
                 foreach(Organizator o in Organizatori)
                 {
-                    o.Zauzetost = (from man in db.Manifestacije where man.Organizator.Id == o.Id && man.Status == StatusManifestacije.U_IZRADI select man).Count();
+                    o.Zauzetost = (from man in db.Manifestacije where man.Organizator.Id == o.Id && man.Status == StatusManifestacije.IZRADA select man).Count();
                 }
             }
 
