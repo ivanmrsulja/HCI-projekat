@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Pregled stare manifestacije" Height="900" Width="780" MinHeight="720" MinWidth="620" BorderThickness="0.5" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" >
-    <Grid>
+    <Grid >
         
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"></RowDefinition>
@@ -32,7 +32,7 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle VerticalAlignment="Stretch" Margin="25,20,25,20" Grid.ColumnSpan="6" Grid.RowSpan="4" RadiusY="10" RadiusX="10" Fill="White" >
+        <Rectangle VerticalAlignment="Stretch" Margin="25,20,25,50" Grid.ColumnSpan="6" Grid.RowSpan="4" RadiusY="10" RadiusX="10" Fill="White" >
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" Color="#FFBBBBBB"/>
             </Rectangle.Effect>
@@ -92,5 +92,7 @@
                 </Style>
             </DataGrid.Resources>
         </DataGrid>
+        <Button Grid.Row="2" Grid.Column="2" Margin="0,0,0,25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="45" FontSize="25" Click="Button_Click">Nazad</Button>
+
     </Grid>
 </Window>

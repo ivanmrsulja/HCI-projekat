@@ -42,5 +42,10 @@ namespace HCI_Projekat.OrganizatorView
             var w = new PregledRasporeda(Manifestacija);
             w.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

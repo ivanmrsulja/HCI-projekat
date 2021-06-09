@@ -130,6 +130,12 @@ namespace HCI_Projekat.KlijentView
                     w.ShowDialog();
                     return;
                 }
+                if (datum.SelectedDate < DateTime.Now.AddDays(10))
+                {
+                    var w = new OkForm("Datum ne sme biti manje od 10 dana u budućnosti posmatrajući od današnjeg dana", "Greška prilikom izbora datuma");
+                    w.ShowDialog();
+                    return;
+                }
                 using (var db = new DatabaseContext())
                 {
                     Manifestacija stara = (from man in db.Manifestacije where man.Id == Manifestacija.Id select man).ToArray()[0];
