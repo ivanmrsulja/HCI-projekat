@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
         xmlns:root="clr-namespace:HCI_Projekat"
-        Title="Izmena saradnika" Height="800" Width="590" MinHeight="700" MinWidth="540" BorderThickness="0.5" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpAzuriranjeSaradnika">
+        Title="Izmena saradnika" Height="800" Width="590" MinHeight="700" MinWidth="540"  BorderThickness="0.5" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpAzuriranjeSaradnika">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Window.CommandBindings>

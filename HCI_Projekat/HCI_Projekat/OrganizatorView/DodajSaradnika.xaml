@@ -9,8 +9,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:apex="clr-namespace:Apex.Controls;assembly=Apex"
-        Title="Dodavanje saradnika" Height="800" Width="590"  MinHeight="700" MinWidth="540" BorderThickness="0.5" WindowStartupLocation="CenterScreen" root:HelpProvider.HelpKey="HelpDodajSaradnika"
-ResizeMode="CanResizeWithGrip">
+        Title="Dodavanje saradnika" Height="800" Width="590"  MinHeight="700" MinWidth="540" BorderThickness="0.5" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" root:HelpProvider.HelpKey="HelpDodajSaradnika">
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>

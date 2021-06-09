@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Projekat.KlijentView"
         mc:Ignorable="d"
-        Title="Izbor organizatora" Height="450" Width="830" BorderThickness="0.5">
+        Title="Izbor organizatora" Height="450" Width="830" BorderThickness="0.5" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"></RowDefinition>
